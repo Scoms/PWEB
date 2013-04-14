@@ -1,0 +1,4 @@
+ensiie_data:
+    resource: "@EnsiieDataBundle/Resources/config/routing.yml"
+    prefix:   /
+
