@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="Ensiie\Bundle\UserBundle\Entity\UserRepository")
  */
-class User implements UserInterface, \Serializable 
+class User implements UserInterface 
 {
   /**
    * @var integer $id 
@@ -106,21 +106,7 @@ class User implements UserInterface, \Serializable
   public function eraseCredentials()
   {
   }
-
-
-    /**
-     * Set ship
-     *
-     * @param \Iaato\IaatoBundle\Entity\Ship $ship
-     * @return User
-     */
-    public function setShip(\Iaato\IaatoBundle\Entity\Ship $ship = null)
-    {
-        $this->ship = $ship;
-    
-        return $this;
-    }
-
+   
     public function serialize()
     {
 	  return serialize($this->id);
@@ -130,5 +116,4 @@ class User implements UserInterface, \Serializable
     {
 	  $this->id = unserialize($data);
     }
-
 }

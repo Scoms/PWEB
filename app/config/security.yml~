@@ -12,19 +12,16 @@ security:
             algorithm:   sha1
             iterations: 1
             encode_as_base64: false
-    
+            
     role_hierarchy:
-        ROLE_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
-
+        ROLE_ETU : [ROLE_ETU]
+        ROLE_PROF : [ROLE_PROF]
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN]
+        
     providers:
         main:
             entity: { class: Ensiie\Bundle\UserBundle\Entity\User, property: username }
-
-    role_hierarchy:
-        ROLE_ETU : ROLE_ETU
-        ROLE_PROF : ROLE_PROF
-        ROLE_SUPER_ADMIN: [ROLE_ADMIN]
-
+            
     firewalls:
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/

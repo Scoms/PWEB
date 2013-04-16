@@ -14,7 +14,7 @@ class Users extends AbstractFixture implements OrderedFixtureInterface
   public function load(ObjectManager $manager)
   {
     $user = new User;
-    $user->setUsername('superadmin');
+    $user->setUsername('admin');
     $user->setPassword(sha1('pass'));
     $user->setSalt('');
     $user->setRoles(array('ROLE_ADMIN'));
