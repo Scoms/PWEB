@@ -11,11 +11,11 @@ ensiie_main:
     prefix:   /
 
 login:
-    pattern: /login
+    pattern: /home/login
     defaults: { _controller: EnsiieUserBundle:Security:login }
 
 login_check:
-    pattern: /login_check
+    pattern: /home/login_check
 
 logout:
-    pattern: /logout
+    pattern: /home/logout

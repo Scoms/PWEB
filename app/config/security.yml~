@@ -21,8 +21,8 @@ security:
             entity: { class: Ensiie\Bundle\UserBundle\Entity\User, property: username }
 
     role_hierarchy:
-        ROLE_ETU : [ROLE_ETU]
-        ROLE_PROF : [ROLE_PROF]
+        ROLE_ETU : ROLE_ETU
+        ROLE_PROF : ROLE_PROF
         ROLE_SUPER_ADMIN: [ROLE_ADMIN]
 
     firewalls:

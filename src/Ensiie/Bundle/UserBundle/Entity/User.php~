@@ -8,7 +8,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
  
 /**
- * @ORM\Entity(repositoryClass="PWEB\Bundle\UserBundle\Entity\UserRepository")
+ * @ORM\Entity(repositoryClass="Ensiie\Bundle\UserBundle\Entity\UserRepository")
  */
 class User implements UserInterface, \Serializable 
 {
