@@ -1,4 +1,21 @@
+ensiie_user:
+    resource: "@EnsiieUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
 ensiie_data:
     resource: "@EnsiieDataBundle/Resources/config/routing.yml"
     prefix:   /
 
+ensiie_main:
+    resource: "@EnsiieMainBundle/Resources/config/routing.yml"
+    prefix:   /
+
+login:
+    pattern: /login
+    defaults: { _controller: EnsiieUserBundle:Security:login }
+
+login_check:
+    pattern: /login_check
+
+logout:
+    pattern: /logout
