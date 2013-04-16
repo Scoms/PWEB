@@ -21,10 +21,10 @@
         <a class="brand" href="">ENSIIE</a>
         <div class="">
           <ul class="nav">
-            <li><a href="">Link</a></li>
-            <li><a href="">Link</a></li>
-            <li><a href="">Link</a></li>
-            <li><a href="">Link</a></li>
+            <li ><a href="">Home</a></li>
+            <li><a href="">Expedition Leader</a></li>
+            <li><a href="">IAATO</a></li>
+            <li><a href="">Contact</a></li>
           </ul>          
         </div><!--/.nav-collapse -->
       </div>

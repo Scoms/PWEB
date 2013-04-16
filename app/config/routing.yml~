@@ -2,6 +2,3 @@ ensiie_data:
     resource: "@EnsiieDataBundle/Resources/config/routing.yml"
     prefix:   /
 
-ensiie_main:
-    resource: "@EnsiieMainBundle/Resources/config/routing.yml"
-    prefix:   /

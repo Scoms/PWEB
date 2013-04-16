@@ -1,0 +1,7 @@
+parameters:
+#    ensiie_main.example.class: Ensiie\Bundle\MainBundle\Example
+
+services:
+#    ensiie_main.example:
+#        class: %ensiie_main.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

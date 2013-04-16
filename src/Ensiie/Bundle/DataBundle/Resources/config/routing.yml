@@ -1,3 +1,0 @@
-ensiie_data_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: EnsiieDataBundle:Default:index }
