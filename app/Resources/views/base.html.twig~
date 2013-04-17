@@ -23,25 +23,27 @@
           <ul class="nav">
           
           {% if is_granted('ROLE_ADMIN') %}
-            <li><a href="">Admin</a></li>
+            <li><a href="{{ path('ensiie_admin') }}">Admin</a></li>
           {% endif %}
           {% if is_granted('ROLE_PROF') %}
-	    <li><a href="">Prof</a></li>
+	    <li><a href="{{ path('ensiie_prof') }}">Prof</a></li>
 	  {% endif %}
 	  {% if is_granted('ROLE_ETU') %}
-	    <li><a href="">Etudiant</a></li>
+	    <li><a href="{{ path('ensiie_etu') }}">Etudiant</a></li>
 	  {% endif %}
 	  
 	  <li><a href="{{ path('login') }}">Login</a></li>
-	   {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+	  {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
               <a class="btn btn-danger"  href="{{ path('logout') }}">Logout</a>
-            {% endif %}
+          {% endif %}
           </ul>          
         </div><!--/.nav-collapse -->
       </div>
 
     </div>
   </div>
+  <div class="well">
   {% block body %}{% endblock %}
-    </body>
+   </div>
+   </body>
 </html>

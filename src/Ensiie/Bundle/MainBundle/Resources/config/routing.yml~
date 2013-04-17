@@ -1,3 +1,15 @@
 ensiie_homepage:
-    pattern: /home
+    pattern: /
     defaults: { _controller:EnsiieMainBundle:Home:index }
+    
+ensiie_prof:
+    pattern: /prof
+    defaults: { _controller:EnsiieMainBundle:Prof:index }
+    
+ensiie_etu:
+    pattern: /etu
+    defaults: { _controller:EnsiieMainBundle:Etu:index }
+    
+ensiie_admin:
+    pattern: /admin
+    defaults: { _controller:EnsiieMainBundle:admin:index }

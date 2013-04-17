@@ -18,18 +18,18 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="brand" href="">ENSIIE</a>
+        <a class="brand" href="{{ path('ensiie_homepage') }}">ENSIIE</a>
         <div class="">
           <ul class="nav">
           
           {% if is_granted('ROLE_ADMIN') %}
-            <li><a href="">Admin</a></li>
+            <li><a href="{{ path('ensiie_admin') }}">Admin</a></li>
           {% endif %}
           {% if is_granted('ROLE_PROF') %}
-	    <li><a href="">Prof</a></li>
+	    <li><a href="{{ path('ensiie_prof') }}">Prof</a></li>
 	  {% endif %}
 	  {% if is_granted('ROLE_ETU') %}
-	    <li><a href="">Etudiant</a></li>
+	    <li><a href="{{ path('ensiie_etu') }}">Etudiant</a></li>
 	  {% endif %}
 	  
 	  <li><a href="{{ path('login') }}">Login</a></li>
@@ -42,6 +42,8 @@
 
     </div>
   </div>
+  <div class="well">
   {% block body %}{% endblock %}
-    </body>
+   </div>
+   </body>
 </html>
