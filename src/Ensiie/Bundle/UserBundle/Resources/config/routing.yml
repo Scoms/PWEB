@@ -1,3 +1,7 @@
 ensiie_user_homepage:
     pattern:  /hello/{name}
     defaults: { _controller: EnsiieUserBundle:Default:index }
+    
+ensiie_inscription:
+    pattern: /inscription
+    defaults: { _controller: EnsiieUserBundle:Inscription:index }

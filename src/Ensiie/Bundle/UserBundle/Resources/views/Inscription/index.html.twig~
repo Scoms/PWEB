@@ -1,0 +1,22 @@
+{% extends "::base.html.twig" %}
+
+
+ 
+{% block body %}
+<h1>Inscription</h1>
+<p>Bienvenu dans l'espace d'inscription</p>
+
+
+{% if success!="" %}
+<form method="post" {{ form_enctype(form) }} class="form">
+		{{ form_errors(form) }}
+		{{ form_rest(form) }}
+		<input type="submit" value="Send" class="btn btn-primary" />
+	</form>
+{% else %}
+  <p>{{ success }}</p>
+{% endif %}
+{% if error!="" %}
+  <p>{{ error }}</p>
+{% endif %}
+{% endblock %}

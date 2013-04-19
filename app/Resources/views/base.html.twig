@@ -31,11 +31,11 @@
 	  {% if is_granted('ROLE_ETU') %}
 	    <li><a href="{{ path('ensiie_etu') }}">Etudiant</a></li>
 	  {% endif %}
-	  
-	  <li><a href="{{ path('login') }}">Login</a></li>
+	  <li><a href="{{ path('login') }}">Login</a><li>
+          <li><a href="{{ path('ensiie_inscription') }}">Inscription</a></li>
 	  {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
               <a class="btn btn-danger"  href="{{ path('logout') }}">Logout</a>
-          {% endif %}
+              {% endif %}
           </ul>          
         </div><!--/.nav-collapse -->
       </div>
