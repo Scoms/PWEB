@@ -9,40 +9,34 @@ class ProfController extends Controller
 {
     public function indexAction()
     {
-	$examen = new Examen;
+      $em = $this->getDoctrine()->getManager();
+      $request = $this->get('request');
+      $logger = $this->get('logger');
+      $examen = new Examen;
 	
-	$fb = $this->createFormBuilder($examen);
+      $fb = $this->createFormBuilder($examen);
 	
 	$fb
+	  ->add('libelle','text')
+	  ->add('description','textarea')
+	  ->add('date','datetime')	
+	  ->add('coefficient','number')
 	  ->add('file');
 	  
 	$form = $fb->getForm();
-	if($form->isValid())
-      {
-	$logger->info("verification existance de l'utilisateur");
-	if($em->getRepository("EnsiieUserBundle:User")->findBy(array("username"=>$user->getUsername()))==NULL)
+	
+	if($request->getMethod() == 'POST')
 	{
-	  $logger->info("utilisateur unique, génération du mot de passe");
-	  $mdp = $user->getUsername()."secure";
-	  $user->setPassword(sha1($mdp));
-	  $user->setRoles(array('ROLE_ETU'));
-	  $user->setSalt('');
-	  $em->persist($user);
-	  $em->flush();
-	  $logger->info('utilisateur ajouté');
-	  
-	  return $this->render('EnsiieUserBundle:Inscription:index.html.twig',array(
-	    'form'=>$form->createView(),
-	    'error'=>'',
-	    'success'=>'L\'utilisateur "'.$user->getUsername().'" à bien été ajouté avec le mot de passe : '.$mdp,
+	  $form->bind($request);
+	  if($form->isValid())
+	  {
+	    $em->persist($examen);
+	    $em->flush();
+	    return $this->render('EnsiieMainBundle:Prof:index.html.twig',array(
+	    'form' => $form->createView(),
 	  ));
+	  }
 	}
-	return $this->render('EnsiieUserBundle:Inscription:index.html.twig',array(
-	    'form'=>$form->createView(),
-	    'error'=>"Veuillez choisir un nom d'utilisateur UNIQUE SVP",
-	    'success'=>'',
-	  ));
-      }
 	
         return $this->render('EnsiieMainBundle:Prof:index.html.twig',array(
 	  'form' => $form->createView(),

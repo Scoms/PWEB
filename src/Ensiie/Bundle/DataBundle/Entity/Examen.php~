@@ -56,16 +56,6 @@ protected $statut;
 */
 protected $depot;
 
-     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    public $filepath;
-
-    /**
-     * @Assert\File(maxSize="500k")
-     */
-    public $file;
-
 public function __construct()
     {
         $this->depot = new ArrayCollection();
