@@ -1,12 +1,13 @@
 php app/console doctrine:fixture:load
 
+- jeu de données général Laurent 
 - étudiant consulte la lsite des examens. 
-- utilisateur s'authentifie Done
-- util s'inscrit Laurent
-- util dépose un examen
-- util crée un examen 
-- util associe utilisateur à examens
-- util : associe note à un dépôt 
+- utilisateur s'authentifie Laurent -> DONE
+- util s'inscrit Laurent -> DONE 
+- etu dépose un examen
+- prof crée un examen 
+- prof associe utilisateur à examens
+- prof : associe note à un dépôt 
 - moyenne par promo
 - gestion de promo
 
