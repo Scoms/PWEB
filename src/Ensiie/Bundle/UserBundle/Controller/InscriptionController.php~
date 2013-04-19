@@ -45,6 +45,7 @@ class InscriptionController extends Controller
 	  $em->persist($user);
 	  $em->flush();
 	  $logger->('utilisateur ajouté');
+	  
 	  return $this->render('EnsiieUserBundle:Inscription:index.html.twig',array(
 	    'form'=>$form->createView(),
 	    'error'=>'',

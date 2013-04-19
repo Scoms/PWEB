@@ -44,7 +44,8 @@ class InscriptionController extends Controller
 	  $user->setSalt('');
 	  $em->persist($user);
 	  $em->flush();
-	  $logger->('utilisateur ajouté');
+	  $logger->info('utilisateur ajouté');
+	  
 	  return $this->render('EnsiieUserBundle:Inscription:index.html.twig',array(
 	    'form'=>$form->createView(),
 	    'error'=>'',

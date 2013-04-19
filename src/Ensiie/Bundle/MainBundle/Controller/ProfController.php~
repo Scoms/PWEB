@@ -3,11 +3,24 @@
 namespace Ensiie\Bundle\MainBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Ensiie\Bundle\DataBundle\Entity\Examen;
 
 class ProfController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('EnsiieMainBundle:Home:index.html.twig');
+	$examen = new Examen;
+	
+	$fb = $this->createFormBuilder($examen);
+	
+	$fb
+	  ->add('file');
+	  
+	$form = $fb->getForm();
+	
+	
+        return $this->render('EnsiieMainBundle:Prof:index.html.twig',array(
+	  'form' => $form->createView(),
+        ));
     }
 }
