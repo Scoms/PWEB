@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Ensiie\Bundle\DataBundle\Entity\Examen;
 use Ensiie\Bundle\DataBundle\Entity\FileExamen;
 
-class ProfController extends Controller
+class ExamenController extends Controller
 {
     public function indexAction()
     {
@@ -26,8 +26,6 @@ class ProfController extends Controller
 	    
             $em->persist($document);
             $em->flush();
-
-            //$this->redirect($this->generateUrl(...));
         }
     }
         return $this->render('EnsiieMainBundle:Prof:index.html.twig',array(

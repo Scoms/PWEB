@@ -1,22 +1,21 @@
 {% extends '::base.html.twig' %}
 
-
 {% block body %}
-
   <h1>Prof</h1>
 
-{% if user.pictureName %}
-    <img src="{{ asset(user.getWebPath()) }}" />
-{% else %}
-    Pas d'image de profil chargée !
-{% endif %}
-
-<h1>Charger une image de profil</h1>
-
-<form action="#" method="post" {{ form_enctype(form) }}>
-    {{ form_widget(form) }}
-
-    <input type="submit" value="Uploader" />
-</form>
-
+  {% block navbar %}
+  <div style="width:30%;border: solid GRAY 1px;">
+  <ul class="nav nav-list">
+    <li class="nav-header .divider">
+      Examens
+    </li>
+    <li >
+      <a href="#">Déposer</a>
+    </li>
+    <li>
+      <a href="#">Supprimer</a>
+    </li>
+  </ul>
+  </div>
+  {% endblock %}
 {% endblock %}

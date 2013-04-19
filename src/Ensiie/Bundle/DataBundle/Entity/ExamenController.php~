@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Ensiie\Bundle\DataBundle\Entity\Examen;
 use Ensiie\Bundle\DataBundle\Entity\FileExamen;
 
-class ProfController extends Controller
+class ExamenController extends Controller
 {
     public function indexAction()
     {

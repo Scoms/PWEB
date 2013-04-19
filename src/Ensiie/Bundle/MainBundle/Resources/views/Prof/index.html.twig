@@ -1,16 +1,21 @@
 {% extends '::base.html.twig' %}
 
-
 {% block body %}
-
   <h1>Prof</h1>
 
-<h3>Charger un fichier</h3>
-
-<form action="#" method="post" {{ form_enctype(form) }}>
-    {{ form_widget(form) }}
-
-    <input type="submit" value="Uploader" />
-</form>
-
+  {% block navbar %}
+  <div style="width:30%;border: solid GRAY 1px;">
+  <ul class="nav nav-list">
+    <li class="nav-header">
+      Examens
+    </li>
+    <li >
+      <a href="#">Déposer</a>
+    </li>
+    <li>
+      <a href="#">Supprimer</a>
+    </li>
+  </ul>
+  </div>
+  {% endblock %}
 {% endblock %}
