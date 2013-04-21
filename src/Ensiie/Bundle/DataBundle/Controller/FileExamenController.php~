@@ -42,7 +42,6 @@ class FileExamenController extends Controller
       $em = $this->getDoctrine()->getManager();
       $request = $this->get('request');
       $logger = $this->get('logger');
-
       $logger->info('FileExamen show : récupération de tout les fichiers d\'éxamens.');
       $list_exam = $em->getRepository('EnsiieDataBundle:FileExamen')->findAll();
       
@@ -53,8 +52,7 @@ class FileExamenController extends Controller
     public function downloadAction($path)
     {    
       $fichier = "nomFichier.pdf";
-      $chemin = "bundles/nomBundle/.../"; // emplacement de votre fichier .pdf
-	    
+      $chemin = "bundles/nomBundle/.../"; // emplacement de votre fichier .pdf    
       $response = new Response();
       $response->setContent(file_get_contents($path));
       $response->headers->set('Content-Type', 'application/force-download'); // modification du content-type pour forcer le téléchargement 	(sinon le navigateur internet essaie d'afficher le document)

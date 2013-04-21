@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Ensiie\Bundle\DataBundle\Entity\Examen;
+use Ensiie\Bundle\DataBundle\Form\Type\ExamenType;
 
 class ExamenController extends Controller
 {

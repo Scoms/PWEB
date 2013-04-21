@@ -42,7 +42,6 @@ class FileExamenController extends Controller
       $em = $this->getDoctrine()->getManager();
       $request = $this->get('request');
       $logger = $this->get('logger');
-
       $logger->info('FileExamen show : récupération de tout les fichiers d\'éxamens.');
       $list_exam = $em->getRepository('EnsiieDataBundle:FileExamen')->findAll();
       

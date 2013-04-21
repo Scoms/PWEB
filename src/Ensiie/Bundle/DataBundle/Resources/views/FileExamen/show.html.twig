@@ -12,9 +12,11 @@
   </thead>
   <tbody> 
   {% for exam in list %}	
+  <tr>
     <td><p>{{ exam.name }}</p></td>
     <td><p>{{ exam.path }}</p></td>
     <td><p><a href="{{ exam.getDlPath() }}" >dl</a></p></td>
+  </tr>
   {% endfor %}
   </tbody>
 </table>
