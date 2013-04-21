@@ -7,13 +7,13 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
 * @ORM\Entity
-* @ORM\Table(name="file")
+* @ORM\Table(name="FileExamen")
 */
 
 class FileExamen
 {
 
-/**
+      /**
      * @Assert\File(maxSize="6000000")
      */
     public $file;

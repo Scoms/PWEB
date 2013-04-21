@@ -1,0 +1,3 @@
+ensiie_examen_upload:
+    pattern: /prof/examen_upload
+    defaults: { _controller:EnsiieDataBundle:Examen:upload }

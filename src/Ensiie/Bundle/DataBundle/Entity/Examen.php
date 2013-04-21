@@ -13,6 +13,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 class Examen {
 
 /**
+  *@ORM\OneToOne(targetEntity="FileExamen")
+*/
+protected $file;
+/**
 * @ORM\Id
 * @ORM\Column(type="integer")
 * @ORM\GeneratedValue(strategy="AUTO")
@@ -242,4 +246,27 @@ public function __construct()
         return $this->depot;
     }
     
+
+    /**
+     * Set file
+     *
+     * @param \Ensiie\Bundle\DataBundle\Entity\FileExamen $file
+     * @return Examen
+     */
+    public function setFile(\Ensiie\Bundle\DataBundle\Entity\FileExamen $file = null)
+    {
+        $this->file = $file;
+    
+        return $this;
+    }
+
+    /**
+     * Get file
+     *
+     * @return \Ensiie\Bundle\DataBundle\Entity\FileExamen 
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
 }

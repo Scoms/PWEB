@@ -27,7 +27,7 @@ class ExamenController extends Controller
       ->add('libelle','text')
       ->add('description','textarea')
       ->add('coefficient','number')
-      ->add('file', 'file');
+      ->add('file', '');
     $form = $formBuilder->getForm();
     
     return $this->render('EnsiieDataBundle:Examen:upload.html.twig',array(

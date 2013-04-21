@@ -26,8 +26,6 @@ class ExamenController extends Controller
 	    
             $em->persist($document);
             $em->flush();
-
-            //$this->redirect($this->generateUrl(...));
         }
     }
         return $this->render('EnsiieMainBundle:Prof:index.html.twig',array(

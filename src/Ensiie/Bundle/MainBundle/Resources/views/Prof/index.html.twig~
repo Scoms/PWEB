@@ -1,21 +1,23 @@
 {% extends '::base.html.twig' %}
 
-{% block body %}
+{% block sub-nav %}
   <h1>Prof</h1>
-
-  {% block navbar %}
-  <div style="width:30%;border: solid GRAY 1px;">
+  <div >
   <ul class="nav nav-list">
-    <li class="nav-header .divider">
+    <li class="nav-header">
       Examens
     </li>
     <li >
-      <a href="#">Déposer</a>
+      <a href="{{ path('ensiie_examen_upload')}}">Déposer</a>
     </li>
     <li>
       <a href="#">Supprimer</a>
     </li>
   </ul>
   </div>
-  {% endblock %}
+  
+{% endblock %}
+
+{% block body %}
+  
 {% endblock %}
