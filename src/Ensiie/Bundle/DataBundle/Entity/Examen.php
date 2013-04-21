@@ -12,10 +12,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 class Examen {
 
-/**
-  *@ORM\OneToOne(targetEntity="FileExamen")
-*/
-protected $file;
+  /** 
+  * @ORM\ManyToOne(targetEntity="FileExamen")
+  */
+  protected $file;
 /**
 * @ORM\Id
 * @ORM\Column(type="integer")
@@ -245,7 +245,7 @@ public function __construct()
     {
         return $this->depot;
     }
-    
+ 
 
     /**
      * Set file

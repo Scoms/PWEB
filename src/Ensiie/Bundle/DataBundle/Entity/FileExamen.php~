@@ -13,7 +13,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 class FileExamen
 {
 
-      /**
+/**
      * @Assert\File(maxSize="6000000")
      */
     public $file;

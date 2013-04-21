@@ -9,26 +9,35 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Ensiie\Bundle\DataBundle\Entity\Examen;
 use Ensiie\Bundle\DataBundle\Entity\FileExamen;
+use Ensiie\Bundle\DataBundle\Form\Type\ExamenType;
 
 class ExamenController extends Controller
 {
-  public function uploadAction()
+  public function affectAction()
   {
     //variables de base
     $em = $this->getDoctrine()->getManager();
     $request = $this->get('request');
     $logger = $this->get('logger');
     
-    $examen = new Examen;
-    
     $logger->info('Examen upload : création du formulaire.');
-    $formBuilder = $this->createFormBuilder($examen);
-    $formBuilder
-      ->add('libelle','text')
-      ->add('description','textarea')
-      ->add('coefficient','number')
-      ->add('file', '');
-    $form = $formBuilder->getForm();
+    $examen = new Examen;
+    $form = $this->createForm(new ExamenType(), $examen);
+    $logger->info('Examen upload : vérification de la method post.');
+    if($request->getMethod() == 'POST')
+    {
+      $form->bind($request);
+      $logger->info('Examen upload : form binded.');
+      if($form->isValid())
+      {
+	$logger->info('Examen upload : form valid.');
+	$em = $this->getDoctrine()->getManager();
+	//$examen->upload();
+	
+	$em->persist($document);
+	$em->flush();
+      }	
+    }
     
     return $this->render('EnsiieDataBundle:Examen:upload.html.twig',array(
       "form" => $form->createView()
