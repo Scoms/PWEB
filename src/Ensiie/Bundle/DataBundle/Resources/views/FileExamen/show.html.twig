@@ -1,0 +1,22 @@
+{% extends 'EnsiieMainBundle:Prof:index.html.twig' %}
+
+{% block body %}
+
+<table class="table table-hover table-bordered" style="width:65%;background-color:white;">    
+  <thead style="background-color:#49afcd">
+    <tr>
+      <th style="width:45%">Nom</th>
+      <th style="width:45%">Fichier</th>
+      <th >Télécharger</th>
+    </tr>
+  </thead>
+  <tbody> 
+  {% for exam in list %}	
+    <td><p>{{ exam.name }}</p></td>
+    <td><p>{{ exam.path }}</p></td>
+    <td><p><a href="{{ exam.getDlPath() }}" >dl</a></p></td>
+  {% endfor %}
+  </tbody>
+</table>
+    
+{% endblock %}

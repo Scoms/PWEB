@@ -8,8 +8,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Ensiie\Bundle\DataBundle\Entity\Examen;
-use Ensiie\Bundle\DataBundle\Entity\FileExamen;
-use Ensiie\Bundle\DataBundle\Form\Type\ExamenType;
 
 class ExamenController extends Controller
 {
@@ -33,7 +31,6 @@ class ExamenController extends Controller
 	$logger->info('Examen upload : form valid.');
 	$em = $this->getDoctrine()->getManager();
 	//$examen->upload();
-	
 	$em->persist($document);
 	$em->flush();
       }	

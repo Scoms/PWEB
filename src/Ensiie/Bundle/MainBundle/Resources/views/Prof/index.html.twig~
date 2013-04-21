@@ -5,16 +5,16 @@
   <div >
   <ul class="nav nav-list">
     <li class="nav-header">
-      Examens
-    </li>
-    <li ><a href="{{ path('ensiie_examen_upload')}}">Déposer</a></li>
+      Examens</li>
     <li ><a href="{{ path('ensiie_examen_affect')}}">Affecter</a></li>
-    <li>
-      <a href="#">Supprimer</a>
-    </li>
+    <li><a href="#">Supprimer</a></li>
+    <li class="nav-header">
+      Sujets</li>
+    <li ><a href="{{ path('ensiie_sujet_upload')}}">Visualiser</a></li>
+    <li ><a href="{{ path('ensiie_sujet_upload')}}">Déposer</a></li>
   </ul>
   </div>
-  
+  <br/>
 {% endblock %}
 
 {% block body %}

@@ -14,7 +14,7 @@ class ExamenType extends AbstractType
 	$builder
 	->add('libelle','text')
 	->add('description','textarea')
-	->add('coefficient','number')
+	->add('coefficient','number');
     }
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {

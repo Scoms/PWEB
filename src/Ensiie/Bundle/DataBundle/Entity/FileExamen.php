@@ -44,6 +44,10 @@ class FileExamen
     {
         return null === $this->path ? null : $this->getUploadDir().'/'.$this->path;
     }
+    public function getDlPath()
+    {
+      return "../../".$this->getUploadDir()."/".$this->path;
+    }
 
     protected function getUploadRootDir()
     {

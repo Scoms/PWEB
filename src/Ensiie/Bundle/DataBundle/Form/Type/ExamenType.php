@@ -5,7 +5,6 @@ namespace Ensiie\Bundle\DataBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Bridge\Doctrine\Form\ChoiceList\EntityChoiceList;
 
 class ExamenType extends AbstractType
 {

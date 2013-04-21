@@ -13,7 +13,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 class FileExamen
 {
 
-/**
+    /**
      * @Assert\File(maxSize="6000000")
      */
     public $file;
@@ -43,6 +43,10 @@ class FileExamen
     public function getWebPath()
     {
         return null === $this->path ? null : $this->getUploadDir().'/'.$this->path;
+    }
+    public function getDlPath()
+    {
+      return "../../".$this->getUploadDir().$this->path;
     }
 
     protected function getUploadRootDir()

@@ -1,0 +1,6 @@
+{% extends 'EnsiieMainBundle:Prof:index.html.twig' %}
+
+{% block body %}
+
+
+{% endblock %}
