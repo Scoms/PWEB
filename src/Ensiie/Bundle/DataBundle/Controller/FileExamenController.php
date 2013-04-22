@@ -25,23 +25,46 @@ class FileExamenController extends Controller
 	  $logger->info('Examen upload : form binded.');
 	  if($form->isValid())
 	  {
-	    $logger->info('Examen upload : form valid.');
-	    $em = $this->getDoctrine()->getManager();
+	    $logger->info('Examen upload : form valid, Test de l\'unicité du FILENAME.');
+	    if($list_test = $em->getRepository("EnsiieDataBundle:FileExamen")->findBy(
+	    array("path"=>$document->getPath())))
+	    {
+		  return $this->render('EnsiieDataBundle:FileExamen:add.html.twig',array(
+		  "form" => $form->createView(),
+		  "success" => "",
+		  "error" => "le nom du fichier existe déjà. Veuillez le remplacer.",
+		  ));
+	    }
 	    $document->upload();
 	    $em->persist($document);
 	    $em->flush();
+	    return $this->render('EnsiieDataBundle:FileExamen:add.html.twig',array(
+	    "form" => $form->createView(),
+	    "success" => $document->getPath(),
+	    "error" => "",
+	    ));
 	  }	
+	  else
+	  {
+	    return $this->render('EnsiieDataBundle:FileExamen:add.html.twig',array(
+	    "form" => $form->createView(),
+	    "success" => "",
+	    "error" => "fomulaire invalide.",
+	    ));
+	  }
 	}
         return $this->render('EnsiieDataBundle:FileExamen:add.html.twig',array(
 	  "form" => $form->createView(),
+	  "success" => "",
+	  "error" => "",
 	  ));
     }
     public function showAction()
     {
       //variables de base
       $em = $this->getDoctrine()->getManager();
-      $request = $this->get('request');
       $logger = $this->get('logger');
+      
       $logger->info('FileExamen show : récupération de tout les fichiers d\'éxamens.');
       $list_exam = $em->getRepository('EnsiieDataBundle:FileExamen')->findAll();
       
@@ -50,14 +73,14 @@ class FileExamenController extends Controller
 	  ));
     }
     public function downloadAction($path)
-    {    
-      $fichier = "nomFichier.pdf";
-      $chemin = "bundles/nomBundle/.../"; // emplacement de votre fichier .pdf    
+    {
+      $logger = $this->get('logger');
+      
+      $logger->info('FileExamen download : start download.');
       $response = new Response();
       $response->setContent(file_get_contents($path));
       $response->headers->set('Content-Type', 'application/force-download'); // modification du content-type pour forcer le téléchargement 	(sinon le navigateur internet essaie d'afficher le document)
-	$response->headers->set('Content-disposition', 'filename='. $fichier);
-	    
+	$response->headers->set('Content-disposition', 'filename='. $fichier);    
 	return $response;
     }
 }

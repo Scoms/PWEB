@@ -2,6 +2,17 @@
 
 {% block body %}
 
+{% if error != '' %}
+  <div class="alert alert-error">
+	<p data-dismiss="alert">ERROR : {{ error }}</p>
+  </div>
+{% endif %}
+{% if sucess != '' %}
+  <div class="alert alert-success">
+	<p data-dismiss="alert">Le fichier {{ success }} a été ajouté avec succès.</p>
+  </div>
+{% endif %}
+
 <form action="#" method="post" {{ form_enctype(form) }}>
     {{ form_widget(form) }}
     <input type="submit" class="btn btn-primary" value="Déposer" />

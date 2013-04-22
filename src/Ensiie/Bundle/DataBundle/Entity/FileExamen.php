@@ -31,7 +31,7 @@ class FileExamen
     public $name;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
      */
     public $path;
 
