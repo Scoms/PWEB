@@ -140,4 +140,9 @@ protected $examen;
     {
         return $this->examen;
     }
+    
+    public function __toString()
+    {
+	return $this->libelle;
+    }
 }

@@ -5,7 +5,6 @@ namespace Ensiie\Bundle\DataBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Bridge\Doctrine\Form\ChoiceList\EntityChoiceList;
 
 class ExamenType extends AbstractType
 {
@@ -15,6 +14,8 @@ class ExamenType extends AbstractType
 	->add('libelle','text')
 	->add('description','textarea')
 	->add('coefficient','number');
+	->add('date_debut','date');
+	->add('date_fin','date');
     }
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {

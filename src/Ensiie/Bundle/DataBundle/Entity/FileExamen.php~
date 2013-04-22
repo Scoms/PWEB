@@ -31,7 +31,7 @@ class FileExamen
     public $name;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255)
      */
     public $path;
 
@@ -125,5 +125,9 @@ class FileExamen
       $this->file->move($this->getUploadRootDir(), $this->file->getClientOriginalName());
       $this->path = $this->file->getClientOriginalName();
       $this->file = null;
-}
+    }
+    public function __toString()
+    {
+      return $this->getName()." : ".$this->getPath();
+    }
 }

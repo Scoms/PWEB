@@ -14,6 +14,9 @@ class Promos extends AbstractFixture implements OrderedFixtureInterface
   public function load(ObjectManager $manager)
   {
     $promo = new Promo;
+    $promo->setLibelle("Pas de promo");
+    $manager->persist($promo);
+    $promo = new Promo;
     $promo->setLibelle("Les consommateurs");
     $manager->persist($promo);
     $promo = new Promo;

@@ -2,11 +2,10 @@ php app/console doctrine:fixture:load
 
 - utilisateur s'authentifie Laurent -> DONE
 - util s'inscrit Laurent -> DONE 
-
-- jeu de données général Laurent 
+- jeu de données général  
 - étudiant consulte la lsite des examens. 
 - etu dépose un examen
-- prof crée un examen 
+- prof crée un examen Laurent -> en cours 
 - prof associe utilisateur à examens
 - prof : associe note à un dépôt 
 - moyenne par promo
@@ -21,5 +20,5 @@ Cordialement Maxime
 //Post-IT
 
 - php app/console doctrine:database:create
-- php app/console doctrine:schema:update
+- php app/console doctrine:schema:update --force
 - php app/console doctrine:fixture:load

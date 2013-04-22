@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Ensiie\Bundle\DataBundle\Entity\Examen;
 use Ensiie\Bundle\DataBundle\Form\Type\ExamenType;
+use Symfony\Bridge\Doctrine\Form\ChoiceList\EntityChoiceList;
 
 class ExamenController extends Controller
 {
@@ -21,7 +22,12 @@ class ExamenController extends Controller
     
     $logger->info('Examen upload : création du formulaire.');
     $examen = new Examen;
+    $files = new EntityChoiceList($em,'Ensiie\Bundle\DataBundle\Entity\FileExamen');
+    $promos = new EntityChoiceList($em,'Ensiie\Bundle\DataBundle\Entity\Promo');
     $form = $this->createForm(new ExamenType(), $examen);
+    $form->add('file','choice',array('choice_list'=> $files));
+    $form->add('promo','choice',array('choice_list'=> $promos));
+    
     $logger->info('Examen upload : vérification de la method post.');
     if($request->getMethod() == 'POST')
     {
@@ -31,8 +37,7 @@ class ExamenController extends Controller
       {
 	$logger->info('Examen upload : form valid.');
 	$em = $this->getDoctrine()->getManager();
-	//$examen->upload();
-	$em->persist($document);
+	$em->persist($examen);
 	$em->flush();
       }	
     }

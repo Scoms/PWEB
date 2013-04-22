@@ -12,6 +12,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 class Examen {
 
+/**
+  * @ORM\ManyToMany(targetEntity="Etudiant")
+  */
+  protected $etudiant;
   /** 
   * @ORM\ManyToOne(targetEntity="FileExamen")
   */
@@ -35,14 +39,18 @@ protected $description;
 
 /**
 * @ORM\ManyToOne(targetEntity="Promo", inversedBy="examen")
-* @ORM\JoinColumn(name="promo", referencedColumnName="id") 
 */
 protected $promo;
 
 /**
 * @ORM\Column(type="datetime")
 */
-protected $date;
+protected $date_debut;
+
+/**
+* @ORM\Column(type="datetime")
+*/
+protected $date_fin;
 
 /**
 * @ORM\Column(type="integer")
@@ -268,5 +276,84 @@ public function __construct()
     public function getFile()
     {
         return $this->file;
+    }
+
+    /**
+     * Add etudiant
+     *
+     * @param \Ensiie\Bundle\DataBundle\Entity\Etudiant $etudiant
+     * @return Examen
+     */
+    public function addEtudiant(\Ensiie\Bundle\DataBundle\Entity\Etudiant $etudiant)
+    {
+        $this->etudiant[] = $etudiant;
+    
+        return $this;
+    }
+
+    /**
+     * Remove etudiant
+     *
+     * @param \Ensiie\Bundle\DataBundle\Entity\Etudiant $etudiant
+     */
+    public function removeEtudiant(\Ensiie\Bundle\DataBundle\Entity\Etudiant $etudiant)
+    {
+        $this->etudiant->removeElement($etudiant);
+    }
+
+    /**
+     * Get etudiant
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEtudiant()
+    {
+        return $this->etudiant;
+    }
+
+    /**
+     * Set date_debut
+     *
+     * @param \DateTime $dateDebut
+     * @return Examen
+     */
+    public function setDateDebut($dateDebut)
+    {
+        $this->date_debut = $dateDebut;
+    
+        return $this;
+    }
+
+    /**
+     * Get date_debut
+     *
+     * @return \DateTime 
+     */
+    public function getDateDebut()
+    {
+        return $this->date_debut;
+    }
+
+    /**
+     * Set date_fin
+     *
+     * @param \DateTime $dateFin
+     * @return Examen
+     */
+    public function setDateFin($dateFin)
+    {
+        $this->date_fin = $dateFin;
+    
+        return $this;
+    }
+
+    /**
+     * Get date_fin
+     *
+     * @return \DateTime 
+     */
+    public function getDateFin()
+    {
+        return $this->date_fin;
     }
 }

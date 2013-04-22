@@ -16,24 +16,24 @@ class FileExamen
     /**
      * @Assert\File(maxSize="6000000")
      */
-    public $file;
+    protected $file;
 /**
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    public $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
      */
-    public $name;
+    protected $name;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    public $path;
+    protected $path;
 
     public function getAbsolutePath()
     {
@@ -125,5 +125,9 @@ class FileExamen
       $this->file->move($this->getUploadRootDir(), $this->file->getClientOriginalName());
       $this->path = $this->file->getClientOriginalName();
       $this->file = null;
-}
+    }
+    public function __toString()
+    {
+      return $this->getName()." : ".$this->getPath();
+    }
 }

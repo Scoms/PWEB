@@ -22,6 +22,9 @@ class Promos extends AbstractFixture implements OrderedFixtureInterface
     $promo = new Promo;
     $promo->setLibelle("Les pionniers");
     $manager->persist($promo);
+    $promo = new Promo;
+    $promo->setLibelle("Pas de promo");
+    $manager->persist($promo);
     $manager->flush();
   }
   public function getOrder()
