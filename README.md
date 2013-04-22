@@ -22,3 +22,8 @@ Cordialement Maxime
 - php app/console doctrine:database:create
 - php app/console doctrine:schema:update --force
 - php app/console doctrine:fixture:load
+
+##Bundle
+Main: tout ce qui independant des donnees 
+User: inscription, authentification, deconnexion
+Data: tout ce qui concerne les donnees
