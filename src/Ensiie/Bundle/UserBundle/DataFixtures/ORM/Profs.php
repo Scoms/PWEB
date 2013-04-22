@@ -13,18 +13,24 @@ class Profs extends AbstractFixture implements OrderedFixtureInterface
 {
   public function load(ObjectManager $manager)
   {
-    $promo = new Promo;
-    $promo->setLibelle("Pas de promo");
-    $manager->persist($promo);
-    $promo = new Promo;
-    $promo->setLibelle("Les consommateurs");
-    $manager->persist($promo);
-    $promo = new Promo;
-    $promo->setLibelle("Les défricheurs");
-    $manager->persist($promo);
-    $promo = new Promo;
-    $promo->setLibelle("Les pionniers");
-    $manager->persist($promo);
+    $user = new User;
+    $user->setUserName('p.mathis');
+    $user->setPassword(sha1('pass'));
+    $user->setSalt('');
+    $user->setRoles(array('ROLE_PROF'));
+    $manager->persist($user);
+    $user = new User;
+    $user->setUserName('b.gassmann');
+    $user->setPassword(sha1('pass'));
+    $user->setSalt('');    
+    $user->setRoles(array('ROLE_PROF'));
+    $manager->persist($user);
+    $user = new User;
+    $user->setUserName('s.genaud');
+    $user->setPassword(sha1('pass'));
+    $user->setSalt('');
+    $user->setRoles(array('ROLE_PROF'));
+    $manager->persist($user);
     $manager->flush();
   }
   public function getOrder()

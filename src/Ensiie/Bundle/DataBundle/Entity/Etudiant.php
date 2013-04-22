@@ -4,15 +4,15 @@ namespace Ensiie\Bundle\DataBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
+use Ensiie\Bundle\UserBundle\Entity\User;
 
 /**
 * @ORM\Entity
 * @ORM\Table(name="etudiant")
 */
 
-class Etudiant {
-   
-
+class Etudiant extends User
+{
 /**
 * @ORM\Id
 * @ORM\Column(type="integer")

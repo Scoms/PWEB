@@ -9,30 +9,31 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Ensiie\Bundle\UserBundle\Entity\User; 
 
-class Profs extends AbstractFixture implements OrderedFixtureInterface
+class Etudiants extends AbstractFixture implements OrderedFixtureInterface
 {
   public function load(ObjectManager $manager)
-  {
+  {/*
     $user = new User;
     $user->setUserName('p.mathis');
     $user->setPassword(sha1('pass'));
     $user->setSalt('');
-    $user->setRoles('ROLE_PROF');
+    $user->setRoles(array('ROLE_PROF'));
     $manager->persist($user);
     $user = new User;
     $user->setUserName('b.gassmann');
     $user->setPassword(sha1('pass'));
     $user->setSalt('');    
-    $user->setRoles('ROLE_PROF');
+    $user->setRoles(array('ROLE_PROF'));
     $manager->persist($user);
     $user = new User;
     $user->setUserName('s.genaud');
     $user->setPassword(sha1('pass'));
     $user->setSalt('');
-    $user->setRoles('ROLE_PROF');
+    $user->setRoles(array('ROLE_PROF'));
+    
     $manager->persist($user);
     $manager->flush();
-  }
+  */}
   public function getOrder()
   {
     return 1; // the order in which fixtures will be loaded
