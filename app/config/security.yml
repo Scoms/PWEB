@@ -20,6 +20,7 @@ security:
     providers:
         main:
             entity: { class: Ensiie\Bundle\UserBundle\Entity\User, property: username }
+                    
             
     firewalls:
         dev:
@@ -28,7 +29,7 @@ security:
         main:
             pattern: ^/
             anonymous: true
-            provider : main
+            provider : main 
             form_login:
                 login_path: login
                 check_path: login_check

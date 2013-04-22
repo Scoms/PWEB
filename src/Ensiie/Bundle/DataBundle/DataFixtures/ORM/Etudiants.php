@@ -7,7 +7,8 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Ensiie\Bundle\DataBundle\Entity\Etudiant; 
+use Ensiie\Bundle\DataBundle\Entity\Etudiant;
+use Ensiie\Bundle\UserBundle\Entity\User;
 
 class Etudiants extends AbstractFixture implements OrderedFixtureInterface
 {
@@ -22,10 +23,16 @@ class Etudiants extends AbstractFixture implements OrderedFixtureInterface
     $etu->setVille('Mommenheim');
     $etu->setEmail('laurentwieser@hotmail.com');
     $etu->setTelephone('0650511711');
-    $etu->setUserName('l.wieser');
-    $etu->setPassword(sha1('pass'));
-    $etu->setSalt('');
-    $etu->setRoles(array('ROLE_ETU'));
+    
+    $user = new User;
+    $user->setUserName('l.wieser');
+    $user->setPassword(sha1('pass'));
+    $user->setSalt('');
+    $user->setRoles(array('ROLE_ETU'));
+    
+    $etu->setUser($user);
+    
+    $manager->persist($user);
     $manager->persist($etu);
     $etu = new Etudiant;
     $etu->setPromo($manager->getRepository("EnsiieDataBundle:Promo")->findOneBy(array("libelle"=>"Les défricheurs")));
@@ -36,10 +43,10 @@ class Etudiants extends AbstractFixture implements OrderedFixtureInterface
     $etu->setVille('Paris');
     $etu->setEmail('krautergersheim@plop.tk');
     $etu->setTelephone('0101010101');
-    $etu->setUserName('p.risoli');
-    $etu->setPassword(sha1('pass'));
-    $etu->setSalt('');
-    $etu->setRoles(array('ROLE_ETU'));
+    //$etu->setUserName('p.risoli');
+    //$etu->setPassword(sha1('pass'));
+    //$etu->setSalt('');
+    //$etu->setRoles(array('ROLE_ETU'));
     $manager->persist($etu);
     $manager->flush();
   }
