@@ -13,11 +13,15 @@ use Doctrine\Common\Collections\ArrayCollection;
 class FileExamen
 {
 
-    /**
+     /**
      * @Assert\File(maxSize="6000000")
      */
     protected $file;
-/**
+    /**
+      * @ORM\ManyToOne(targetEntity="Ensiie\Bundle\UserBundle\Entity\User")
+      */
+     protected $user;
+    /**
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -59,7 +63,7 @@ class FileExamen
     {
         // on se débarrasse de « __DIR__ » afin de ne pas avoir de problème lorsqu'on affiche
         // le document/image dans la vue.
-        return 'uploads/examens';
+        return 'uploads/examens/'.$this->getUser()->getUserName();
     }
 
     /**
@@ -129,5 +133,38 @@ class FileExamen
     public function __toString()
     {
       return $this->getName()." : ".$this->getPath();
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Ensiie\Bundle\UserBundle\Entity\User $user
+     * @return FileExamen
+     */
+    public function setUser(\Ensiie\Bundle\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+    
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Ensiie\Bundle\UserBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+    
+    public function getFile()
+    {
+      return $this->file;
+    }
+    
+    public function setFile($file)
+    {
+      return $this->file = $file;
     }
 }
