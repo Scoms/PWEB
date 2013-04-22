@@ -22,3 +22,53 @@ Cordialement Maxime
 - php app/console doctrine:database:create
 - php app/console doctrine:schema:update --force
 - php app/console doctrine:fixture:load
+
+//Storys
+
+Cas d’utilisation (stories) :
+
+
+
+Story 1 : l’utilisateur consulte la liste des examens auxquels il est inscrit
+
+La liste des examens au statut « en cours » apparaît triée par ordre ante-chronologique. Un filtre est
+disponible par promotion. Le tri sur le nom de la promo est également possible.
+
+Pour chaque examen de la liste, l’utilisateur peut déposer un examen (document) s’il est étudiant et
+si l’examen concerne sa promo. S’il est chargé de cours, il peut créer un nouvel examen, gérer les
+étudiants inscrits à chaque examen, consulter les documents déposés par les étudiants pour chaque
+examen. Pour chaque examen, la moyenne s’affiche s’il a un statut « clos ».
+
+
+
+Story 2 : l’utilisateur s’authentifie.
+
+L’utilisateur saisit un nom d’utilisateur et un mot de passe.
+
+ Story 2 bis : l’utilisateur s’inscrit
+
+Son mot de passe lui est attribué automatiquement. Il a automatiquement un statut étudiant.
+
+
+
+Story 3 : l’utilisateur dépose un examen
+
+Pour un examen donné et autorisé, l’utilisateur dépose un fichier word ou PDF correspondant à sa
+« copie » d’examen.
+
+
+
+
+Story 4 : l’utilisateur créé un examen
+Story 5 : l’utilisateur associe des étudiants à un examen
+
+Cet écran affiche la liste des étudiants inscrits à l’examen. En bas de page, une liste déroulante avec
+les étudiants de la promo correspondante et un bouton « Ajouter » sont disponibles.
+
+
+
+
+
+Story 6 : Associer une note à un document déposé.
+Story 7 : un utilisateur accède aux moyennes par promo
+Story 8 : un utilisateur peut gérer les promos

@@ -2,7 +2,7 @@ php app/console doctrine:fixture:load
 
 - utilisateur s'authentifie Laurent -> DONE
 - util s'inscrit Laurent -> DONE 
-- jeu de données général  
+- jeu de données général  Laurent -> en cours
 - étudiant consulte la lsite des examens. 
 - etu dépose un examen
 - prof crée un examen Laurent -> en cours 
