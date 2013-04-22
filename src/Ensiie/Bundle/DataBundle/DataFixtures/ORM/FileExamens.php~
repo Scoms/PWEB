@@ -14,8 +14,8 @@ class FileExamens extends AbstractFixture implements OrderedFixtureInterface
   public function load(ObjectManager $manager)
   {
     $file= new FileExamen;
-    $file->setName("Controle final EMA");
-    $file->setPath("macro.pdf");
+    $file->setName("exam IPA");
+    $file->setPath("exam_IPA.pdf");
     $file->setUser($manager->getRepository("EnsiieUserBundle:User")->findOneBy(array("username"=>"p.mathis")));
     $manager->persist($file);
     $manager->flush();
