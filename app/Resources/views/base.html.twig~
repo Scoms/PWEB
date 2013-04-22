@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <link href="/PWEB/css/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
+        <link href="./css/bootstrap/css/bootstrap.css" rel="stylesheet" media="screen">
         <title>{% block title %}Welfuck!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
@@ -43,7 +43,7 @@
     </div>
   </div>
   <div class="well">
-  {% block sub-nav %}
+  {% block subnav %}
   {% endblock %}
   
   {% block body %}
