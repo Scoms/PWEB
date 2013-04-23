@@ -31,8 +31,10 @@ Cas d’utilisation (stories) :
 
 Story 1 : l’utilisateur consulte la liste des examens auxquels il est inscrit
 
+// Laurent 
 La liste des examens au statut « en cours » apparaît triée par ordre ante-chronologique. Un filtre est
-disponible par promotion. Le tri sur le nom de la promo est également possible.
+disponible par promotion. ?? Le tri sur le nom de la promo est également possible ?? .
+// Fin Laurent
 
 Pour chaque examen de la liste, l’utilisateur peut déposer un examen (document) s’il est étudiant et
 si l’examen concerne sa promo. S’il est chargé de cours, il peut créer un nouvel examen, gérer les

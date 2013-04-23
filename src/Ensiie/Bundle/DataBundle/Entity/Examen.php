@@ -58,12 +58,6 @@ protected $date_fin;
 protected $coefficient;
 
 /**
-* @ORM\ManyToOne(targetEntity="Statut", inversedBy="examen")
-* @ORM\JoinColumn(name="statut", referencedColumnName="id") 
-*/
-protected $statut;
-
-/**
 * @ORM\OneToMany(targetEntity="Depot", mappedBy="examen")
 */
 protected $depot;

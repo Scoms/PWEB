@@ -6,19 +6,15 @@
   <ul class="menu nav nav-list" style="">
     <li class="nav-header">
       Examens</li>
-    <li ><a href="{{ path('ensiie_examen_affect')}}">Consulter</a></li>
+    <li ><a href="{{ path('ensiie_etudiant_examen_consult')}}">Consulter</a></li>
     <li><a href="#">Déposer</a></li>
     <li><a href="#">Supprimer</a></li>
-    <li class="nav-header">
-      Sujets</li>
-    <li ><a href="{{ path('ensiie_sujet_show')}}">Visualiser</a></li>
-    <li ><a href="{{ path('ensiie_sujet_upload')}}">Déposer</a></li>
   </ul>
   </div>
 {% endblock %}
 
 {% block body %}
 
-  <h1>Etu</h1>
+  <h1>Etudiant</h1>
   
 {% endblock %}

@@ -75,7 +75,7 @@ class InscriptionController extends Controller
 	return $this->render('EnsiieUserBundle:Inscription:index.html.twig',array(
 	    'form'=>$form->createView(),
 	    'error'=>"",
-	    'success'=> $user->getUsername()."/".$mdp,
+	    'success'=> "Vous avez bien été ajouté ! \nLogin : ".$user->getUsername()."\n"."Mot de passe :".$mdp,
 	  ));
       }
       else

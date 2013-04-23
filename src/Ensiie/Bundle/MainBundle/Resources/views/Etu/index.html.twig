@@ -6,7 +6,7 @@
   <ul class="menu nav nav-list" style="">
     <li class="nav-header">
       Examens</li>
-    <li ><a href="{{ path('ensiie_examen_affect')}}">Consulter</a></li>
+    <li ><a href="{{ path('ensiie_etudiant_examen_consult')}}">Consulter</a></li>
     <li><a href="#">Déposer</a></li>
     <li><a href="#">Supprimer</a></li>
   </ul>
@@ -15,6 +15,6 @@
 
 {% block body %}
 
-  <h1>Etu</h1>
+  <h1>{{ prenom }} {{ nom }}</h1>
   
 {% endblock %}

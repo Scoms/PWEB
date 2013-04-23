@@ -59,11 +59,6 @@ protected $email;
 */
 protected $telephone;
 
-/**
-* @ORM\ManyToOne(targetEntity="Promo",inversedBy="etudiant")
-* @ORM\JoinColumn(name="promo", referencedColumnName="id") 
-*/
-protected $promo;
 
 /**
 * @ORM\OneToMany(targetEntity="Depot", mappedBy="etudiant")
@@ -364,7 +359,7 @@ public function __construct()
      * @param \Ensiie\Bundle\UserBundle\Entity\User $user
      * @return Etudiant
      */
-    public function setUser(\Ensiie\Bundle\DataBundle\Entity\User $user = null)
+    public function setUser(\Ensiie\Bundle\UserBundle\Entity\User $user = null)
     {
         $this->user = $user;
     

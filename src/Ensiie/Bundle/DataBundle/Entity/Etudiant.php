@@ -63,7 +63,7 @@ protected $telephone;
 * @ORM\ManyToOne(targetEntity="Promo",inversedBy="etudiant")
 * @ORM\JoinColumn(name="promo", referencedColumnName="id") 
 */
-protected $promo;
+private $promo;
 
 /**
 * @ORM\OneToMany(targetEntity="Depot", mappedBy="etudiant")

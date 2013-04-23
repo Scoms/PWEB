@@ -8,6 +8,14 @@ class EtuController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('EnsiieMainBundle:Home:index.html.twig');
+	$em = $this->getDoctrine()->getManager();
+	$user = $this->get('Security.context')->getToken()->getUser();
+	$etudiant = $em->getRepository("EnsiieDataBundle:Etudiant")->findOneBy(array("user" => $user->getId()));
+	$prenom = $etudiant->getPrenom();
+	$nom = $etudiant->getNom();
+        return $this->render('EnsiieMainBundle:Etu:index.html.twig',array(
+	  "prenom"=>$prenom,
+	  "nom"=> $nom,
+	  ));
     }
 }
