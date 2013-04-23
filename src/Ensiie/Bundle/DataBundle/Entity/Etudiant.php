@@ -13,7 +13,8 @@ use Ensiie\Bundle\UserBundle\Entity\User;
 
 class Etudiant 
 {
-/**
+
+  /**
   * @ORM\OneToOne(targetEntity="Ensiie\Bundle\UserBundle\Entity\User")
   */
   protected $user;
@@ -303,39 +304,6 @@ public function __construct()
     }
 
     /**
-     * Add examen
-     *
-     * @param \Ensiie\Bundle\DataBundle\Entity\Examen $examen
-     * @return Etudiant
-     */
-    public function addExamen(\Ensiie\Bundle\DataBundle\Entity\Examen $examen)
-    {
-        $this->examen[] = $examen;
-    
-        return $this;
-    }
-
-    /**
-     * Remove examen
-     *
-     * @param \Ensiie\Bundle\DataBundle\Entity\Examen $examen
-     */
-    public function removeExamen(\Ensiie\Bundle\DataBundle\Entity\Examen $examen)
-    {
-        $this->examen->removeElement($examen);
-    }
-
-    /**
-     * Get examen
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getExamen()
-    {
-        return $this->examen;
-    }
-
-    /**
      * Set username
      *
      * @param string $username
@@ -380,4 +348,5 @@ public function __construct()
     {
         return $this->user;
     }
+
 }

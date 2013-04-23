@@ -34,6 +34,7 @@ Story 1 : l’utilisateur consulte la liste des examens auxquels il est inscrit
 // Laurent 
 La liste des examens au statut « en cours » apparaît triée par ordre ante-chronologique. Un filtre est
 disponible par promotion. ?? Le tri sur le nom de la promo est également possible ?? .
+?? statut ???? 
 // Fin Laurent
 
 Pour chaque examen de la liste, l’utilisateur peut déposer un examen (document) s’il est étudiant et

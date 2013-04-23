@@ -18,6 +18,13 @@ class FileExamens extends AbstractFixture implements OrderedFixtureInterface
     $file->setPath("exam_IPA.pdf");
     $file->setUser($manager->getRepository("EnsiieUserBundle:User")->findOneBy(array("username"=>"p.mathis")));
     $manager->persist($file);
+    
+    $file= new FileExamen;
+    $file->setName("Macro G");
+    $file->setPath("macro.pdf");
+    $file->setUser($manager->getRepository("EnsiieUserBundle:User")->findOneBy(array("username"=>"b.gassmann")));
+    $manager->persist($file);
+    
     $manager->flush();
   }
   public function getOrder()

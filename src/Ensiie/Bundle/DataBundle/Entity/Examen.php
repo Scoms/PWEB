@@ -12,10 +12,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 class Examen {
 
-/**
-  * @ORM\ManyToMany(targetEntity="Etudiant")
-  */
-  protected $etudiant;
+
+  /**
+   * @ORM\ManyToMany(targetEntity="Etudiant", cascade={"persist"})
+   */
+  private $etudiants;
+
   /** 
   * @ORM\ManyToOne(targetEntity="FileExamen")
   */
@@ -273,39 +275,6 @@ public function __construct()
     }
 
     /**
-     * Add etudiant
-     *
-     * @param \Ensiie\Bundle\DataBundle\Entity\Etudiant $etudiant
-     * @return Examen
-     */
-    public function addEtudiant(\Ensiie\Bundle\DataBundle\Entity\Etudiant $etudiant)
-    {
-        $this->etudiant[] = $etudiant;
-    
-        return $this;
-    }
-
-    /**
-     * Remove etudiant
-     *
-     * @param \Ensiie\Bundle\DataBundle\Entity\Etudiant $etudiant
-     */
-    public function removeEtudiant(\Ensiie\Bundle\DataBundle\Entity\Etudiant $etudiant)
-    {
-        $this->etudiant->removeElement($etudiant);
-    }
-
-    /**
-     * Get etudiant
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getEtudiant()
-    {
-        return $this->etudiant;
-    }
-
-    /**
      * Set date_debut
      *
      * @param \DateTime $dateDebut
@@ -349,5 +318,38 @@ public function __construct()
     public function getDateFin()
     {
         return $this->date_fin;
+    }
+
+    /**
+     * Add etudiants
+     *
+     * @param \Ensiie\Bundle\DataBundle\Entity\Etudiant $etudiants
+     * @return Examen
+     */
+    public function addEtudiant(\Ensiie\Bundle\DataBundle\Entity\Etudiant $etudiants)
+    {
+        $this->etudiants[] = $etudiants;
+    
+        return $this;
+    }
+
+    /**
+     * Remove etudiants
+     *
+     * @param \Ensiie\Bundle\DataBundle\Entity\Etudiant $etudiants
+     */
+    public function removeEtudiant(\Ensiie\Bundle\DataBundle\Entity\Etudiant $etudiants)
+    {
+        $this->etudiants->removeElement($etudiants);
+    }
+
+    /**
+     * Get etudiants
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEtudiants()
+    {
+        return $this->etudiants;
     }
 }
