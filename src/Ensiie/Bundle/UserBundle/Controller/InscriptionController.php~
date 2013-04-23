@@ -7,6 +7,9 @@ namespace Ensiie\Bundle\UserBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\SecurityContext;
 use Ensiie\Bundle\UserBundle\Entity\User;
+use Ensiie\Bundle\DataBundle\Entity\Etudiant;
+use Ensiie\Bundle\DataBundle\Form\Type\EtudiantType;
+use Symfony\Bridge\Doctrine\Form\ChoiceList\EntityChoiceList;
 
 class InscriptionController extends Controller
 {
@@ -18,15 +21,17 @@ class InscriptionController extends Controller
     $logger = $this->get('logger');
     $logger->info('START INSCRIPTION');
     
-    $user = new User;
+    $etudiant = new Etudiant;
     
+    $promos = new EntityChoiceList($em,'Ensiie\Bundle\DataBundle\Entity\Promo');
     //Création du formulaire de manière abstraite
-    $formBuilder = $this->createFormBuilder($user);
-    $formBuilder
-      ->add('username','text');
-      
-    $form = $formBuilder->getForm();
-    
+    $form = $this->createForm(new EtudiantType(), $etudiant);
+    $form->add('promo','choice',array(
+      'choice_list' => $promos,
+    ,'required'    => false,
+    'empty_value' => 'Choisir une promo',
+    'empty_data'  => null))
+    ;
     
     $logger->info('get method');
     if($request->getMethod() == 'POST')
@@ -34,28 +39,43 @@ class InscriptionController extends Controller
       $form->bind($request);
       if($form->isValid())
       {
-	$logger->info("verification existance de l'utilisateur");
-	if($em->getRepository("EnsiieUserBundle:User")->findBy(array("username"=>$user->getUsername()))==NULL)
+	$logger->info('création d\'un utilisateur.');
+	$user = new User;
+	
+	$logger->info('Génération UserName');
+	
+	$user->setUserName(
+	  substr($etudiant->getPrenom(),0,1)
+	  .".".
+	  substr($etudiant->getNom(),0,8)
+	);
+	$i = 0;
+	$init_size = strlen($user->getUsername());
+	while($em->getRepository("EnsiieUserBundle:User")->findBy(array("username"=>$user->getUsername()))!=NULL)
 	{
-	  $logger->info("utilisateur unique, génération du mot de passe");
-	  $mdp = $user->getUsername()."secure";
-	  $user->setPassword(sha1($mdp));
-	  $user->setRoles(array('ROLE_ETU'));
-	  $user->setSalt('');
-	  $em->persist($user);
-	  $em->flush();
-	  $logger->('utilisateur ajouté');
-	  
-	  return $this->render('EnsiieUserBundle:Inscription:index.html.twig',array(
-	    'form'=>$form->createView(),
-	    'error'=>'',
-	    'success'=>'L\'utilisateur "'.$user->getUsername().'" à bien été ajouté avec le mot de passe : '.$mdp,
-	  ));
+	  if($i==0)
+	    $user->setUserName($user->getUsername()."1");
+	  else
+	    $user->setUserName(substr($user->getUsername(),0,$init_size).$i);
+	  $i++;
 	}
+	
+	$logger->info('Génération Password');
+	
+	$mdp = $user->getUsername()."secure";
+	$user->setPassword(sha1($mdp));
+	$user->setRoles(array('ROLE_ETU'));
+	$user->setSalt('');
+	$etudiant->setUser($user);
+	$em->persist($etudiant);
+	$em->persist($user);
+	$em->flush();
+	$logger->info('utilisateur ajouté');
+	
 	return $this->render('EnsiieUserBundle:Inscription:index.html.twig',array(
 	    'form'=>$form->createView(),
-	    'error'=>"Veuillez choisir un nom d'utilisateur UNIQUE SVP",
-	    'success'=>'',
+	    'error'=>"",
+	    'success'=> $user->getUsername()."/".$mdp,
 	  ));
       }
       else
@@ -63,12 +83,11 @@ class InscriptionController extends Controller
 	return $this->render('EnsiieUserBundle:Inscription:index.html.twig',array(
 	    'form'=>$form->createView(),
 	    'error'=>"Invalid Form",
-	    'success'=>'',
+	    'success'=>"",
 	  ));
       }
     }
     $logger->info('return index');
-    
     return $this->render('EnsiieUserBundle:Inscription:index.html.twig',array(
       'form'=>$form->createView(),
       'error'=>'',

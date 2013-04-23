@@ -7,7 +7,7 @@
 <p>Bienvenu dans l'espace d'inscription</p>
 
 
-{% if success!="" %}
+{% if success=="" %}
 <form method="post" {{ form_enctype(form) }} class="form">
 		{{ form_errors(form) }}
 		{{ form_rest(form) }}

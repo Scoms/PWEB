@@ -26,7 +26,12 @@ class ExamenController extends Controller
     $promos = new EntityChoiceList($em,'Ensiie\Bundle\DataBundle\Entity\Promo');
     $form = $this->createForm(new ExamenType(), $examen);
     $form->add('file','choice',array('choice_list'=> $files));
-    $form->add('promo','choice',array('choice_list'=> $promos));
+    $form->add('promo','choice',array(
+      'choice_list' => $promos,
+    'required' => false,
+    'empty_value' => 'Choisir une promo',
+    'empty_data'  => null))
+    ;
     
     $logger->info('Examen upload : vérification de la method post.');
     if($request->getMethod() == 'POST')
