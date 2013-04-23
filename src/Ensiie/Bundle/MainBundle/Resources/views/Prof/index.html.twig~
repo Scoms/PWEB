@@ -1,22 +1,24 @@
 {% extends '::base.html.twig' %}
 
 {% block subnav %}
-  <h1>Prof</h1>
-  <div >
-  <ul class="nav nav-list">
+  
+  <div class="span3" style="width:20%;">
+  <ul class="menu nav nav-list" style="top: 40px;
+margin-left: 10px;
+margin-bottom: 35px;
+border-radius: 10px;border:solid lightgray 1px;">
     <li class="nav-header">
       Examens</li>
     <li ><a href="{{ path('ensiie_examen_affect')}}">Affecter</a></li>
     <li><a href="#">Supprimer</a></li>
     <li class="nav-header">
       Sujets</li>
-    <li ><a href="{{ path('ensiie_sujet_upload')}}">Visualiser</a></li>
+    <li ><a href="{{ path('ensiie_sujet_show')}}">Visualiser</a></li>
     <li ><a href="{{ path('ensiie_sujet_upload')}}">Déposer</a></li>
   </ul>
   </div>
-  <br/>
 {% endblock %}
 
 {% block body %}
-  
+  <h1>Prof</h1>
 {% endblock %}
