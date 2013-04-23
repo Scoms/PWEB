@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <link href="{{ asset('../css/bootstrap/css/bootstrap.css') }}" rel="stylesheet" media="screen">
-	
+        <link href="{{ asset('../css/bootstrap/css/update.css') }}" rel="stylesheet" media="screen">
         <title>{% block title %}Welfuck!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
@@ -46,6 +46,12 @@
   <div class="row-fluid">
   <div class="container-fluid">
   {% block subnav %}
+    
+  <div class="span3" style="width:20%;">
+  <ul class="menu nav nav-list" style="">
+    <li><img src="{{ asset('../img/bouloubi.jpg') }}"></li>
+  </ul>
+  </div>
   {% endblock %}
   
   <div class="span9" style="">
