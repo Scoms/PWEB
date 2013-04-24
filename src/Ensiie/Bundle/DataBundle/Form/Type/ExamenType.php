@@ -14,8 +14,8 @@ class ExamenType extends AbstractType
 	->add('libelle','text')
 	->add('description','textarea')
 	->add('coefficient','number')
-	->add('date_debut','date')
-	->add('date_fin','date');
+	->add('date_debut','datetime')
+	->add('date_fin','datetime');
     }
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {

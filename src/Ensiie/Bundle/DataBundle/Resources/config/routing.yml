@@ -6,6 +6,10 @@ ensiie_examen_show:
     pattern: /prof/examen_show
     defaults: { _controller:EnsiieDataBundle:Examen:show }
     
+ensiie_examen_remove:
+    pattern: /prof/examen_remove/{id}
+    defaults: { _controller:EnsiieDataBundle:Examen:remove}
+    
 ensiie_sujet_upload:
     pattern: /prof/sujet_upload
     defaults: { _controller:EnsiieDataBundle:FileExamen:upload }

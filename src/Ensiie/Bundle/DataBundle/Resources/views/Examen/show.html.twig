@@ -1,4 +1,4 @@
-{% extends 'EnsiieMainBundle:Etu:index.html.twig' %}
+{% extends 'EnsiieMainBundle:Prof:index.html.twig' %}
 
 {% block body %}
 
@@ -14,6 +14,7 @@
       <th >Statut</th>
       <th >Déposé par</th>
       <th >Lien</th>
+      <th>Supp</th>
     </tr>
   </thead>
   <tbody> 
@@ -47,10 +48,46 @@
     <td><p>
       {% if exam.file != "" and date > exam.dateDebut and date < exam.dateFin %}
 	<a href="{{ exam.file.getDlPath() }}" >x</a>
+      {% else %}{% endif %}
+      </p></td>
+      <td><a href="{{ path('ensiie_examen_remove',{"id":exam.id})}}" >x</a></td>
+    </tr>
+  {% endfor %}
+  {% for exam in exams2 %}	
+  <tr>
+    <td><p>{{ exam.libelle }}</p></td>
+    <td><p>{{ exam.description }}</p></td>
+    <td><p></p>{{ exam.promo.annee }}</td>
+    <td><p>{{ exam.dateDebut.format('Y-m-d H:i') }}</p></td>
+    <td><p>{{ exam.dateFin.format('Y-m-d H:i') }}</p></td>
+    <td>
+      <p>
+      {% if date < exam.dateDebut %}
+	En création
+      {% elseif date > exam.dateFin %}
+	Clos
+      {% else %}
+	En cours
+      {% endif %}
+      </p>
+    </td>
+    <td>
+      <p>
+      {% if exam.file != "" %}
+	{{ exam.file.user.username }}
+      {% else %}
+	 
+      {% endif %}
+      </p>
+    </td>
+    <td><p>
+      {% if exam.file != "" and date > exam.dateDebut and date < exam.dateFin %}
+	<a href="{{ exam.file.getDlPath() }}" >x</a>
       {% else %}
 	
       {% endif %}
       </p></td>
+      <td><a href="{{ path('ensiie_examen_remove',{"id":exam.id})}}" >x</a></td>
   </tr>
   {% endfor %}
   </tbody>

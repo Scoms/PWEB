@@ -85,7 +85,7 @@ class Examens extends AbstractFixture implements OrderedFixtureInterface
      */
      $exam = new Examen;
     $exam->setPromo($_2A);    
-    $exam->setFile($manager->getRepository("EnsiieDataBundle:FileExamen")->findOneBy(array("path"=>"sujet_groupes.pdf.pdf")));
+    $exam->setFile($manager->getRepository("EnsiieDataBundle:FileExamen")->findOneBy(array("path"=>"sujet_groupes.pdf")));
     $exam->setLibelle('Pweb');
     $exam->setDescription('sujet et groupes');
     $exam->setDateDebut($dd);
@@ -122,8 +122,8 @@ class Examens extends AbstractFixture implements OrderedFixtureInterface
     $exam = new Examen;
     $exam->setPromo($_2A);    
     $exam->setFile($manager->getRepository("EnsiieDataBundle:FileExamen")->findOneBy(array("path"=>"ISE3.pdf")));
-    $exam->setLibelle('Eco 2A Final');
-    $exam->setDescription('Un dessin avec les pieds');
+    $exam->setLibelle('TP noté');
+    $exam->setDescription('2h');
     $exam->setDateDebut($dd);
     $exam->setDateFin($df);
     $exam->setCoefficient(2);

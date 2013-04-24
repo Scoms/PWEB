@@ -85,7 +85,7 @@ class Examens extends AbstractFixture implements OrderedFixtureInterface
      */
      $exam = new Examen;
     $exam->setPromo($_2A);    
-    $exam->setFile($manager->getRepository("EnsiieDataBundle:FileExamen")->findOneBy(array("path"=>"sujet_groupes.pdf.pdf")));
+    $exam->setFile($manager->getRepository("EnsiieDataBundle:FileExamen")->findOneBy(array("path"=>"sujet_groupes.pdf")));
     $exam->setLibelle('Pweb');
     $exam->setDescription('sujet et groupes');
     $exam->setDateDebut($dd);
@@ -99,7 +99,7 @@ class Examens extends AbstractFixture implements OrderedFixtureInterface
     $exam = new Examen;
     $exam->setPromo($_1A);    
     $exam->setFile($manager->getRepository("EnsiieDataBundle:FileExamen")->findOneBy(array("path"=>"mom_1_1A.pdf")));
-    $exam->setLibelle('Voila');
+    $exam->setLibelle('MOM 1A 1');
     $exam->setDescription('Minimum locale !');
     $exam->setDateDebut(new \Datetime("2013-01-20 12:20"));
     $exam->setDateFin(new \Datetime("2013-01-20 15:20"));
@@ -109,7 +109,7 @@ class Examens extends AbstractFixture implements OrderedFixtureInterface
     $exam = new Examen;
     $exam->setPromo($_1A);    
     $exam->setFile($manager->getRepository("EnsiieDataBundle:FileExamen")->findOneBy(array("path"=>"mom_2_1A.pdf")));
-    $exam->setLibelle('Bravo');
+    $exam->setLibelle('MOM 1A 2');
     $exam->setDescription('Oui');
     $exam->setDateDebut($df);
     $exam->setDateFin($df);

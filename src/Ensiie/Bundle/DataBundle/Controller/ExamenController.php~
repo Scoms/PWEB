@@ -75,14 +75,35 @@ class ExamenController extends Controller
     $request = $this->get('request');
     $logger = $this->get('logger');
     $exams = array();
+    $exam_encours = array();
     $date = new \DateTime();
     
-    $exams = $em->createQuery("select u from Ensiie\Bundle\DataBundle\Entity\Examen u where date_debut <= ".$date);
-    $exams = $exams->getResult();
+    $exams_list = $em->getRepository("EnsiieDataBundle:Examen")->findBy(array(),array("date_fin"=>"desc"));
+    foreach($exams_list as $exam)
+    {
+      if($exam->getDateDebut() <= $date && $exam->getDateFin() >= $date)
+      {
+	array_push($exam_encours,$exam);
+      }
+      else
+      {
+	array_push($exams,$exam);
+      }
+    }
     return $this->render('EnsiieDataBundle:Examen:show.html.twig',array(
-      "exams"=>$exams,
+      "exams"=>$exam_encours,
+      "exams2"=>$exams,
       "date" => new \Datetime(),
       ));
+  }
+  public function removeAction($id)
+  {
+    $em = $this->getDoctrine()->getManager();
+    $exam = $em->getRepository('EnsiieDataBundle:Examen')->find($id);
+    if($exam->getId() != "")
+    $em->remove($exam); 
+    $em->flush();
+    return $this->showAction();
   }
 	public function addSujetAction() 
 	{

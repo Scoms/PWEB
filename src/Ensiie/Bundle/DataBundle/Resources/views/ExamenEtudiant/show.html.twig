@@ -14,6 +14,7 @@
       <th >Statut</th>
       <th >Déposé par</th>
       <th >Lien</th>
+      <th>Déposer</th>
     </tr>
   </thead>
   <tbody> 
@@ -25,13 +26,7 @@
     <td><p>{{ exam.dateFin.format('Y-m-d H:i') }}</p></td>
     <td>
       <p>
-      {% if date < exam.dateDebut %}
-	En création
-      {% elseif date > exam.dateFin %}
-	Clos
-      {% else %}
-	En cours
-      {% endif %}
+      {% if date < exam.dateDebut %}En création{% elseif date > exam.dateFin %}Clos{% else %}En cours{% endif %}
       </p>
     </td>
     <td>
@@ -44,12 +39,9 @@
       </p>
     </td>
     <td><p>
-      {% if exam.file != "" and date > exam.dateDebut and date < exam.dateFin %}
-	<a href="{{ exam.file.getDlPath() }}" >x</a>
-      {% else %}
-	
-      {% endif %}
+      {% if exam.file != "" and date > exam.dateDebut and date < exam.dateFin %}<a href="{{ exam.file.getDlPath() }}" >x</a>{% else %}{% endif %}
       </p></td>
+      <td><a href="{{ path('ensiie_examen_remove',{"id":exam.id})}}" >x</a></td>
   </tr>
   {% endfor %}
   </tbody>
@@ -67,6 +59,7 @@
       <th >Statut</th>
       <th >Déposé par</th>
       <th >Lien</th>
+      <th>Déposer</th>
     </tr>
   </thead>
   <tbody> 
@@ -103,6 +96,7 @@
 	
       {% endif %}
       </p></td>
+      <td><a href="{{ path('ensiie_examen_remove',{"id":exam.id})}}" >x</a></td>
   </tr>
   {% endfor %}
   </tbody>

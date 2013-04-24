@@ -44,17 +44,17 @@ examen. Pour chaque examen, la moyenne s’affiche s’il a un statut « clos »
 
 
 
-Story 2 : l’utilisateur s’authentifie.
+Story 2 : l’utilisateur s’authentifie. // Laurent -> DONE 
 
 L’utilisateur saisit un nom d’utilisateur et un mot de passe.
 
- Story 2 bis : l’utilisateur s’inscrit
+ Story 2 bis : l’utilisateur s’inscrit // Laurent -> DONE 
 
 Son mot de passe lui est attribué automatiquement. Il a automatiquement un statut étudiant.
 
 
 
-Story 3 : l’utilisateur dépose un examen
+Story 3 : étudiant dépose un examen
 
 Pour un examen donné et autorisé, l’utilisateur dépose un fichier word ou PDF correspondant à sa
 « copie » d’examen.
@@ -62,15 +62,11 @@ Pour un examen donné et autorisé, l’utilisateur dépose un fichier word ou P
 
 
 
-Story 4 : l’utilisateur créé un examen
-Story 5 : l’utilisateur associe des étudiants à un examen
+Story 4 : l’utilisateur créé un examen // Laurent -> DONE 
+Story 5 : l’utilisateur associe des étudiants à un examen // Laurent -> encours (promo OK, pas encore le cas par cas )
 
 Cet écran affiche la liste des étudiants inscrits à l’examen. En bas de page, une liste déroulante avec
 les étudiants de la promo correspondante et un bouton « Ajouter » sont disponibles.
-
-
-
-
 
 Story 6 : Associer une note à un document déposé.
 Story 7 : un utilisateur accède aux moyennes par promo
