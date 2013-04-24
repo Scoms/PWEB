@@ -1,6 +1,10 @@
 ensiie_examen_affect:
     pattern: /prof/examen_affect
     defaults: { _controller:EnsiieDataBundle:Examen:affect }
+
+ensiie_examen_list:
+    pattern: /prof/examen_list
+    defaults: { _controller:EnsiieDataBundle:Examen:list }
     
 ensiie_sujet_upload:
     pattern: /prof/sujet_upload
@@ -17,4 +21,4 @@ ensiie_sujet_download:
 
 ensiie_etudiant_examen_consult:
     pattern: /etu/examen_consult
-    defaults: { _controller:EnsieeDataBundle:ExamenEtudiant:show }
+    defaults: { _controller:EnsiieDataBundle:ExamenEtudiant:show }

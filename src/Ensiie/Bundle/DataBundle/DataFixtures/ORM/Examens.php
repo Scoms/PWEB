@@ -18,38 +18,114 @@ class Examens extends AbstractFixture implements OrderedFixtureInterface
     $exam_repo = $manager->getRepository("EnsiieDataBundle:FileExamen");
     $user_repo = $manager->getRepository("EnsiieUserBundle:User");
     $etu_repo = $manager->getRepository("EnsiieDataBundle:Etudiant");
-    $consommateurs = $promo_repo->findOneBy(array("libelle"=>"Les consommateurs"));
-    
-    $dd = new \DateTime();
-    $df = new \DateTime();
+    $_1A = $promo_repo->findOneBy(array("libelle"=>"Les consommateurs"));
+    $_2A = $promo_repo->findOneBy(array("libelle"=>"Les défricheurs"));
+    $dd = new \DateTime(); // date du jour 
+    $df = new \DateTime(); // demain
     $df->add(new \DateInterval('P1D'));
-    $exam = new Examen;
-    $exam->setPromo($consommateurs);
-    /*
-      On ajoute les gens au rattrapages
-      -phillipe risoli
-    */
-    $exam->addEtudiant($etu_repo->findOneBy(array("user" => $user_repo->findOneBy(array("username"=>"p.risoli")))));
     
-    $exam->setFile($exam_repo->findOneBy(array("path"=>"exam_IPA.pdf")));
+    /*
+     * Exams d'IPA 
+     */
+    $exam = new Examen;
+    $exam->setPromo($_1A);
+    $exam->setFile($exam_repo->findOneBy(array("path"=>"exam_IPA_1A_2.pdf")));
     $exam->setLibelle('IPA controle final');
-    $exam->setDescription('Vous jouez votre vie sur cette exam !');
+    $exam->setDescription('Réviser GB');
     $exam->setDateDebut($dd);
     $exam->setDateFin($df);
     $exam->setCoefficient(2);
     $manager->persist($exam);
     
     $exam = new Examen;
-    $exam->setPromo($consommateurs);
-    /*
-      On ajoute les gens au rattrapages
-    */    
+    $exam->setPromo($_1A);
+    $exam->setFile($exam_repo->findOneBy(array("path"=>"exam_IPA_1A_1.pdf")));
+    $exam->setLibelle('IPA controle intermédiaire');
+    $exam->setDescription('Trololo');
+    $exam->setDateDebut(new \Datetime("2013-01-20 12:20"));
+    $exam->setDateFin(new \Datetime("2013-01-20 15:20"));
+    $exam->setCoefficient(1);
+    $manager->persist($exam);
     
+    /*
+     * Exams d'Eco
+     */
+    $exam = new Examen;
+    $exam->setPromo($_1A);    
     $exam->setFile($manager->getRepository("EnsiieDataBundle:FileExamen")->findOneBy(array("path"=>"macro.pdf")));
-    $exam->setLibelle('Colle Macro');
-    $exam->setDescription('Lol je fais de la macro aussi !');
+    $exam->setLibelle('Macro Final');
+    $exam->setDescription('Macro Final !');
     $exam->setDateDebut($dd);
-    $exam->setDateFin($dd);
+    $exam->setDateFin($df);
+    $exam->setCoefficient(2);
+    $manager->persist($exam);
+    
+    $exam = new Examen;
+    $exam->setPromo($_1A);    
+    $exam->setFile($manager->getRepository("EnsiieDataBundle:FileExamen")->findOneBy(array("path"=>"micro.pdf")));
+    $exam->setLibelle('Micro Final');
+    $exam->setDescription('Dissertation');
+    $exam->setDateDebut($dd);
+    $exam->setDateFin($df);
+    $exam->setCoefficient(2);
+    $manager->persist($exam);
+    
+    $exam = new Examen;
+    $exam->setPromo($_2A);    
+    $exam->setFile($manager->getRepository("EnsiieDataBundle:FileExamen")->findOneBy(array("path"=>"economie.pdf")));
+    $exam->setLibelle('Eco 2A Final');
+    $exam->setDescription('Un dessin avec les pieds');
+    $exam->setDateDebut($dd);
+    $exam->setDateFin($df);
+    $exam->setCoefficient(2);
+    $manager->persist($exam);
+    
+    /*
+     * Exams Pweb
+     */
+     $exam = new Examen;
+    $exam->setPromo($_2A);    
+    $exam->setFile($manager->getRepository("EnsiieDataBundle:FileExamen")->findOneBy(array("path"=>"sujet_groupes.pdf.pdf")));
+    $exam->setLibelle('Pweb');
+    $exam->setDescription('sujet et groupes');
+    $exam->setDateDebut($dd);
+    $exam->setDateFin($df);
+    $exam->setCoefficient(2);
+    $manager->persist($exam);
+    
+    /*
+     * Exams maths
+     */
+    $exam = new Examen;
+    $exam->setPromo($_1A);    
+    $exam->setFile($manager->getRepository("EnsiieDataBundle:FileExamen")->findOneBy(array("path"=>"mom_1_1A.pdf")));
+    $exam->setLibelle('MOM 1A 1');
+    $exam->setDescription('Minimum locale !');
+    $exam->setDateDebut(new \Datetime("2013-01-20 12:20"));
+    $exam->setDateFin(new \Datetime("2013-01-20 15:20"));
+    $exam->setCoefficient(1);
+    $manager->persist($exam);
+    
+    $exam = new Examen;
+    $exam->setPromo($_1A);    
+    $exam->setFile($manager->getRepository("EnsiieDataBundle:FileExamen")->findOneBy(array("path"=>"mom_2_1A.pdf")));
+    $exam->setLibelle('MOM 1A 2');
+    $exam->setDescription('Oui');
+    $exam->setDateDebut($df);
+    $exam->setDateFin($df);
+    $exam->setCoefficient(2);
+    $manager->persist($exam);
+     
+    /*
+      * Exams réseau
+      */  
+    $exam = new Examen;
+    $exam->setPromo($_2A);    
+    $exam->setFile($manager->getRepository("EnsiieDataBundle:FileExamen")->findOneBy(array("path"=>"ISE3.pdf")));
+    $exam->setLibelle('Eco 2A Final');
+    $exam->setDescription('Un dessin avec les pieds');
+    $exam->setDateDebut($dd);
+    $exam->setDateFin($df);
     $exam->setCoefficient(2);
     $manager->persist($exam);
     

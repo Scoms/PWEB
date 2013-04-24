@@ -2,6 +2,8 @@
 
 {% block body %}
 
+<h1>Liste des sujets déposés</h1>
+<br\>
 <table class="table table-hover table-bordered" style="width:65%;background-color:white;">    
   <thead style="background-color:#49afcd">
     <tr>
@@ -16,7 +18,11 @@
   <tr>
     <td><p>{{ exam.name }}</p></td>
     <td><p>{{ exam.path }}</p></td>
-    <td><p>{{ exam.user.username }}</p></td>
+    <td><p>
+    {% if exam.user != "" %}
+      {{ exam.user.username }}
+    {% endif %}
+    </p></td>
     <td><p><a href="{{ exam.getDlPath() }}" >dl</a></p></td>
   </tr>
   {% endfor %}

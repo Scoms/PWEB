@@ -42,13 +42,44 @@ class ExamenController extends Controller
       {
 	$logger->info('Examen upload : form valid.');
 	$em = $this->getDoctrine()->getManager();
+	
+	$logger->info("L'unicité promo/file_id");
+	$test = $em->getRepository("EnsiieDataBundle:Examen")->findOneBy(array("file" => $document->getFile(),"promo"=>$document->getPromo()));
+	    if($test != "")
+	    {
+		  return $this->render('EnsiieDataBundle:Examen:upload.html.twig',array(
+		  "form" => $form->createView(),
+		  "success" => "",
+		  "error" => "Examen déjà existant.",
+		  ));
+	    }
 	$em->persist($examen);
 	$em->flush();
+	return $this->render('EnsiieDataBundle:Examen:upload.html.twig',array(
+	  "form" => $form->createView(),
+	  "error"=>"",
+	  "success"=>"L'examen ".$examen->getLibelle()."à bien été ajouté !",
+	  ));
       }	
     }
     
     return $this->render('EnsiieDataBundle:Examen:upload.html.twig',array(
-      "form" => $form->createView()
+      "form" => $form->createView(),
+      "error"=>"",
+      "success"=>"",
+      ));
+  }
+  public function showAction()
+  {
+    $em = $this->getDoctrine()->getManager();
+    $request = $this->get('request');
+    $logger = $this->get('logger');
+    $exams = array();
+    
+    $exams = $em->getRepository("EnsiieDataBundle:Examen")->findAll();
+    return $this->render('EnsiieDataBundle:Examen:show.html.twig',array(
+      "exams" => $exams,
+      "date" => new \Datetime(),
       ));
   }
 	public function addSujetAction() 

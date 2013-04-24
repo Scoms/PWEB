@@ -17,20 +17,37 @@ class Profs extends AbstractFixture implements OrderedFixtureInterface
     $user->setUserName('p.mathis');
     $user->setPassword(sha1('pass'));
     $user->setSalt('');
-    $user->setRoles('ROLE_PROF');
+    $user->setRoles(array('ROLE_PROF'));
     $manager->persist($user);
+    
     $user = new User;
     $user->setUserName('b.gassmann');
     $user->setPassword(sha1('pass'));
     $user->setSalt('');    
-    $user->setRoles('ROLE_PROF');
+    $user->setRoles(array('ROLE_PROF'));
     $manager->persist($user);
+    
     $user = new User;
     $user->setUserName('s.genaud');
     $user->setPassword(sha1('pass'));
     $user->setSalt('');
-    $user->setRoles('ROLE_PROF');
+    $user->setRoles(array('ROLE_PROF'));
     $manager->persist($user);
+    
+    $user = new User;
+    $user->setUserName('m.weil');
+    $user->setPassword(sha1('pass'));
+    $user->setSalt('');
+    $user->setRoles(array('ROLE_PROF'));
+    $manager->persist($user);
+    
+    $user = new User;
+    $user->setUserName('p.mathis');
+    $user->setPassword(sha1('pass'));
+    $user->setSalt('');
+    $user->setRoles(array('ROLE_PROF'));
+    $manager->persist($user);
+    
     $manager->flush();
   }
   public function getOrder()

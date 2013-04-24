@@ -26,10 +26,12 @@ class ExamenController extends Controller
     $promos = new EntityChoiceList($em,'Ensiie\Bundle\DataBundle\Entity\Promo');
     $form = $this->createForm(new ExamenType(), $examen);
     $form->add('file','choice',array('choice_list'=> $files));
-    $form->add('promo','choice',array('choice_list'=> $promos,
+    $form->add('promo','choice',array(
+      'choice_list' => $promos,
     'required' => false,
     'empty_value' => 'Choisir une promo',
-    'empty_data'  => null))));
+    'empty_data'  => null))
+    ;
     
     $logger->info('Examen upload : vérification de la method post.');
     if($request->getMethod() == 'POST')
@@ -40,13 +42,44 @@ class ExamenController extends Controller
       {
 	$logger->info('Examen upload : form valid.');
 	$em = $this->getDoctrine()->getManager();
+	
+	$logger->info("L'unicité promo/file_id");
+	$test = $em->getRepository("EnsiieDataBundle:Examen")->findOneBy(array("file" => $document->getFile(),"promo"=>$document->getPromo()));
+	    if($test != "")
+	    {
+		  return $this->render('EnsiieDataBundle:Examen:upload.html.twig',array(
+		  "form" => $form->createView(),
+		  "success" => "",
+		  "error" => "Examen déjà existant.",
+		  ));
+	    }
 	$em->persist($examen);
 	$em->flush();
+	return $this->render('EnsiieDataBundle:Examen:upload.html.twig',array(
+	  "form" => $form->createView(),
+	  "error"=>"",
+	  "success"=>"L'examen ".$examen->getLibelle()."à bien été ajouté !",
+	  ));
       }	
     }
     
     return $this->render('EnsiieDataBundle:Examen:upload.html.twig',array(
-      "form" => $form->createView()
+      "form" => $form->createView(),
+      "error"=>"",
+      "success"=>"",
+      ));
+  }
+  public function showAction()
+  {
+    $em = $this->getDoctrine()->getManager();
+    $request = $this->get('request');
+    $logger = $this->get('logger');
+    $exams = array();
+    
+    $exams = $em->getRepository("EnsiieDataBundle:Examen")->findAll();
+    return $this->render('EnsiieDataBundle:Examen:show.html.twig',array(
+      "exams" => $exams,
+      "datz" => new \Datetime(),
       ));
   }
 	public function addSujetAction() 

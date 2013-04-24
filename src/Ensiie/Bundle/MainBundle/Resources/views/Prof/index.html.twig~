@@ -7,6 +7,7 @@
     <li class="nav-header">
       Examens</li>
     <li ><a href="{{ path('ensiie_examen_affect')}}">Affecter</a></li>
+    <li ><a href="{{ path('ensiie_examen_show')}}">Affecter</a></li>
     <li><a href="#">Supprimer</a></li>
     <li class="nav-header">
       Sujets</li>
