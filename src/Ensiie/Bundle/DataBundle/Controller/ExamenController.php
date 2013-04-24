@@ -75,10 +75,12 @@ class ExamenController extends Controller
     $request = $this->get('request');
     $logger = $this->get('logger');
     $exams = array();
+    $date = new \DateTime();
     
-    $exams = $em->getRepository("EnsiieDataBundle:Examen")->findAll();
+    $exams = $em->createQuery("select u from Ensiie\Bundle\DataBundle\Entity\Examen u ");
+    $exams = $exams->getResult();
     return $this->render('EnsiieDataBundle:Examen:show.html.twig',array(
-      "exams" => $exams,
+      "exams"=>$exams,
       "date" => new \Datetime(),
       ));
   }
