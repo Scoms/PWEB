@@ -69,7 +69,7 @@ class ExamenController extends Controller
       "success"=>"",
       ));
   }
-  public function showAction()
+  public function showAction($user=null)
   {
     $em = $this->getDoctrine()->getManager();
     $request = $this->get('request');

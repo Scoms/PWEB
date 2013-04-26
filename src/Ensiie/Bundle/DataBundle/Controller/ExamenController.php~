@@ -128,6 +128,7 @@ class ExamenController extends Controller
     public function modifIDAction($id)
     {
       $logger = $this->get('logger');
+      $request = $this->get('request');
       $em = $this->getDoctrine()->getManager();
       $exam = $em->getRepository("EnsiieDataBundle:Examen")->find($id);
       $form = $this->createForm(new ExamenType(), $exam);

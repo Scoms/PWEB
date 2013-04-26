@@ -49,13 +49,13 @@
     
   <div class="span3" style="width:20%;">
   <ul class="menu nav nav-list" style="">
-    <li><img src="{{ asset('../img/ensiie.png') }}"></li>
+    <li><img src="{{ asset('../img/bouloubi.png') }}"></li>
   </ul>
   </div>
   {% endblock %}
   
-  <div class="span9" style="">
-  <div class="well-fluid">
+  <div class="span9">
+  <div class="well">
   {% block body %}
   {% endblock %}
   </div>

@@ -16,4 +16,8 @@
 	<p data-dismiss="alert">{{ success }}</p>
   </div>
 {% endif %}
+<form action="#" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <input type="submit" class="btn btn-primary" value="Déposer" />
+</form>
 {% endblock %}
