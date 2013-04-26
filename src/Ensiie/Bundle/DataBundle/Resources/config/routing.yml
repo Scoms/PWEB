@@ -9,7 +9,15 @@ ensiie_examen_show:
 ensiie_examen_remove:
     pattern: /prof/examen_remove/{id}
     defaults: { _controller:EnsiieDataBundle:Examen:remove}
+
+ensiie_examen_modifier:
+    pattern: /prof/examen_modif
+    defaults: { _controller:EnsiieDataBundle:Examen:modif }
     
+ensiie_examen_modifier_id:
+    pattern: /prof/examen_modifid/{id}
+    defaults: { _controller:EnsiieDataBundle:Examen:modifID }
+  
 ensiie_sujet_upload:
     pattern: /prof/sujet_upload
     defaults: { _controller:EnsiieDataBundle:FileExamen:upload }
@@ -26,3 +34,4 @@ ensiie_sujet_download:
 ensiie_etudiant_examen_consult:
     pattern: /etu/examen_consult
     defaults: { _controller:EnsiieDataBundle:ExamenEtudiant:show }
+   

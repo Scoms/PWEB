@@ -98,54 +98,67 @@ class ExamenController extends Controller
   }
   public function removeAction($id)
   {
+    
+    $logger = $this->get('logger');
     $em = $this->getDoctrine()->getManager();
     $exam = $em->getRepository('EnsiieDataBundle:Examen')->find($id);
+    $logger->info("finded");
     if($exam != "")
     $em->remove($exam); 
     $em->flush();
+    $logger->info("deleted");
     return $this->showAction();
   }
-	public function addSujetAction() 
+  public function modifAction()
+  {
+    $logger = $this->get('logger');
+    $user = $this->get('security.context')->getToken()->getUser();
+    $em = $this->getDoctrine()->getManager();
+    $exams = $em->getRepository("EnsiieDataBundle:Examen")->findAll();
+    $date = new \DateTime();
+    
+      $logger->info("ID NULL");
+      return $this->render('EnsiieDataBundle:Examen:modif.html.twig',array(
+	"exams"=>$exams,
+	"user"=>$user,
+	"date"=>$date
+	));
+      
+    }
+    public function modifIDAction($id)
+    {
+      $logger = $this->get('logger');
+      $request = $this->get('request');
+      $em = $this->getDoctrine()->getManager();
+      $exam = $em->getRepository("EnsiieDataBundle:Examen")->find($id);
+      $form = $this->createForm(new ExamenType(), $exam);
+      
+      $logger->info('Check method');
+      if($request->getMethod() == 'POST')
+      {
+	$form->bind($request);
+	$logger->info('form binded.');
+	if($form->isValid())
 	{
-		$objSujet = new Sujet();
-		$formBuilder = $this->createFormBuilder($objSujet);
-		$formBuilder
-		   ->add('libelle', 'text')
-		   ->add('description', 'text')
-		   ->add('promo','integer')
-		   ->add('date','datetime')
-		   ->add('coefficient','intger') 
-		   ->getForm();
-		$form = $formBuilder->getForm();
-		$request = $this -> get('request');
-		if ($request->isMethod('POST')) { $form->bind($request);
-			if ($form->isValid()) {
-				$em = $this->getDoctrine()->getManager();
-				$em->persist($objSujet);
-				$em->flush();
-			return new Response('Sujet créé avec id '.$objSujet->getId()); 
-			}
-		}
-		return $this->render('EnsiieMainBundle:Sujet:add.html.twig',array('form'=> $form->createView(),
-			));
+	  $em->persist($exam);
+	  $em->flush();
+	  $logger->info('Modif done.');
+	  return $this->render('EnsiieDataBundle:Examen:modif2.html.twig',array(
+	    "error"=>"",
+	    "success"=>"Examen modifié avec succès.",
+	    "form"=>$form->createView()
+	    ));
 	}
-
-	public function showSujetAction($id) 
-	{
-		$objSujet = $this->getDoctrine()->getRepository('EnsiieMainBundle:Sujet')->find($id);
-		if (!$objSujet) {
-			throw $this->createNotFoundException('Sujet introuvable '.$id);
-		}
-		return $this->render('EnsiieMainBundle:Sujet:show.html.twig', array('sujet' => $objSujet));
-	}
-	public function deleteSujetAction($id) 
-	{
-		$entityManager = $this->getDoctrine()->getManager();
-		$objSujet = $entityManager->getRepository('EnsiieMainBundle:Sujet')->find($id);
-		if (!$objSujet) {
-		throw $this->createNotFoundException('Sujet introuvable '.$id);
-		}
-		$entityManager->remove($objSujet); $entityManager->flush();
-		return new Response('Supression du sujet '.$objSujet->getId()); 
-	}
+	return $this->render('EnsiieDataBundle:Examen:modif2.html.twig',array(
+	    "error"=>"Formulaire invalide.",
+	    "success"=>"",
+	    "form"=>$form->createView()
+	    ));
+      }
+      return $this->render('EnsiieDataBundle:Examen:modif2.html.twig',array(
+	    "error"=>"",
+	    "success"=>"",
+	    "form"=>$form->createView()
+	    ));
+    }
 }

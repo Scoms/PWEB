@@ -1,0 +1,45 @@
+{% extends 'EnsiieMainBundle:Prof:index.html.twig' %}
+
+{% block body %}
+
+<h1>Liste des examens</h1>
+<table class="table table-hover table-bordered" style=";background-color:white;">    
+  <thead style="background-color:#49afcd">
+    <tr>
+      <th >Libelle</th>
+      <th >Description</th>
+      <th>Promo</th>
+      <th >Date de début</th>
+      <th >Date de fin</th>
+      <th >Statut</th>
+      <th>File</th>
+      <th>Supp</th>
+    </tr>
+  </thead>
+  <tbody> 
+  {% for exam in exams %}
+  {% if user.username == exam.file.user.username %}
+    <tr>
+      <td><p><a href="{{ path('ensiie_examen_modifier_id',{"id":exam.id})}}" >{{ exam.libelle }}</a></p></td>
+      <td><p>{{ exam.description }}</p></td>
+      <td><p></p>{{ exam.promo.annee }}</td>
+      <td><p>{{ exam.dateDebut.format('Y-m-d H:i') }}</p></td>
+      <td><p>{{ exam.dateFin.format('Y-m-d H:i') }}</p></td>
+      <td>
+	<p>
+	{% if date < exam.dateDebut %}
+	  En création
+	{% elseif date > exam.dateFin %}
+	  Clos
+	{% else %}
+	  En cours
+	{% endif %}
+	</p>
+      </td>
+	<td><p><a href="" ><img src="{{ asset('../img/pdf.png') }}" style="width:25px;heigth:25px"></a></p></td>
+	<td><a href="{{ path('ensiie_examen_remove',{"id":exam.id})}}" >x</a></td>
+      </tr>
+  {% endif %}
+  {% endfor %}	
+
+{% endblock %}

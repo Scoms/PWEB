@@ -1,0 +1,22 @@
+{% extends 'EnsiieMainBundle:Prof:index.html.twig' %}
+
+{% block body %}
+<h1>Modifier un examen</h1>
+
+{% if error != '' %}
+  <div class="alert alert-error">
+	<p data-dismiss="alert">ERROR : {{ error }}</p>
+  </div>
+{% endif %}
+{% if success != '' %}
+  <div class="alert alert-success">
+	<p data-dismiss="alert">Le fichier {{ success }} a été ajouté avec succès.</p>
+  </div>
+{% endif %}
+
+<form action="#" method="post" {{ form_enctype(form) }}>
+    {{ form_row(form.libelle)}}
+    <input type="submit" value="Modifier" class="btn btn-primary" />
+</form>
+
+{% endblock %}

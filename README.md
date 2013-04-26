@@ -31,15 +31,15 @@ Cas d’utilisation (stories) :
 
 Story 1 : l’utilisateur consulte la liste des examens auxquels il est inscrit
 
-// Laurent 
-La liste des examens au statut « en cours » apparaît triée par ordre ante-chronologique. Un filtre est
-disponible par promotion. ?? Le tri sur le nom de la promo est également possible ?? .
-?? statut ???? 
-// Fin Laurent
+// Home : il faudra pouvoir consulter les examens par promo et par statut (c est assez simple je vous encourage à le faire)
 
 Pour chaque examen de la liste, l’utilisateur peut déposer un examen (document) s’il est étudiant et
-si l’examen concerne sa promo. S’il est chargé de cours, il peut créer un nouvel examen, gérer les
-étudiants inscrits à chaque examen, consulter les documents déposés par les étudiants pour chaque
+si l’examen concerne sa promo. 
+
+S’il est chargé de cours, il peut créer un nouvel examen, gérer les
+étudiants inscrits à chaque examen, // Laurent -> En cours
+
+consulter les documents déposés par les étudiants pour chaque
 examen. Pour chaque examen, la moyenne s’affiche s’il a un statut « clos ».
 
 
