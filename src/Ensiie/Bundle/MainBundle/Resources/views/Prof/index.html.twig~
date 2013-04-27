@@ -7,10 +7,9 @@
     <li class="nav-header">
       Examens</li>
       
-    <li ><a href="{{ path('ensiie_examen_show')}}">Liste des examens</a></li>
+    <li ><a href="{{ path('ensiie_examen_show',{"by_owner":"false"})}}">Liste des examens</a></li>
     <li ><a href="{{ path('ensiie_examen_affect')}}">Affecter</a></li>
     <li ><a href="{{ path('ensiie_examen_modifier')}}">Modifier</a></li>
-    <li>Supprimer</li>
     <li class="nav-header">
       Sujets</li>
     <li ><a href="{{ path('ensiie_sujet_show')}}">Visualiser</a></li>

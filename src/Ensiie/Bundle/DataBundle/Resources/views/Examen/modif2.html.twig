@@ -18,5 +18,6 @@
     {{ form_rest(form)}}
     <input type="submit" value="Modifier" class="btn btn-primary" />
 </form>
+<a class="btn btn-danger" href="{{ path('ensiie_examen_remove',{"id":id})}}" value="Supprimer">Supprimer</a>
 
 {% endblock %}

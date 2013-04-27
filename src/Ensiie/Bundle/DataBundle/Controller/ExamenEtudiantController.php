@@ -29,7 +29,7 @@ class ExamenEtudiantController extends Controller
         return $this->render('EnsiieDataBundle:ExamenEtudiant:show.html.twig',array(
 	  "mes_examens_promo" => $mes_examens_promo,
 	  "mes_rattrapages" => $mes_rattrapages,
-	  "var" => $rattrapage->getEtudiants()[0],
+	  "var" => "",
 	  "date" => new \Datetime(),
         ));
     }

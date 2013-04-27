@@ -36,7 +36,7 @@
 	{% endif %}
 	</p>
       </td>
-	<td><p><a href="" ><img src="{{ asset('../img/pdf.png') }}" style="width:25px;heigth:25px"></a></p></td>
+	<td><p><a href="{{ path('ensiie_examen_modif_file',{"id":exam.id})}}" ><img src="{{ asset('../img/pdfIcon.png') }}" style="width:25px;heigth:25px"></a></p></td>
 	<td><a href="{{ path('ensiie_examen_remove',{"id":exam.id})}}" >x</a></td>
       </tr>
   {% endif %}

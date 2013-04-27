@@ -1,0 +1,10 @@
+{% extends 'EnsiieMainBundle:Prof:index.html.twig' %}
+
+{% block body %}
+{% if msg != '' %}
+  <div class="alert alert-success">
+	<p data-dismiss="alert">L'éxamen {{ nom }} a bien été supprimé !</p>
+  </div>
+{% endif %}
+
+{% endblock %}

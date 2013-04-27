@@ -3,7 +3,7 @@ ensiie_examen_affect:
     defaults: { _controller:EnsiieDataBundle:Examen:affect }
 
 ensiie_examen_show:
-    pattern: /prof/examen_show
+    pattern: /prof/examen_show/{by_owner}
     defaults: { _controller:EnsiieDataBundle:Examen:show }
     
 ensiie_examen_remove:
@@ -15,9 +15,13 @@ ensiie_examen_modifier:
     defaults: { _controller:EnsiieDataBundle:Examen:modif }
     
 ensiie_examen_modifier_id:
-    pattern: /prof/examen_modif/id/{id}
+    pattern: /prof/examen_modifid/{id}
     defaults: { _controller:EnsiieDataBundle:Examen:modifID }
-  
+    
+ensiie_examen_modifier_file:
+    pattern: /etu/examen_modiffile/{id}
+    defaults: { _controller:EnsiieDataBundle:Examen:modifFile }
+    
 ensiie_sujet_upload:
     pattern: /prof/sujet_upload
     defaults: { _controller:EnsiieDataBundle:FileExamen:upload }
@@ -34,4 +38,6 @@ ensiie_sujet_download:
 ensiie_etudiant_examen_consult:
     pattern: /etu/examen_consult
     defaults: { _controller:EnsiieDataBundle:ExamenEtudiant:show }
+    
+    
    

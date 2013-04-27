@@ -4,13 +4,13 @@ namespace Ensiie\Bundle\DataBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
-
+use Symfony\Bridge\Doctrine\Form\ChoiceList\EntityLoaderInterface;
 /**
 * @ORM\Entity
 * @ORM\Table(name="FileExamen")
 */
 
-class FileExamen
+class FileExamen 
 {
 
      /**
@@ -167,4 +167,5 @@ class FileExamen
     {
       return $this->file = $file;
     }
+
 }

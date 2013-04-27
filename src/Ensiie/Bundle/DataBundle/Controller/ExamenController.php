@@ -8,7 +8,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Ensiie\Bundle\DataBundle\Entity\Examen;
+use Ensiie\Bundle\DataBundle\Entity\FileExamen;
 use Ensiie\Bundle\DataBundle\Form\Type\ExamenType;
+use Ensiie\Bundle\DataBundle\Form\Type\FileExamenType;
 use Symfony\Bridge\Doctrine\Form\ChoiceList\EntityChoiceList;
 
 class ExamenController extends Controller
@@ -19,13 +21,19 @@ class ExamenController extends Controller
     $em = $this->getDoctrine()->getManager();
     $request = $this->get('request');
     $logger = $this->get('logger');
+    $user = $this->get('security.context')->getToken()->getUser();	
     
     $logger->info('Examen upload : création du formulaire.');
     $examen = new Examen;
-    $files = new EntityChoiceList($em,'Ensiie\Bundle\DataBundle\Entity\FileExamen');
+    $qb = $em->createQueryBuilder();
+    $qb->add('select', 'u')->add('from', 'Ensiie\Bundle\DataBundle\Entity\FileExamen u')->add('where', 'u.user = '.$user->getId());
+    
     $promos = new EntityChoiceList($em,'Ensiie\Bundle\DataBundle\Entity\Promo');
     $form = $this->createForm(new ExamenType(), $examen);
-    $form->add('file','choice',array('choice_list'=> $files));
+    $form->add('file','entity',array (
+                            'class' => 'Ensiie\Bundle\DataBundle\Entity\FileExamen',
+                            'query_builder' => $qb,
+                            'required' => true));
     $form->add('promo','choice',array(
       'choice_list' => $promos,
     'required' => false,
@@ -69,31 +77,41 @@ class ExamenController extends Controller
       "success"=>"",
       ));
   }
-  public function showAction($user=null)
+  public function showAction($by_owner)
   {
     $em = $this->getDoctrine()->getManager();
     $request = $this->get('request');
     $logger = $this->get('logger');
+    $user = $this->get('security.context')->getToken()->getUser();
     $exams = array();
     $exam_encours = array();
+    $exams_list = array();
     $date = new \DateTime();
     
-    $exams_list = $em->getRepository("EnsiieDataBundle:Examen")->findBy(array(),array("date_fin"=>"desc"));
-    foreach($exams_list as $exam)
+    if($by_owner!="true")
+      $exams_list = $em->getRepository("EnsiieDataBundle:Examen")->findBy(array(),array("date_fin"=>"desc"));
+    else
     {
-      if($exam->getDateDebut() <= $date && $exam->getDateFin() >= $date)
-      {
-	array_push($exam_encours,$exam);
-      }
-      else
-      {
-	array_push($exams,$exam);
-      }
+      $logger->info("tri par user");
+      $files = $em->getRepository("EnsiieDataBundle:FileExamen")->findBy(array("user"=>$user));
+      $exams_list_temp = $em->getRepository("EnsiieDataBundle:Examen")->findBy(array(),array("date_fin"=>"desc"));
+      foreach($exams_list_temp as $exam)
+	foreach($files as $file)
+	  if($exam->getFile() == $file)
+	    array_push($exams_list,$exam);
     }
+    $logger->info("tri d'affichage");
+    foreach($exams_list as $exam)
+      if($exam->getDateDebut() <= $date && $exam->getDateFin() >= $date)
+	array_push($exam_encours,$exam);
+      else
+	array_push($exams,$exam);
+    $logger->info("return");
     return $this->render('EnsiieDataBundle:Examen:show.html.twig',array(
       "exams"=>$exam_encours,
       "exams2"=>$exams,
       "date" => new \Datetime(),
+      "user"=>$user,
       ));
   }
   public function removeAction($id)
@@ -102,12 +120,15 @@ class ExamenController extends Controller
     $logger = $this->get('logger');
     $em = $this->getDoctrine()->getManager();
     $exam = $em->getRepository('EnsiieDataBundle:Examen')->find($id);
+    $nom = $exam->getLibelle();
     $logger->info("finded");
     if($exam != "")
     $em->remove($exam); 
     $em->flush();
     $logger->info("deleted");
-    return $this->showAction();
+    return $this->render('EnsiieDataBundle:Examen:remove_success.html.twig',array(
+	    "libelle"=>$nom,
+	    ));
   }
   public function modifAction()
   {
@@ -131,8 +152,22 @@ class ExamenController extends Controller
       $request = $this->get('request');
       $em = $this->getDoctrine()->getManager();
       $exam = $em->getRepository("EnsiieDataBundle:Examen")->find($id);
-      $form = $this->createForm(new ExamenType(), $exam);
+      $user = $this->get('security.context')->getToken()->getUser();
+       $promos = new EntityChoiceList($em,'Ensiie\Bundle\DataBundle\Entity\Promo');
       
+      $qb = $em->createQueryBuilder();
+      $qb->add('select', 'u')->add('from', 'Ensiie\Bundle\DataBundle\Entity\FileExamen u')->add('where', 'u.user = '.$user->getId());
+      $form = $this->createForm(new ExamenType(), $exam);
+      $form->add('file','entity',array (
+                            'class' => 'Ensiie\Bundle\DataBundle\Entity\FileExamen',
+                            'query_builder' => $qb,
+                            'required' => true));
+      $form->add('promo','choice',array(
+	'choice_list' => $promos,
+      'required' => false,
+      'empty_value' => 'Choisir une promo',
+      'empty_data'  => null))
+      ;
       $logger->info('Check method');
       if($request->getMethod() == 'POST')
       {
@@ -146,19 +181,22 @@ class ExamenController extends Controller
 	  return $this->render('EnsiieDataBundle:Examen:modif2.html.twig',array(
 	    "error"=>"",
 	    "success"=>"Examen modifié avec succès.",
-	    "form"=>$form->createView()
+	    "form"=>$form->createView(),
+	    "id"=>$id,
 	    ));
 	}
 	return $this->render('EnsiieDataBundle:Examen:modif2.html.twig',array(
 	    "error"=>"Formulaire invalide.",
 	    "success"=>"",
-	    "form"=>$form->createView()
+	    "form"=>$form->createView(),
+	    "id"=>$id,
 	    ));
       }
       return $this->render('EnsiieDataBundle:Examen:modif2.html.twig',array(
 	    "error"=>"",
 	    "success"=>"",
-	    "form"=>$form->createView()
+	    "form"=>$form->createView(),
+	    "id"=>$id,
 	    ));
     }
 }

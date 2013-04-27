@@ -5,8 +5,9 @@
 <h1>Liste des examens</h1>
 
 <div class="btn-group">
-  <a class="btn" href="">Tous</a>
-  <a class="btn" href="">Mes Examens</a></button>
+  <a class="btn" href="{{ path('ensiie_examen_show',{"by_owner":"false"})}}">Tous</a>
+  <a class="btn" href="{{ path('ensiie_examen_show',{"by_owner":"true"})}}">Mes Examens</a>
+</button>
 </div>
 <table class="table table-hover table-bordered" style=";background-color:white;">    
   <thead style="background-color:#49afcd">
@@ -19,13 +20,20 @@
       <th >Statut</th>
       <th >Déposé par</th>
       <th >Lien</th>
-      <th>Supp</th>
     </tr>
   </thead>
   <tbody> 
   {% for exam in exams %}	
   <tr>
-    <td><p>{{ exam.libelle }}</p></td>
+    {% if exam.file != "" %}
+    <td>
+    {% if exam.file.user == user %}
+    <p><a href="{{ path('ensiie_examen_modifier_id',{"id":exam.id})}}" >{{ exam.libelle }}</a></p>
+    {% else %}
+    <p>{{ exam.libelle }}</p>
+    {% endif %}
+    {% endif %}
+    </td>
     <td><p>{{ exam.description }}</p></td>
     <td><p></p>{{ exam.promo.annee }}</td>
     <td><p>{{ exam.dateDebut.format('Y-m-d H:i') }}</p></td>
@@ -60,7 +68,15 @@
   {% endfor %}
   {% for exam in exams2 %}	
   <tr>
-    <td><p>{{ exam.libelle }}</p></td>
+    {% if exam.file != "" %}
+    <td>
+    {% if exam.file.user == user %}
+    <p><a href="{{ path('ensiie_examen_modifier_id',{"id":exam.id})}}" >{{ exam.libelle }}</a></p>
+    {% else %}
+    <p>{{ exam.libelle }}</p>
+    {% endif %}
+    {% endif %}
+    </td>
     <td><p>{{ exam.description }}</p></td>
     <td><p></p>{{ exam.promo.annee }}</td>
     <td><p>{{ exam.dateDebut.format('Y-m-d H:i') }}</p></td>
@@ -86,13 +102,8 @@
       </p>
     </td>
     <td><p>
-      {% if exam.file != "" and date > exam.dateDebut and date < exam.dateFin %}
 	<a href="{{ exam.file.getDlPath() }}" >x</a>
-      {% else %}
-	
-      {% endif %}
       </p></td>
-      <td><a href="{{ path('ensiie_examen_remove',{"id":exam.id})}}" >x</a></td>
   </tr>
   {% endfor %}
   </tbody>
