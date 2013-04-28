@@ -15,6 +15,6 @@
 
 {% block body %}
 
-  <h1>Etudiant</h1>
+  <h1>{{ prenom }} {{ nom }}</h1>
   
 {% endblock %}

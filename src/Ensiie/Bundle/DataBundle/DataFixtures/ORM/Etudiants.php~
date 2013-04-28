@@ -43,10 +43,37 @@ class Etudiants extends AbstractFixture implements OrderedFixtureInterface
     $etu->setVille('Paris');
     $etu->setEmail('krautergersheim@plop.tk');
     $etu->setTelephone('0101010101');
-    //$etu->setUserName('p.risoli');
-    //$etu->setPassword(sha1('pass'));
-    //$etu->setSalt('');
-    //$etu->setRoles(array('ROLE_ETU'));
+    
+    $user = new User;
+    $user->setUserName('p.risoli');
+    $user->setPassword(sha1('pass'));
+    $user->setSalt('');
+    $user->setRoles(array('ROLE_ETU'));
+    
+    $etu->setUser($user);
+    
+    $manager->persist($user);
+    $manager->persist($etu);
+    
+    $etu = new Etudiant;
+    $etu->setPromo($manager->getRepository("EnsiieDataBundle:Promo")->findOneBy(array("libelle"=>"Les consommateurs")));
+    $etu->setNom('Guillevin');
+    $etu->setPrenom('Tristan');
+    $etu->setAdresse('rue de Montréal tantan');
+    $etu->setCodePostal('67670');
+    $etu->setVille('Mommenheim');
+    $etu->setEmail('laurentwieser@hotmail.com');
+    $etu->setTelephone('0650511711');
+    
+    $user = new User;
+    $user->setUserName('t.guillevin');
+    $user->setPassword(sha1('pass'));
+    $user->setSalt('');
+    $user->setRoles(array('ROLE_ETU'));
+    
+    $etu->setUser($user);
+    
+    $manager->persist($user);
     $manager->persist($etu);
     $manager->flush();
   }

@@ -128,7 +128,7 @@ class ExamenController extends Controller
     $logger->info("deleted");
     return $this->render('EnsiieDataBundle:Examen:remove_success.html.twig',array(
 	    "libelle"=>$nom,
-	    ))
+	    ));
   }
   public function modifAction()
   {
@@ -198,5 +198,119 @@ class ExamenController extends Controller
 	    "form"=>$form->createView(),
 	    "id"=>$id,
 	    ));
+    }
+    
+    public function ajoutEtuAction($id)
+    {
+      $logger = $this->get('logger');
+      $logger->info('Modif etu action');
+      $request = $this->get('request');
+      $em = $this->getDoctrine()->getManager();
+     
+      $logger->info('Get examen');
+      $examen = $em->getRepository("EnsiieDataBundle:Examen")->find($id);
+      
+      $logger->info('On récupère l\'ID de la promo en cours.');
+      $promo_id = $examen->getPromo()->getId();
+      
+      $logger->info('form ajout');
+      
+      $etudiants =array();
+      //PUR BRICOLAGE
+      $etudiants1 = $em->getRepository("EnsiieDataBundle:Etudiant")->findAll();
+      $etudiants2 = $em->getRepository("EnsiieDataBundle:Etudiant")->findBy(array("promo" => $examen->getPromo()));  
+      foreach($etudiants1 as $etu1)
+      {
+	$i =0;
+	foreach($etudiants2 as $etu2)
+	  if($etu1 == $etu2)
+	    $i = 1;
+	foreach($examen->getEtudiants() as $etu2)
+	    if($etu1 == $etu2)
+	      $i = 1;
+	if($i==0)
+	  array_push($etudiants,$etu1);
+      }
+      //FIN PUR BRICOLAGE
+      $form_ajout = $this->createFormBuilder($examen);
+      $form_ajout->add('etudiants','entity',array (
+                            'class' => 'Ensiie\Bundle\DataBundle\Entity\Etudiant',
+                            'choices' => $etudiants,
+                            'required' => true));
+                            
+      $form_ajout = $form_ajout->getForm();
+      
+      $logger->info('Check method');
+      if($request->getMethod() == 'POST')
+      {
+	$logger->info('Check form_ajout');
+	$form_ajout->bind($request);
+	if($form_ajout->isValid())
+	{
+	  $em->persist($examen);
+	  $em->flush();
+	  $logger->info('Modif done.');
+	  
+	  return $this->redirect($this->generateUrl('ensiie_examen_ajouter_etu',array("id"=>$id), 301));
+	}
+	$logger->info('Check form_retirer');
+      }
+      return $this->render('EnsiieDataBundle:Examen:ajouter_etu.html.twig',array(
+	"error"=>"",
+	"success"=>"",
+	"form_ajout"=> $form_ajout->createView(),
+	));
+    }
+    public function retraitEtuAction($id)
+    {
+      $logger = $this->get('logger');
+      $logger->info('Modif etu action');
+      $request = $this->get('request');
+      $em = $this->getDoctrine()->getManager();
+     
+      $logger->info('Get examen');
+      $examen = $em->getRepository("EnsiieDataBundle:Examen")->find($id);
+      
+      $logger->info('On récupère l\'ID de la promo en cours.');
+      $promo_id = $examen->getPromo()->getId();
+      
+      $logger->info('form ajout');
+      
+      $etudiants =array();
+
+      $etudiants = $examen->getEtudiants();      
+      $form = $this->createFormBuilder($examen);
+      $form->add('etudiants','entity',array (
+                            'class' => 'Ensiie\Bundle\DataBundle\Entity\Etudiant',
+                            'choices' => $etudiants,
+                            'required' => true));            
+      $form = $form->getForm();
+      
+      $logger->info('Check method');
+      if($request->getMethod() == 'POST')
+      {
+	$logger->info('Check form_ajout');
+	$form->bind($request);
+	if($form->isValid())
+	{
+	  $etu;
+	  foreach($examen->getEtudiants() as $etu);
+	  //PATCH
+	  $examen->removeEtudiant($etu);
+	  $examen->removeEtudiant($etu);
+	  $em->persist($examen);
+	  $em->flush();
+	  
+	  $examen = $em->getRepository("EnsiieDataBundle:Examen")->find($id);
+	  $logger->info('Modif done.');
+	  return $this->redirect($this->generateUrl('ensiie_examen_retirer_etu',array("id"=>$id), 301));
+	}
+	$logger->info('Check form_retirer');
+      }
+      return $this->render('EnsiieDataBundle:Examen:retirer_etu.html.twig',array(
+	"error"=>"",
+	"success"=>"",
+	"form"=>$form->createView(),
+	));
     }
 }

@@ -12,10 +12,15 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 class Examen {
 
-
   /**
-   * @ORM\ManyToMany(targetEntity="Etudiant", cascade={"persist"})
-   */
+     * Bidirectional
+     *
+     * @ORM\ManyToMany(targetEntity="Etudiant", inversedBy="examens" ,cascade={"persist"})
+     * @ORM\JoinTable(name="examen_etudiant",
+     *   joinColumns={@ORM\JoinColumn(name="etudiant_id", referencedColumnName="id")},
+     *   inverseJoinColumns={@ORM\JoinColumn(name="examen_id", referencedColumnName="id")}
+     * )
+     */
   private $etudiants;
 
   /** 
@@ -323,10 +328,10 @@ public function __construct()
     /**
      * Add etudiants
      *
-     * @param \Ensiie\Bundle\EnsiieBundle\Entity\Etudiant $etudiants
+     * @param \Ensiie\Bundle\DataBundle\Entity\Etudiant $etudiants
      * @return Examen
      */
-    public function addEtudiant(\Ensiie\Bundle\EnsiieBundle\Entity\Etudiant $etudiants)
+    public function addEtudiant(\Ensiie\Bundle\DataBundle\Entity\Etudiant $etudiants)
     {
         $this->etudiants[] = $etudiants;
     
@@ -336,11 +341,21 @@ public function __construct()
     /**
      * Remove etudiants
      *
-     * @param \Ensiie\Bundle\EnsiieBundle\Entity\Etudiant $etudiants
+     * @param \Ensiie\Bundle\DataBundle\Entity\Etudiant $etudiants
      */
-    public function removeEtudiant(\Ensiie\Bundle\EnsiieBundle\Entity\Etudiant $etudiants)
+    public function removeEtudiant(\Ensiie\Bundle\DataBundle\Entity\Etudiant $etudiants)
     {
         $this->etudiants->removeElement($etudiants);
+    }
+    
+    /**
+     * Set etudiants
+     *
+     * @param \Ensiie\Bundle\DataBundle\Entity\Etudiant $etudiants
+     */
+    public function setEtudiants(\Ensiie\Bundle\DataBundle\Entity\Etudiant $etudiants)
+    {
+        $this->etudiants[] = $etudiants;
     }
 
     /**

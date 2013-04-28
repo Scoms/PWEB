@@ -54,6 +54,27 @@ class Etudiants extends AbstractFixture implements OrderedFixtureInterface
     
     $manager->persist($user);
     $manager->persist($etu);
+    
+    $etu = new Etudiant;
+    $etu->setPromo($manager->getRepository("EnsiieDataBundle:Promo")->findOneBy(array("libelle"=>"Les consommateurs")));
+    $etu->setNom('Guillevin');
+    $etu->setPrenom('Tristan');
+    $etu->setAdresse('rue de Montréal tantan');
+    $etu->setCodePostal('67670');
+    $etu->setVille('Mommenheim');
+    $etu->setEmail('laurentwieser@hotmail.com');
+    $etu->setTelephone('0650511711');
+    
+    $user = new User;
+    $user->setUserName('t.guillevin');
+    $user->setPassword(sha1('pass'));
+    $user->setSalt('');	
+    $user->setRoles(array('ROLE_ETU'));
+    
+    $etu->setUser($user);
+    
+    $manager->persist($user);
+    $manager->persist($etu);
     $manager->flush();
   }
   public function getOrder()

@@ -47,14 +47,25 @@
   <div class="container-fluid">
   {% block subnav %}
     
-  <div class="span3" style="width:20%;">
+  <div class="span2" style="">
   <ul class="menu nav nav-list" style="">
-    <li><img src="{{ asset('../img/ensiie.png') }}"></li>
+      {% if is_granted('ROLE_ADMIN') %}
+	<li><a href="{{ path('ensiie_admin') }}">Admin</a></li>
+      {% endif %}
+      {% if is_granted('ROLE_PROF') %}
+	<li><a href="{{ path('ensiie_prof') }}">Prof</a></li>
+      {% endif %}
+      {% if is_granted('ROLE_ETU') %}
+	<li><a href="{{ path('ensiie_etu') }}">Etudiant</a></li>
+      {% endif %}
+      <li><a href="{{ path('ensiie_homepage') }}">Acceuil</a></li>
+      <li><a href="{{ path('login') }}">Login</a><li>
+      <li><a href="{{ path('ensiie_inscription') }}">Inscription</a></li>
   </ul>
   </div>
   {% endblock %}
   
-  <div class="span9">
+  <div class="span10" >
   <div class="well">
   {% block body %}
   {% endblock %}

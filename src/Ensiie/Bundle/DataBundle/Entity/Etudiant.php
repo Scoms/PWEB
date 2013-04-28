@@ -13,7 +13,7 @@ use Ensiie\Bundle\UserBundle\Entity\User;
 
 class Etudiant 
 {
-
+  
   /**
   * @ORM\OneToOne(targetEntity="Ensiie\Bundle\UserBundle\Entity\User")
   */
@@ -347,6 +347,10 @@ public function __construct()
     public function getUser()
     {
         return $this->user;
+    }
+    public function __toString()
+    {
+      return $this->getNom()." ".$this->getPrenom();
     }
 
 }

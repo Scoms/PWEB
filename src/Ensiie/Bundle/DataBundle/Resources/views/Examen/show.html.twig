@@ -63,7 +63,6 @@
 	<a href="{{ exam.file.getDlPath() }}" ><img src="{{ asset('../img/pdfIcon.png') }}" style="width:25px;heigth:25px"></a>
       {% else %}{% endif %}
       </p></td>
-      <td><a href="{{ path('ensiie_examen_remove',{"id":exam.id})}}" >x</a></td>
     </tr>
   {% endfor %}
   {% for exam in exams2 %}	

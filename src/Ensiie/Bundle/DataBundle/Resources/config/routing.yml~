@@ -18,8 +18,16 @@ ensiie_examen_modifier_id:
     pattern: /prof/examen_modifid/{id}
     defaults: { _controller:EnsiieDataBundle:Examen:modifID }
     
+ensiie_examen_ajouter_etu:
+    pattern: /prof/examen_ajoutEtu/{id}
+    defaults: { _controller:EnsiieDataBundle:Examen:ajoutEtu }
+    
+ensiie_examen_retirer_etu:
+    pattern: /prof/examen_retirerEtu/{id}
+    defaults: { _controller:EnsiieDataBundle:Examen:ajoutEtu }
+    
 ensiie_examen_modifier_file:
-    pattern: /etu/examen_modiffile/{id}
+    pattern: /prof/examen_modiffile/{id}
     defaults: { _controller:EnsiieDataBundle:Examen:modifFile }
     
 ensiie_sujet_upload:

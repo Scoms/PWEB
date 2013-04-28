@@ -342,6 +342,16 @@ public function __construct()
     {
         $this->etudiants->removeElement($etudiants);
     }
+    
+    /**
+     * Set etudiants
+     *
+     * @param \Ensiie\Bundle\DataBundle\Entity\Etudiant $etudiants
+     */
+    public function setEtudiants(\Ensiie\Bundle\DataBundle\Entity\Etudiant $etudiants)
+    {
+        $this->etudiants[] = $etudiants;
+    }
 
     /**
      * Get etudiants

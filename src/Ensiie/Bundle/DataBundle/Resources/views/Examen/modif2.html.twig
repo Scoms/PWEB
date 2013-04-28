@@ -13,7 +13,8 @@
 	<p data-dismiss="alert">Le fichier {{ success }} a été ajouté avec succès.</p>
   </div>
 {% endif %}
-
+<a class="btn btn-warning" href="{{ path('ensiie_examen_ajouter_etu',{"id":id}) }}">Ajouter des étudiants</a>
+<a class="btn btn-warning" href="{{ path('ensiie_examen_retirer_etu',{"id":id}) }}">Retirer des étudiants</a>
 <form action="#" method="post" {{ form_enctype(form) }}>
     {{ form_rest(form)}}
     <input type="submit" value="Modifier" class="btn btn-primary" />

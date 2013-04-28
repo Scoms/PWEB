@@ -93,14 +93,13 @@
       </p>
     </td>
     <td><p>
-      {% if exam.file != "" and date > exam.dateDebut and date < exam.dateFin %}
-	<a href="{{ exam.file.getDlPath() }}" >x</a>
-      {% else %}
-	
-      {% endif %}
-      </p></td>
-      <td><a href="{{ path('ensiie_examen_remove',{"id":exam.id})}}" >x</a></td>
-      <td><a href="" >y</a></td>
+    {% if exam.file != "" and date > exam.dateDebut and date < exam.dateFin %}
+    <td><a href="{{ exam.file.getDlPath() }}" >x</a></td>
+    <td><a href="" >x</a></td>
+    {% else %}
+    <td></td>
+    <td></td>
+    {% endif %}
   </tr>
   {% endfor %}
   </tbody>
