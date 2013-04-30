@@ -51,6 +51,9 @@
 </table>
 
 <h3>Mes rattrapages</h3>
+{% if mes_rattrapages is empty %}
+Aucun rattrapage.
+{% else %}
 
 <table class="table table-hover table-bordered" style=";background-color:white;">    
   <thead style="background-color:#49afcd">
@@ -103,4 +106,5 @@
   {% endfor %}
   </tbody>
 </table>
+{% endif %}
 {% endblock %}
