@@ -63,11 +63,11 @@ Pour un examen donné et autorisé, l’utilisateur dépose un fichier word ou P
 
 
 Story 4 : l’utilisateur créé un examen // Laurent -> DONE 
-Story 5 : l’utilisateur associe des étudiants à un examen // Laurent -> encours (promo OK, pas encore le cas par cas )
+Story 5 : l’utilisateur associe des étudiants à un examen // Laurent -> DONE 
 
 Cet écran affiche la liste des étudiants inscrits à l’examen. En bas de page, une liste déroulante avec
 les étudiants de la promo correspondante et un bouton « Ajouter » sont disponibles.
 
-Story 6 : Associer une note à un document déposé.
+Story 6 : Associer une note à un document déposé. // LAu
 Story 7 : un utilisateur accède aux moyennes par promo
 Story 8 : un utilisateur peut gérer les promos
