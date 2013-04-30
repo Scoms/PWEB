@@ -1,8 +1,8 @@
 TODO : 
 
-- moyenne par promo // Laurent 
+- moyenne par promo  
 - gestion de promo 
-- Jeu de données 
+- Jeu de données // Laurent 
 
 #Post-IT
 
