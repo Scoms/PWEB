@@ -12,15 +12,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 class Examen {
 
+
   /**
-     * Bidirectional
-     *
-     * @ORM\ManyToMany(targetEntity="Etudiant", inversedBy="examens" ,cascade={"persist"})
-     * @ORM\JoinTable(name="examen_etudiant",
-     *   joinColumns={@ORM\JoinColumn(name="etudiant_id", referencedColumnName="id")},
-     *   inverseJoinColumns={@ORM\JoinColumn(name="examen_id", referencedColumnName="id")}
-     * )
-     */
+   * @ORM\ManyToMany(targetEntity="Etudiant", cascade={"persist"})
+   */
   private $etudiants;
 
   /** 
@@ -366,5 +361,10 @@ public function __construct()
     public function getEtudiants()
     {
         return $this->etudiants;
+    }
+
+    public function __toString()
+    {
+      return $this->getName()." : ".$this->getPath();
     }
 }

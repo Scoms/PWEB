@@ -2,13 +2,11 @@
 
 {% block subnav %}
   
-  <div class="span3" style="width:20%;">
+  <div class="span2" >
   <ul class="menu nav nav-list" style="">
     <li class="nav-header">
       Examens</li>
     <li ><a href="{{ path('ensiie_etudiant_examen_consult')}}">Consulter</a></li>
-    <li><a href="#">Déposer</a></li>
-    <li><a href="#">Supprimer</a></li>
   </ul>
   </div>
 {% endblock %}

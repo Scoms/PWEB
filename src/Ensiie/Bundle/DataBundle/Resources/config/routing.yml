@@ -5,6 +5,10 @@ ensiie_examen_affect:
 ensiie_examen_show:
     pattern: /prof/examen_show/{by_owner}
     defaults: { _controller:EnsiieDataBundle:Examen:show }
+
+ensiie_examen_depots_consulter:
+    pattern: /prof/depots_consult/{id}dpt={dpt}
+    defaults: { _controller:EnsiieDataBundle:Depots:show }
     
 ensiie_examen_remove:
     pattern: /prof/examen_remove/{id}
@@ -38,7 +42,6 @@ ensiie_sujet_show:
     pattern: /prof/sujet_show
     defaults: { _controller:EnsiieDataBundle:FileExamen:show }
     
-    
 ensiie_sujet_download:
     pattern: /prof/sujet_download/{path}
     defaults: { _controller:EnsiieDataBundle:FileExamen:download }
@@ -47,5 +50,10 @@ ensiie_etudiant_examen_consult:
     pattern: /etu/examen_consult
     defaults: { _controller:EnsiieDataBundle:ExamenEtudiant:show }
     
+ensiie_etudiant_examen_deposer:
+    pattern: /etu/examen_deposer/{id}
+    defaults: { _controller:EnsiieDataBundle:ExamenEtudiant:deposer }
+    
+
     
    

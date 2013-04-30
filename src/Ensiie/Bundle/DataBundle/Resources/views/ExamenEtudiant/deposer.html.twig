@@ -1,0 +1,24 @@
+{% extends 'EnsiieMainBundle:Etu:index.html.twig' %}
+
+{% block body %}
+
+<h1>Déposer</h1>
+
+<h3>{{ exam.libelle }}</h3>
+
+{% if error != '' %}
+  <div class="alert alert-error">
+	<p data-dismiss="alert">ERROR : {{ error }}</p>
+  </div>
+{% endif %}
+{% if success != '' %}
+  <div class="alert alert-success">
+	<p data-dismiss="alert">{{ success }}</p>
+  </div>
+{% endif %}
+
+<form action="#" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <input type="submit" class="btn btn-primary" value="Déposer" />
+</form>
+{% endblock %}

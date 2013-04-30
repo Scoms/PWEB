@@ -20,6 +20,7 @@
       <th >Statut</th>
       <th >Déposé par</th>
       <th >Lien</th>
+      <th> Dépots</th>
     </tr>
   </thead>
   <tbody> 
@@ -59,10 +60,11 @@
       </p>
     </td>
     <td><p>
-      {% if exam.file != "" and date > exam.dateDebut and date < exam.dateFin %}
 	<a href="{{ exam.file.getDlPath() }}" ><img src="{{ asset('../img/pdfIcon.png') }}" style="width:25px;heigth:25px"></a>
-      {% else %}{% endif %}
       </p></td>
+    <td>
+	<a href="{{ path('ensiie_examen_depots_consulter',{"id":exam.id,"dpt":0}) }}" >x</a>
+    </td>
     </tr>
   {% endfor %}
   {% for exam in exams2 %}	
@@ -101,8 +103,15 @@
       </p>
     </td>
     <td><p>
-	<a href="{{ exam.file.getDlPath() }}" >x</a>
+	<a href="{{ exam.file.getDlPath() }}" ><img src="{{ asset('../img/pdfIcon.png') }}" style="width:25px;heigth:25px"></a>
       </p></td>
+      <td>
+      {% if exam.file != "" and date > exam.dateDebut and date < exam.dateFin %}
+	<a href="{{ exam.file.getDlPath() }}" ><img src="{{ asset('../img/pdfIcon.png') }}" style="width:25px;heigth:25px"></a>
+      {% else %}
+      Moyenne
+      {% endif %}
+      </td>
   </tr>
   {% endfor %}
   </tbody>

@@ -195,29 +195,6 @@ public function __construct()
     }
 
     /**
-     * Set statut
-     *
-     * @param \Ensiie\Bundle\DataBundle\Entity\Statut $statut
-     * @return Examen
-     */
-    public function setStatut(\Ensiie\Bundle\DataBundle\Entity\Statut $statut = null)
-    {
-        $this->statut = $statut;
-    
-        return $this;
-    }
-
-    /**
-     * Get statut
-     *
-     * @return \Ensiie\Bundle\DataBundle\Entity\Statut 
-     */
-    public function getStatut()
-    {
-        return $this->statut;
-    }
-
-    /**
      * Add depot
      *
      * @param \Ensiie\Bundle\DataBundle\Entity\Depot $depot
@@ -361,5 +338,10 @@ public function __construct()
     public function getEtudiants()
     {
         return $this->etudiants;
+    }
+
+    public function __toString()
+    {
+      return $this->getName()." : ".$this->getPath();
     }
 }

@@ -253,7 +253,6 @@ class ExamenController extends Controller
 	  
 	  return $this->redirect($this->generateUrl('ensiie_examen_ajouter_etu',array("id"=>$id), 301));
 	}
-	$logger->info('Check form_retirer');
       }
       return $this->render('EnsiieDataBundle:Examen:ajouter_etu.html.twig',array(
 	"error"=>"",
