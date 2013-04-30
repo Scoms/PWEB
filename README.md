@@ -3,6 +3,7 @@ TODO :
 - moyenne par promo  
 - gestion de promo 
 - Jeu de données // Laurent
+- attribution des mots de passe
 
 #Post-IT
 
