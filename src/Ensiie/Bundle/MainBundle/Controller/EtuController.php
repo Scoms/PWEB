@@ -14,8 +14,7 @@ class EtuController extends Controller
 	$prenom = $etudiant->getPrenom();
 	$nom = $etudiant->getNom();
         return $this->render('EnsiieMainBundle:Etu:index.html.twig',array(
-	  "prenom"=>$prenom,
-	  "nom"=> $nom,
+	  "etudiant" => $etudiant
 	  ));
     }
 }
