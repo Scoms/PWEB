@@ -1,0 +1,7 @@
+{% extends 'EnsiieMainBundle:Etu:index.html.twig' %}
+
+{% block body %}
+
+<h1>Déposer</h1>
+
+{% endblock %}

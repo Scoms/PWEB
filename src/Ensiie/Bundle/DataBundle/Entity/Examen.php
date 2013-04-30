@@ -12,6 +12,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 class Examen {
 
+
+  /**
+   * @ORM\ManyToMany(targetEntity="Etudiant", cascade={"persist"})
+   */
+  private $etudiants;
+
   /** 
   * @ORM\ManyToOne(targetEntity="FileExamen")
   */
@@ -35,25 +41,23 @@ protected $description;
 
 /**
 * @ORM\ManyToOne(targetEntity="Promo", inversedBy="examen")
-* @ORM\JoinColumn(name="promo", referencedColumnName="id") 
 */
 protected $promo;
 
 /**
 * @ORM\Column(type="datetime")
 */
-protected $date;
+protected $date_debut;
+
+/**
+* @ORM\Column(type="datetime")
+*/
+protected $date_fin;
 
 /**
 * @ORM\Column(type="integer")
 */
 protected $coefficient;
-
-/**
-* @ORM\ManyToOne(targetEntity="Statut", inversedBy="examen")
-* @ORM\JoinColumn(name="statut", referencedColumnName="id") 
-*/
-protected $statut;
 
 /**
 * @ORM\OneToMany(targetEntity="Depot", mappedBy="examen")
@@ -191,29 +195,6 @@ public function __construct()
     }
 
     /**
-     * Set statut
-     *
-     * @param \Ensiie\Bundle\DataBundle\Entity\Statut $statut
-     * @return Examen
-     */
-    public function setStatut(\Ensiie\Bundle\DataBundle\Entity\Statut $statut = null)
-    {
-        $this->statut = $statut;
-    
-        return $this;
-    }
-
-    /**
-     * Get statut
-     *
-     * @return \Ensiie\Bundle\DataBundle\Entity\Statut 
-     */
-    public function getStatut()
-    {
-        return $this->statut;
-    }
-
-    /**
      * Add depot
      *
      * @param \Ensiie\Bundle\DataBundle\Entity\Depot $depot
@@ -268,5 +249,99 @@ public function __construct()
     public function getFile()
     {
         return $this->file;
+    }
+
+    /**
+     * Set date_debut
+     *
+     * @param \DateTime $dateDebut
+     * @return Examen
+     */
+    public function setDateDebut($dateDebut)
+    {
+        $this->date_debut = $dateDebut;
+    
+        return $this;
+    }
+
+    /**
+     * Get date_debut
+     *
+     * @return \DateTime 
+     */
+    public function getDateDebut()
+    {
+        return $this->date_debut;
+    }
+
+    /**
+     * Set date_fin
+     *
+     * @param \DateTime $dateFin
+     * @return Examen
+     */
+    public function setDateFin($dateFin)
+    {
+        $this->date_fin = $dateFin;
+    
+        return $this;
+    }
+
+    /**
+     * Get date_fin
+     *
+     * @return \DateTime 
+     */
+    public function getDateFin()
+    {
+        return $this->date_fin;
+    }
+
+    /**
+     * Add etudiants
+     *
+     * @param \Ensiie\Bundle\DataBundle\Entity\Etudiant $etudiants
+     * @return Examen
+     */
+    public function addEtudiant(\Ensiie\Bundle\DataBundle\Entity\Etudiant $etudiants)
+    {
+        $this->etudiants[] = $etudiants;
+    
+        return $this;
+    }
+
+    /**
+     * Remove etudiants
+     *
+     * @param \Ensiie\Bundle\DataBundle\Entity\Etudiant $etudiants
+     */
+    public function removeEtudiant(\Ensiie\Bundle\DataBundle\Entity\Etudiant $etudiants)
+    {
+        $this->etudiants->removeElement($etudiants);
+    }
+    
+    /**
+     * Set etudiants
+     *
+     * @param \Ensiie\Bundle\DataBundle\Entity\Etudiant $etudiants
+     */
+    public function setEtudiants(\Ensiie\Bundle\DataBundle\Entity\Etudiant $etudiants)
+    {
+        $this->etudiants[] = $etudiants;
+    }
+
+    /**
+     * Get etudiants
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEtudiants()
+    {
+        return $this->etudiants;
+    }
+
+    public function __toString()
+    {
+      return $this->getName()." : ".$this->getPath();
     }
 }

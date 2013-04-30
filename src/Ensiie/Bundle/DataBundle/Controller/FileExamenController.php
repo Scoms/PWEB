@@ -14,6 +14,7 @@ class FileExamenController extends Controller
 	$em = $this->getDoctrine()->getManager();
 	$request = $this->get('request');
 	$logger = $this->get('logger');
+	$user = $this->get('security.context')->getToken()->getUser();
 	
 	$logger->info('FileExamen upload : création du formulaire.');
 	$document = new FileExamen;
@@ -26,8 +27,9 @@ class FileExamenController extends Controller
 	  if($form->isValid())
 	  {
 	    $logger->info('Examen upload : form valid, Test de l\'unicité du FILENAME.');
-	    if($list_test = $em->getRepository("EnsiieDataBundle:FileExamen")->findBy(
-	    array("path"=>$document->getPath())))
+	    $logger->info("PATH : ".$document->getFile()->getClientOriginalName());
+	    $test = $em->getRepository("EnsiieDataBundle:FileExamen")->findOneBy(array("path" => $document->getFile()->getClientOriginalName(),"user"=>$user->getId()));
+	    if($test != "")
 	    {
 		  return $this->render('EnsiieDataBundle:FileExamen:add.html.twig',array(
 		  "form" => $form->createView(),
@@ -35,13 +37,14 @@ class FileExamenController extends Controller
 		  "error" => "le nom du fichier existe déjà. Veuillez le remplacer.",
 		  ));
 	    }
+	    $document->setUser($user);
 	    $document->upload();
 	    $em->persist($document);
 	    $em->flush();
 	    return $this->render('EnsiieDataBundle:FileExamen:add.html.twig',array(
 	    "form" => $form->createView(),
 	    "success" => $document->getPath(),
-	    "error" => "",
+	    "error" => "", 
 	    ));
 	  }	
 	  else
@@ -67,7 +70,7 @@ class FileExamenController extends Controller
       
       $logger->info('FileExamen show : récupération de tout les fichiers d\'éxamens.');
       $list_exam = $em->getRepository('EnsiieDataBundle:FileExamen')->findAll();
-      
+	
       return $this->render('EnsiieDataBundle:FileExamen:show.html.twig',array(
 	  "list" => $list_exam,
 	  ));

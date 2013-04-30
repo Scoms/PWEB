@@ -24,6 +24,11 @@ protected $id;
 protected $libelle;
 
 /**
+* @ORM\Column(type="integer")
+*/
+protected $annee;
+
+/**
 * @ORM\OneToMany(targetEntity="Etudiant", mappedBy="promo")
 */
 protected $etudiant;
@@ -139,5 +144,10 @@ protected $examen;
     public function getExamen()
     {
         return $this->examen;
+    }
+    
+    public function __toString()
+    {
+	return $this->libelle;
     }
 }

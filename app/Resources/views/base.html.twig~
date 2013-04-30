@@ -3,14 +3,14 @@
     <head>
         <meta charset="UTF-8" />
         <link href="{{ asset('../css/bootstrap/css/bootstrap.css') }}" rel="stylesheet" media="screen">
-	
+        <link href="{{ asset('../css/bootstrap/css/update.css') }}" rel="stylesheet" media="screen">
         <title>{% block title %}Welfuck!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
       
-  <div class="navbar navbar-inverse">
+  <div class="navbar navbar">
     <div class="navbar-inner">
       
       <div >
@@ -34,21 +34,44 @@
 	  {% endif %}
 	  <li><a href="{{ path('login') }}">Login</a><li>
           <li><a href="{{ path('ensiie_inscription') }}">Inscription</a></li>
-	  {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-              <a class="btn btn-danger"  href="{{ path('logout') }}">Logout</a>
-              {% endif %}
           </ul>          
         </div><!--/.nav-collapse -->
       </div>
 
     </div>
   </div>
-  <div class="well">
+  <div class="row-fluid">
+  <div class="container-fluid">
   {% block subnav %}
+    
+  <div class="span2" style="">
+  <ul class="menu nav nav-list" style="">
+      {% if is_granted('ROLE_ADMIN') %}
+	<li><a href="{{ path('ensiie_admin') }}">Admin</a></li>
+      {% endif %}
+      {% if is_granted('ROLE_PROF') %}
+	<li><a href="{{ path('ensiie_prof') }}">Prof</a></li>
+      {% endif %}
+      {% if is_granted('ROLE_ETU') %}
+	<li><a href="{{ path('ensiie_etu') }}">Etudiant</a></li>
+      {% endif %}
+      <li><a href="{{ path('ensiie_homepage') }}">Acceuil</a></li>
+      <li><a href="{{ path('login') }}">Login</a><li>
+      <li><a href="{{ path('ensiie_inscription') }}">Inscription</a></li>
+      {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+	<a class="btn btn-danger"  href="{{ path('logout') }}">Logout</a>
+      {% endif %}
+  </ul>
+  </div>
   {% endblock %}
   
+  <div class="span10" >
+  <div class="well">
   {% block body %}
   {% endblock %}
+  </div>
+  </div>
+   </div>
    </div>
    </body>
 </html>

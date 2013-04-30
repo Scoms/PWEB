@@ -15,12 +15,15 @@ class Promos extends AbstractFixture implements OrderedFixtureInterface
   {
     $promo = new Promo;
     $promo->setLibelle("Les consommateurs");
+    $promo->setAnnee(2015);
     $manager->persist($promo);
     $promo = new Promo;
     $promo->setLibelle("Les défricheurs");
+    $promo->setAnnee(2014);
     $manager->persist($promo);
     $promo = new Promo;
     $promo->setLibelle("Les pionniers");
+    $promo->setAnnee(2013);
     $manager->persist($promo);
     $manager->flush();
   }

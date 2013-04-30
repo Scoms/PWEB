@@ -12,6 +12,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class User implements UserInterface 
 {
+/**
+  * @ORM\OneToOne(targetEntity="Ensiie\Bundle\DataBundle\Entity\Etudiant")
+  */
+  protected $etu;
   /**
    * @var integer $id 
    * @ORM\Column(name="id", type="integer")

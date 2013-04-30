@@ -1,22 +1,22 @@
 {% extends '::base.html.twig' %}
 
 {% block subnav %}
-  <h1>Prof</h1>
-  <div >
-  <ul class="nav nav-list">
+  
+  <div class="span2">
+  <ul class="menu nav nav-list" style="">
     <li class="nav-header">
       Examens</li>
+      
+    <li ><a href="{{ path('ensiie_examen_show',{"by_owner":"false"})}}">Liste des examens</a></li>
     <li ><a href="{{ path('ensiie_examen_affect')}}">Affecter</a></li>
-    <li><a href="#">Supprimer</a></li>
     <li class="nav-header">
       Sujets</li>
     <li ><a href="{{ path('ensiie_sujet_show')}}">Visualiser</a></li>
     <li ><a href="{{ path('ensiie_sujet_upload')}}">Déposer</a></li>
   </ul>
   </div>
-  <br/>
 {% endblock %}
 
 {% block body %}
-  
+  <h1>Prof</h1>
 {% endblock %}

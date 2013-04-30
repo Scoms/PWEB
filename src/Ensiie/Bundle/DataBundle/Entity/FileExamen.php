@@ -4,36 +4,40 @@ namespace Ensiie\Bundle\DataBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
-
+use Symfony\Bridge\Doctrine\Form\ChoiceList\EntityLoaderInterface;
 /**
 * @ORM\Entity
 * @ORM\Table(name="FileExamen")
 */
 
-class FileExamen
+class FileExamen 
 {
 
-    /**
+     /**
      * @Assert\File(maxSize="6000000")
      */
-    public $file;
-/**
+    protected $file;
+    /**
+      * @ORM\ManyToOne(targetEntity="Ensiie\Bundle\UserBundle\Entity\User")
+      */
+     protected $user;
+    /**
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    public $id;
+    protected $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank
      */
-    public $name;
+    protected $name;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    public $path;
+    protected $path;
 
     public function getAbsolutePath()
     {
@@ -59,7 +63,7 @@ class FileExamen
     {
         // on se débarrasse de « __DIR__ » afin de ne pas avoir de problème lorsqu'on affiche
         // le document/image dans la vue.
-        return 'uploads/examens';
+        return 'uploads/examens/'.$this->getUser()->getUserName();
     }
 
     /**
@@ -125,5 +129,43 @@ class FileExamen
       $this->file->move($this->getUploadRootDir(), $this->file->getClientOriginalName());
       $this->path = $this->file->getClientOriginalName();
       $this->file = null;
-}
+    }
+    public function __toString()
+    {
+      return $this->getName()." : ".$this->getPath();
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Ensiie\Bundle\UserBundle\Entity\User $user
+     * @return FileExamen
+     */
+    public function setUser(\Ensiie\Bundle\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+    
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Ensiie\Bundle\UserBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+    
+    public function getFile()
+    {
+      return $this->file;
+    }
+    
+    public function setFile($file)
+    {
+      return $this->file = $file;
+    }
+
 }

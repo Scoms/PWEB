@@ -4,21 +4,28 @@ namespace Ensiie\Bundle\DataBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
+use Ensiie\Bundle\UserBundle\Entity\User;
 
 /**
 * @ORM\Entity
 * @ORM\Table(name="etudiant")
 */
 
-class Etudiant {
-    
-/**
-* @ORM\Id
-* @ORM\Column(type="integer")
-* @ORM\GeneratedValue(strategy="AUTO")
-*/
-protected $id;
-
+class Etudiant 
+{
+  
+  /**
+  * @ORM\OneToOne(targetEntity="Ensiie\Bundle\UserBundle\Entity\User")
+  */
+  protected $user;
+  
+  /**
+   * @var integer $id 
+   * @ORM\Column(name="id", type="integer")
+   * @ORM\Id
+   * @ORM\GeneratedValue(strategy="AUTO")
+   */
+  private $id;
 /**
 * @ORM\Column(type="string", length=100)
 */
@@ -57,7 +64,7 @@ protected $telephone;
 * @ORM\ManyToOne(targetEntity="Promo",inversedBy="etudiant")
 * @ORM\JoinColumn(name="promo", referencedColumnName="id") 
 */
-protected $promo;
+private $promo;
 
 /**
 * @ORM\OneToMany(targetEntity="Depot", mappedBy="etudiant")
@@ -295,4 +302,55 @@ public function __construct()
     {
         return $this->depot;
     }
+
+    /**
+     * Set username
+     *
+     * @param string $username
+     * @return Etudiant
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+    
+        return $this;
+    }
+
+    /**
+     * Get username
+     *
+     * @return string 
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Ensiie\Bundle\UserBundle\Entity\User $user
+     * @return Etudiant
+     */
+    public function setUser(\Ensiie\Bundle\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+    
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Ensiie\Bundle\UserBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+    public function __toString()
+    {
+      return $this->getNom()." ".$this->getPrenom();
+    }
+
 }
