@@ -17,7 +17,7 @@ class ExamenEtudiantController extends Controller
 	$etudiant = $em->getRepository("EnsiieDataBundle:Etudiant")->findOneBy(array("user" => $user->getId()));
 	//Fin variable de base
 	
-	$mes_examens_promo = $em->getRepository('EnsiieDataBundle:Examen')->findBy(array("promo" => $etudiant->getPromo()->getId()),array("date_debut"=>"desc"));
+	$mes_examens_promo = array(); //$em->getRepository('EnsiieDataBundle:Examen')->findBy(array("promo" => $etudiant->getPromo()->getId()),array("date_debut"=>"desc"));
 	$mes_rattrapages = array();
 	$exams = $em->getRepository('EnsiieDataBundle:Examen')->findAll();
 	foreach($exams as $rattrapage)
