@@ -20,21 +20,41 @@ class DepotsController extends Controller
     $request = $this->get('request');
     $log = $this->get('logger');
     
-    $log->info('Depot controller show action. Get dépots.');
+    $log->info('Depot controller show action');
+    $log->info(' Get dépots.');
     $depots = $em->getRepository('EnsiieDataBundle:Depot')->findBy(array("examen"=>$id));
+    
+    $log->info("Nombre d'inscrits");
+    $examen = $em->getRepository('EnsiieDataBundle:Examen')->find($id);
+    $inscrits["supp"] = count($examen->getEtudiants());
+    $inscrits["promo"] = count($examen->getPromo()->getEtudiant());
+    
+    $log->info("Nombre de dépots");
+    $nb_depots = count($depots);
+    
+    $log->info('calcul de la moyenne');
+    $moyenne = 0;
+    $i=0;
     $log->info('Création de formulaires');
     $depots_entity = array();
     foreach($depots as $depot)
     {
+      if($depot->getNote()!=null)
+      {
+	$moyenne += $depot->getNote();
+	$i++;
+      }
       $depot_entity[$depot->getId()] = $depot;
       $form = $this->createFormBuilder($depot);
       $form->add('note','number',array(
 	'invalid_message'            => 'La valeur rentrée ne paraît pas très cohérente monsieur !!!',
+	'precision'=>2,
       ));
       $form = $form->getForm();
       $depots_entity[$depot->getId()] = $form;
     }
-    
+    if($i !=0)
+      $moyenne = $moyenne / $i;
     $log->info("Analyse de la requete");
     if($request->getMethod() == 'POST')
       {
@@ -43,18 +63,16 @@ class DepotsController extends Controller
 	$em->persist($depot_entity[$dpt]);
 	$em->flush();
 	$log->info('Note done.');
-	return $this->render('EnsiieDataBundle:Depots:index.html.twig',array(
-	  "depots"=>$depots,
-	  "array_form"=>$depots_entity,
-	  "msg"=>"",
-	  "id"=>$id,
-	  ));
+	return $this->redirect($this->generateUrl('ensiie_examen_depots_consulter',array("id"=>$id,"dpt"=>$dpt), 301));
       }
     return $this->render('EnsiieDataBundle:Depots:index.html.twig',array(
       "depots"=>$depots,
       "array_form"=>$depots_entity,
       "msg"=>"",
       "id"=>$id,
+      "inscrits"=>$inscrits,
+      "nb_depots"=>$nb_depots,
+      "moyenne"=>$moyenne,
       ));
   }
 }
