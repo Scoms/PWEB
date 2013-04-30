@@ -22,6 +22,10 @@
 - User: inscription, authentification, deconnexion
 - Data: tout ce qui concerne les donnees
 
+#Bugs
+- Erreur Sql quand on clique sur "inscription"
+
+
 #Stories
 
 

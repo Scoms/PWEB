@@ -125,28 +125,7 @@ public function __construct()
         return $this->description;
     }
 
-    /**
-     * Set date
-     *
-     * @param \DateTime $date
-     * @return Examen
-     */
-    public function setDate($date)
-    {
-        $this->date = $date;
-    
-        return $this;
-    }
-
-    /**
-     * Get date
-     *
-     * @return \DateTime 
-     */
-    public function getDate()
-    {
-        return $this->date;
-    }
+   
 
     /**
      * Set coefficient
