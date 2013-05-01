@@ -1,7 +1,7 @@
 TODO : 
 
-- gestion de promo 
-- Jeu de données // Laurent
+- affichages des moyennes des promos dans le home // laurent 
+- gestion de promo + comptes prof 
 - attribution des mots de passe
 
 #Post-IT
