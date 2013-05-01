@@ -14,8 +14,8 @@ security:
             encode_as_base64: false
             
     role_hierarchy:
-        ROLE_ADMIN:       [ROLE_PROF,ROLE_ETU]
-        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+        ROLE_ADMIN:       [ROLE_PROF,ROLE_ETU,ROLE_GESTION]
+        ROLE_SUPER_ADMIN: [ROLE_SUPERADMIN, ROLE_ALLOWED_TO_SWITCH]
         
     providers:
         main:
@@ -39,4 +39,6 @@ security:
             
             
     access_control:
-        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/admin, roles: ROLE_GESTION }
+        - { path: ^/etu, roles: ROLE_ETU }
+        - { path: ^/prof, roles: ROLE_PROF }

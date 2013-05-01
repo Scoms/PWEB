@@ -17,7 +17,7 @@ class Users extends AbstractFixture implements OrderedFixtureInterface
     $user->setUsername('admin');
     $user->setPassword(sha1('pass'));
     $user->setSalt('');
-    $user->setRoles(array('ROLE_ADMIN'));
+    $user->setRoles(array('ROLE_GESTION'));
     $manager->persist($user);
     $user = new User;
     $user->setUsername('prof');

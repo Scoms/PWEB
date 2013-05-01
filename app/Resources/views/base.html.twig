@@ -23,7 +23,7 @@
         <div class="">
           <ul class="nav">
           
-          {% if is_granted('ROLE_ADMIN') %}
+          {% if is_granted('ROLE_GESTION') %}
             <li><a href="{{ path('ensiie_admin') }}">Admin</a></li>
           {% endif %}
           {% if is_granted('ROLE_PROF') %}

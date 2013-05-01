@@ -34,6 +34,9 @@
 	  {% endif %}
 	  <li><a href="{{ path('login') }}">Login</a><li>
           <li><a href="{{ path('ensiie_inscription') }}">Inscription</a></li>
+	  {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+              <a class="btn btn-danger"  href="{{ path('logout') }}">Logout</a>
+              {% endif %}
           </ul>          
         </div><!--/.nav-collapse -->
       </div>
@@ -55,12 +58,9 @@
       {% if is_granted('ROLE_ETU') %}
 	<li><a href="{{ path('ensiie_etu') }}">Etudiant</a></li>
       {% endif %}
-      <li><a href="{{ path('ensiie_homepage') }}">Acceuil</a></li>
+      <li><a href="{{ path('ensiie_homepage') }}">Accueil</a></li>
       <li><a href="{{ path('login') }}">Login</a><li>
       <li><a href="{{ path('ensiie_inscription') }}">Inscription</a></li>
-      {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-	<a class="btn btn-danger"  href="{{ path('logout') }}">Logout</a>
-      {% endif %}
   </ul>
   </div>
   {% endblock %}

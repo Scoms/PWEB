@@ -1,6 +1,16 @@
 {% extends '::base.html.twig' %}
 
-
+{% block subnav %}
+  
+  <div class="span2" >
+  <ul class="menu nav nav-list" style="">
+    <li class="nav-header">
+      Gestion</li>
+    <li ><a href="">Ajouter un prof</a></li>
+    <li ><a href="">Gérer les promos</a></li>
+  </ul>
+  </div>
+{% endblock %}
 {% block body %}
 
   <h1>Admin</h1>

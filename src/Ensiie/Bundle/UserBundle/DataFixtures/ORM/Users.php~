@@ -17,19 +17,19 @@ class Users extends AbstractFixture implements OrderedFixtureInterface
     $user->setUsername('admin');
     $user->setPassword(sha1('pass'));
     $user->setSalt('');
-    $user->setRoles(array('ROLE_CAPITAINE'));
+    $user->setRoles(array('ROLE_ADMIN'));
     $manager->persist($user);
     $user = new User;
     $user->setUsername('prof');
     $user->setPassword(sha1('pass'));
     $user->setSalt('');
-    $user->setRoles(array('ROLE_CAPITAINE'));
+    $user->setRoles(array('ROLE_PROF'));
     $manager->persist($user);
     $user = new User;
     $user->setUsername('etudiant');
     $user->setPassword(sha1('pass'));
     $user->setSalt('');
-    $user->setRoles(array('ROLE_CAPITAINE'));
+    $user->setRoles(array('ROLE_ETU'));
     $manager->persist($user);
     $manager->flush();
   }

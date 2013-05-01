@@ -14,8 +14,8 @@ security:
             encode_as_base64: false
             
     role_hierarchy:
-        ROLE_ADMIN:       [ROLE_PROF,ROLE_ETU]
-        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+        ROLE_ADMIN:       [ROLE_PROF,ROLE_ETU,ROLE_GESTION]
+        ROLE_SUPER_ADMIN: [ROLE_SUPERADMIN, ROLE_ALLOWED_TO_SWITCH]
         
     providers:
         main:
@@ -29,7 +29,7 @@ security:
         main:
             pattern: ^/
             anonymous: true
-            provider :  
+            provider : main 
             form_login:
                 login_path: login
                 check_path: login_check
