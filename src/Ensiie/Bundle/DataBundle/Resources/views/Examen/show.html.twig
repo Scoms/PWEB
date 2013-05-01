@@ -114,7 +114,7 @@
       {% if exam.file != "" and date > exam.dateDebut and date < exam.dateFin %}
 	<a href="{{ exam.file.getDlPath() }}" ><img src="{{ asset('../img/pdfIcon.png') }}" style="width:25px;heigth:25px"></a>
       {% else %}
-      Moyenne
+      {{ moyennes[exam.id] }}
       {% endif %}
       </td>
   </tr>

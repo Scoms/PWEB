@@ -101,17 +101,32 @@ class ExamenController extends Controller
 	    array_push($exams_list,$exam);
     }
     $logger->info("tri d'affichage");
+    $moyennes = array();
     foreach($exams_list as $exam)
+    {
       if($exam->getDateDebut() <= $date && $exam->getDateFin() >= $date)
 	array_push($exam_encours,$exam);
       else
 	array_push($exams,$exam);
+	
+      $depots = $em->getRepository('EnsiieDataBundle:Depot')->findBy(array('examen'=>$exam));
+      $moyennes[$exam->getId()] = 0;
+      foreach($depots as $depot)
+	$moyennes[$exam->getId()] += $depot->getNote();
+      
+      $cpys = count($depots);
+      if($cpys!=0)
+	$moyennes[$exam->getId()] = $moyennes[$exam->getId()] / $cpys;
+      else
+	$moyennes[$exam->getId()] = null;
+    }
     $logger->info("return");
     return $this->render('EnsiieDataBundle:Examen:show.html.twig',array(
       "exams"=>$exam_encours,
       "exams2"=>$exams,
       "date" => new \Datetime(),
       "user"=>$user,
+      "moyennes"=>$moyennes
       ));
   }
   public function removeAction($id)

@@ -9,6 +9,11 @@
   <a class="btn" href="{{ path('ensiie_examen_show',{"by_owner":"true"})}}">Mes Examens</a>
 </button>
 </div>
+
+{% if exams is empty %}
+    Aucun examen pour le moment.
+{% else %}
+
 <table class="table table-hover table-bordered" style=";background-color:white;">    
   <thead style="background-color:#49afcd">
     <tr>
@@ -116,5 +121,5 @@
   {% endfor %}
   </tbody>
 </table>
-
+{% endif %}
 {% endblock %}
