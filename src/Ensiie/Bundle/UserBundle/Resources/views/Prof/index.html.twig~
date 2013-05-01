@@ -1,0 +1,10 @@
+{% extends 'EnsiieMainBundle:Admin:index.html.twig' %}
+
+{% block body %}
+<h1>Ajouter un professeur</h1>
+
+<form  action="" method="post" {{form_enctype(form) }}>
+{{ form_rest(form)}}
+<input type="submit" value="Ajouter" class="btn btn-primary" />
+</form>
+{% endblock %}

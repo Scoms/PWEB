@@ -5,3 +5,7 @@ ensiie_user_homepage:
 ensiie_inscription:
     pattern: /inscription
     defaults: { _controller: EnsiieUserBundle:Inscription:index }
+    
+ensiie_admin_ajoutprof:
+    pattern: /admin/ajoutprof
+    defaults: { _controller: EnsiieUserBundle:Prof:index }
