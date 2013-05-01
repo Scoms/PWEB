@@ -13,12 +13,11 @@ use Ensiie\Bundle\UserBundle\Entity\User;
 
 class Etudiant 
 {
-
+  
   /**
-  * @ORM\OneToOne(targetEntity="Ensiie\Bundle\UserBundle\Entity\User")
+  * @ORM\OneToOne(targetEntity="Ensiie\Bundle\UserBundle\Entity\User",cascade={"remove"})
   */
   protected $user;
-  
   /**
    * @var integer $id 
    * @ORM\Column(name="id", type="integer")

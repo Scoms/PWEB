@@ -19,7 +19,7 @@ class Examen {
   private $etudiants;
 
   /** 
-  * @ORM\ManyToOne(targetEntity="FileExamen")
+  * @ORM\ManyToOne(targetEntity="FileExamen",inversedBy="examen",cascade={"remove"})
   */
   protected $file;
 /**
@@ -125,28 +125,7 @@ public function __construct()
         return $this->description;
     }
 
-    /**
-     * Set date
-     *
-     * @param \DateTime $date
-     * @return Examen
-     */
-    public function setDate($date)
-    {
-        $this->date = $date;
-    
-        return $this;
-    }
-
-    /**
-     * Get date
-     *
-     * @return \DateTime 
-     */
-    public function getDate()
-    {
-        return $this->date;
-    }
+   
 
     /**
      * Set coefficient
@@ -192,29 +171,6 @@ public function __construct()
     public function getPromo()
     {
         return $this->promo;
-    }
-
-    /**
-     * Set statut
-     *
-     * @param \Ensiie\Bundle\DataBundle\Entity\Statut $statut
-     * @return Examen
-     */
-    public function setStatut(\Ensiie\Bundle\DataBundle\Entity\Statut $statut = null)
-    {
-        $this->statut = $statut;
-    
-        return $this;
-    }
-
-    /**
-     * Get statut
-     *
-     * @return \Ensiie\Bundle\DataBundle\Entity\Statut 
-     */
-    public function getStatut()
-    {
-        return $this->statut;
     }
 
     /**

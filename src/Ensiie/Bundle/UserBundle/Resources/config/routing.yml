@@ -9,3 +9,7 @@ ensiie_inscription:
 ensiie_admin_ajoutprof:
     pattern: /admin/ajoutprof
     defaults: { _controller: EnsiieUserBundle:Prof:index }
+    
+ensiie_admin_retraitprof:
+    pattern: /admin/retraituserb={b}
+    defaults: { _controller: EnsiieUserBundle:Prof:remove }

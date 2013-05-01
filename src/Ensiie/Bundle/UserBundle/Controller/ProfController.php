@@ -37,7 +37,6 @@ class ProfController extends Controller
 	    'form' => $form->createView(),
 	    'error'=>'ERROR : L\'utilisateur "'.$user->getUsername().'" existe déjà.',
 	    'success'=>''));;
-	
 	$em->persist($user);
 	$em->flush();
       }
@@ -58,5 +57,60 @@ class ProfController extends Controller
       "error"=>'',
       'success'=>'',
       ));
+  }
+  public function removeAction($b)
+  {
+  
+    $em = $this->getDoctrine()->getManager();
+    $liste_user = $em->getRepository("EnsiieUserBundle:User")->findAll();
+    $user = new User();
+    asort($liste_user,SORT_STRING);
+    $formBuilder = $this->createFormBuilder($user);
+    $formBuilder
+	->add('username', 'entity', array(
+	'class'=>'EnsiieUserBundle:User',
+        'choices' => $liste_user,
+        'required' => false,'label'=>'Login','multiple'=>false
+	));
+    $form = $formBuilder->getForm();
+    $request = $this->get('request');	
+    if ($request->getMethod() == 'POST')
+    {
+      $form->bind($request);
+      if ($form->isValid())
+      {
+	$nom = $user->getUsername();
+	$user = $em->getRepository('EnsiieUserBundle:User')->findOneBy(array('username' => "".$nom));
+	if($user==NULL)
+	{
+	  return $this->render('EnsiieUserBundle:Prof:remove.html.twig',array(
+	    'success'=>'',
+	    'error'=>'ERROR : l\'utilisateur "'.$nom.'" n\'éxiste pas .',
+	    'form' => $form->createView(),
+	    
+	    ));
+	}
+	$em->remove($user);
+	$em->flush();
+	  return $this->redirect($this->generateUrl('ensiie_admin_retraitprof',array("b"=>$nom), 301));
+      }	
+      return $this->render('EnsiieUserBundle:Prof:remove.html.twig',array(
+	'success'=>'',
+	'error'=>'',
+	'form' => $form->createView(),
+	));
+    }
+    else
+    {
+      $success='';
+      if($b!="x")
+	$success="L'utilisateur ".$b." a bien été supprimé.";
+	
+      return $this->render('EnsiieUserBundle:Prof:remove.html.twig',array(
+	'success'=>$success,
+	'error'=>'',
+	'form' => $form->createView(),
+	));
+    }
   }
 }

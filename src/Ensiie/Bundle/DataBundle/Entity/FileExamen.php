@@ -18,9 +18,13 @@ class FileExamen
      */
     protected $file;
     /**
-      * @ORM\ManyToOne(targetEntity="Ensiie\Bundle\UserBundle\Entity\User")
+      * @ORM\ManyToOne(targetEntity="Ensiie\Bundle\UserBundle\Entity\User",cascade={"remove"},inversedBy="examen")
       */
      protected $user;
+     /**
+      * @ORM\OneToMany(targetEntity="Ensiie\Bundle\DataBundle\Entity\Examen",mappedBy="file",cascade={"remove"})
+      */
+     protected $examen;
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -168,4 +172,44 @@ class FileExamen
       return $this->file = $file;
     }
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->examen = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add examen
+     *
+     * @param \Ensiie\Bundle\UserBundle\Entity\User $examen
+     * @return FileExamen
+     */
+    public function addExamen(\Ensiie\Bundle\UserBundle\Entity\User $examen)
+    {
+        $this->examen[] = $examen;
+    
+        return $this;
+    }
+
+    /**
+     * Remove examen
+     *
+     * @param \Ensiie\Bundle\UserBundle\Entity\User $examen
+     */
+    public function removeExamen(\Ensiie\Bundle\UserBundle\Entity\User $examen)
+    {
+        $this->examen->removeElement($examen);
+    }
+
+    /**
+     * Get examen
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getExamen()
+    {
+        return $this->examen;
+    }
 }

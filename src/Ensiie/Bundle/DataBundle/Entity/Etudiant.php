@@ -15,10 +15,9 @@ class Etudiant
 {
   
   /**
-  * @ORM\OneToOne(targetEntity="Ensiie\Bundle\UserBundle\Entity\User")
+  * @ORM\OneToOne(targetEntity="Ensiie\Bundle\UserBundle\Entity\User",cascade={"remove"},inversedBy="etudiant")
   */
   protected $user;
-  
   /**
    * @var integer $id 
    * @ORM\Column(name="id", type="integer")

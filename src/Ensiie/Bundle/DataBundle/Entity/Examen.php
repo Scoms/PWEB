@@ -19,9 +19,10 @@ class Examen {
   private $etudiants;
 
   /** 
-  * @ORM\ManyToOne(targetEntity="FileExamen")
+  * @ORM\ManyToOne(targetEntity="FileExamen",inversedBy="examen",cascade={"remove"})
   */
   protected $file;
+  
 /**
 * @ORM\Id
 * @ORM\Column(type="integer")

@@ -21,6 +21,15 @@ class User implements UserInterface
   private $id;
  
   /**
+  * @ORM\OneToMany(targetEntity="Ensiie\Bundle\DataBundle\Entity\FileExamen",cascade={"remove"},mappedBy="user")
+  */
+  protected $examen;
+  
+  /**
+  * @ORM\OneToOne(targetEntity="Ensiie\Bundle\DataBundle\Entity\Etudiant",cascade={"remove"},mappedBy="user")
+  */
+  protected $etudiant;
+  /**
    * @ORM\Column(name="username", type="string", length=255, unique=true)
    */
   private $username;
@@ -115,5 +124,67 @@ class User implements UserInterface
     public function unserialize($data)
     {
 	  $this->id = unserialize($data);
+    }
+    
+    public function __toString()
+    {
+      return $this->getUsername();
+    }
+
+
+    /**
+     * Add examen
+     *
+     * @param \Ensiie\Bundle\DataBundle\Entity\FileExamen $examen
+     * @return User
+     */
+    public function addExamen(\Ensiie\Bundle\DataBundle\Entity\FileExamen $examen)
+    {
+        $this->examen[] = $examen;
+    
+        return $this;
+    }
+
+    /**
+     * Remove examen
+     *
+     * @param \Ensiie\Bundle\DataBundle\Entity\FileExamen $examen
+     */
+    public function removeExamen(\Ensiie\Bundle\DataBundle\Entity\FileExamen $examen)
+    {
+        $this->examen->removeElement($examen);
+    }
+
+    /**
+     * Get examen
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getExamen()
+    {
+        return $this->examen;
+    }
+
+    /**
+     * Set etudiant
+     *
+     * @param \Ensiie\Bundle\DataBundle\Entity\Etudiant $etudiant
+     * @return User
+     */
+    public function setEtudiant(\Ensiie\Bundle\DataBundle\Entity\Etudiant $etudiant = null)
+    {
+        $this->etudiant = $etudiant;
+    
+        return $this;
+    }
+
+    /**
+     * Get etudiant
+     *
+     * @return \Ensiie\Bundle\DataBundle\Entity\Etudiant 
+     */
+    public function getEtudiant()
+    {
+        return $this->etudiant;
     }
 }
