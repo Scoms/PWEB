@@ -54,6 +54,16 @@ ensiie_etudiant_examen_deposer:
     pattern: /etu/examen_deposer/{id}
     defaults: { _controller:EnsiieDataBundle:ExamenEtudiant:deposer }
     
+ensiie_admin_promos:
+    pattern: /admin/promos
+    defaults: { _controller:EnsiieDataBundle:Promos:index }
+    
+ensiie_admin_promos_ajouter:
+    pattern: /admin/promos_ajouter/{id}
+    defaults: { _controller:EnsiieDataBundle:Promos:add }
 
+ensiie_admin_promos_retirer:
+    pattern: /admin/promos_retirer/{id}
+    defaults: { _controller:EnsiieDataBundle:Promos:remove }
     
    

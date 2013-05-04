@@ -12,4 +12,4 @@ ensiie_etu:
     
 ensiie_admin:
     pattern: /admin
-    defaults: { _controller:EnsiieMainBundle:admin:index }
+    defaults: { _controller:EnsiieMainBundle:Admin:index }

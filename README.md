@@ -1,7 +1,7 @@
 TODO : 
 
-- affichages des moyennes des promos dans le home // laurent 
-- gestion de promo + comptes prof 
+- affichages des moyennes des promos dans le home  
+- gestion de promo + comptes prof // Laurent DONE 
 - attribution des mots de passe
 
 #Post-IT

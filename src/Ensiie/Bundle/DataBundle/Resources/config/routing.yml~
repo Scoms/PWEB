@@ -7,7 +7,7 @@ ensiie_examen_show:
     defaults: { _controller:EnsiieDataBundle:Examen:show }
 
 ensiie_examen_depots_consulter:
-    pattern: /prof/depots_consult/{id}?dpt={dpt}
+    pattern: /prof/depots_consult/{id}dpt={dpt}
     defaults: { _controller:EnsiieDataBundle:Depots:show }
     
 ensiie_examen_remove:
@@ -53,6 +53,10 @@ ensiie_etudiant_examen_consult:
 ensiie_etudiant_examen_deposer:
     pattern: /etu/examen_deposer/{id}
     defaults: { _controller:EnsiieDataBundle:ExamenEtudiant:deposer }
+    
+ensiie_admin_promos:
+    pattern: /admin/promos
+    defaults: { _controller:EnsiieDataBundle:Promos:index }
     
 
     
