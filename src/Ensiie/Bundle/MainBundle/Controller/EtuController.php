@@ -16,4 +16,5 @@ class EtuController extends Controller
         return $this->render('EnsiieMainBundle:Etu:index.html.twig',array(
 	  "etudiant" => $etudiant));
     }
+    
 }

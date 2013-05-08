@@ -13,3 +13,7 @@ ensiie_admin_ajoutprof:
 ensiie_admin_retraitprof:
     pattern: /admin/retraituserb={b}
     defaults: { _controller: EnsiieUserBundle:Prof:remove }
+
+ensiie_password_change:
+    pattern: /password/change
+    defaults: {_controller: EnsiieUserBundle:Password:change}
