@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <link href="{{ asset('../css/bootstrap/css/bootstrap.css') }}" rel="stylesheet" media="screen">
         <link href="{{ asset('../css/bootstrap/css/update.css') }}" rel="stylesheet" media="screen">
-        <title>{% block title %}Welfuck!{% endblock %}</title>
+        <title>{% block title %}Ensiie - Intranet{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
@@ -23,7 +23,7 @@
         <div class="">
           <ul class="nav">
           
-          {% if is_granted('ROLE_ADMIN') %}
+          {% if is_granted('ROLE_GESTION') %}
             <li><a href="{{ path('ensiie_admin') }}">Admin</a></li>
           {% endif %}
           {% if is_granted('ROLE_PROF') %}
@@ -47,8 +47,8 @@
   <div class="container-fluid">
   {% block subnav %}
     
-  <div class="span2" style="">
-  <ul class="menu nav nav-list" style="">
+  <div class="span2-fluid" >
+  <ul class="menu nav nav-list" >
       {% if is_granted('ROLE_ADMIN') %}
 	<li><a href="{{ path('ensiie_admin') }}">Admin</a></li>
       {% endif %}

@@ -12,7 +12,7 @@
 {% if depots is empty %}
   <h5>Pas de dépots pour le moment</h4>
 {% else %}
-<table class="table table-hover table-bordered" style=";background-color:white;">    
+<table class="table table-hover table-bordered" style="width:65%;;background-color:white;">    
   <thead style="background-color:#49afcd">
     <tr>
       <th >Etudiant</th>
@@ -29,11 +29,14 @@
     <td >
     <a href="{{ depot.getDlPath() }}">x</a>
     </td>
-    <td style=";padding:0px 0px 0px 0px;">
-	    <form  action="{{ path('ensiie_examen_depots_consulter',{"id":id,"dpt":depot.id}) }}" method="post" {{ form_enctype(array_form[depot.id].createView()) }}>
+    <td style="padding:0px 0px 0px 0px;">
+	    <div>
+	    
+	    <form  style="postion:relative;margin:0px 0px 0px 0px;padding:5px 0px 0px 5px;" action="{{ path('ensiie_examen_depots_consulter',{"id":id,"dpt":depot.id}) }}" method="post" {{ form_enctype(array_form[depot.id].createView()) }}>
 	    {{ form_widget(array_form[depot.id].createView().note)}}
-	    <input type="submit" value="Noter" class="btn btn-primary" />
+	    <input  class="btn btn-primary" style="postion:relative;vertical-align:top;" type="submit" value="Noter"  />
 	    </form>
+	    </div >
     </td>
   </tr>
   {% endfor %}
