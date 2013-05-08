@@ -1,8 +1,7 @@
 TODO : 
 
-- attribution des mots de passe
 - jeux de données 
-- indiquer à un utilisateur s il à deja déposer pour l exam en question
+- indiquer à un utilisateur s il à deja dépose pour l exam en question
 - autre améliorations que vous voulez lachez-vous tant que ça marche 
 
 #Post-IT
