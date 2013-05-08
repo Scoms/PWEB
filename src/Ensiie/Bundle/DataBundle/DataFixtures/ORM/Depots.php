@@ -38,6 +38,27 @@ class Depots extends AbstractFixture implements OrderedFixtureInterface
       // else ne rien faire
     }
     
+    //Rempliassage IPA controle intermédiaire
+    $examen = $repo_examen->findOneBy(array("libelle"=>"IPA controle intermédiaire"));
+    foreach($array_etus_conso as $etu)
+    {
+	$depot = new Depot;
+	$depot->setEtudiant($etu);
+	$depot->setExamen($examen);
+	$depot->setNote(rand(0,20));
+	$manager->persist($depot);
+    }
+    $depot = new Depot;
+    $depot->setEtudiant($repo_etu->findOneBy(array("nom"=>"Gouy")));
+    $depot->setExamen($examen);
+    $depot->setNote(rand(0,20));
+    $manager->persist($depot);
+    $depot = new Depot;
+    $depot->setEtudiant($repo_etu->findOneBy(array("nom"=>"Thenoz")));
+    $depot->setExamen($examen);
+    $depot->setNote(rand(0,20));
+    $manager->persist($depot);
+
     $manager->flush();
   }
   public function getOrder()
