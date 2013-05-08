@@ -6,17 +6,24 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class HomeController extends Controller
 {
-    public function indexAction()
+    public function indexAction($tri)
     {
       $em = $this->getDoctrine()->getManager();
       $request = $this->get('request');
       $log = $this->get('logger');
+      $user = $this->get('security.context')->getToken()->getUser();
       $log->info('HomeController indexAction');
-      
+    
+      if($tri == "promo")
+      $exams = $em->getRepository('EnsiieDataBundle:Examen')->findAll();     
+      elseif($tri == "exam")
       $exams = $em->getRepository('EnsiieDataBundle:Examen')->findAll();
+  
+      
+         
       
       $log->info('Calcul de la moyenne pour chaque examen');
-      $exams_moyennes = array();
+      $moyennes_exams = array();
      
       foreach($exams as $exam)
       {
@@ -39,16 +46,16 @@ class HomeController extends Controller
           {
               $moyenne = $moyenne / $nb_depots;
               $log->info('Ajout de la moyenne calculee dans la liste des moyennes');
-              $exams_moyennes[$exam->getLibelle()] = $moyenne;
+              $moyennes_exams[strval($moyenne)] = $exam;
           }
           
           
-      }
-      
-      
+      }         
         
         return $this->render('EnsiieMainBundle:Home:index.html.twig',
-                array('exams_moyennes' => $exams_moyennes )
+                array('moyennes_exams' => $moyennes_exams )
                 );
     }
+    
+
 }

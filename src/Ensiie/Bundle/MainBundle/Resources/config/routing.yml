@@ -1,6 +1,8 @@
 ensiie_homepage:
-    pattern: /
-    defaults: { _controller:EnsiieMainBundle:Home:index }
+    pattern: /{tri}
+    defaults: { _controller:EnsiieMainBundle:Home:index, tri:exam }
+    requirements:
+        tri: exam|promo
     
 ensiie_prof:
     pattern: /prof

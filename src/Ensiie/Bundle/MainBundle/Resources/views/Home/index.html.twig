@@ -4,24 +4,29 @@
 {% block body %}
 
   <h1>Home</h1>
+    <div class="btn-group">
+      <a class="btn" href="{{ path('ensiie_homepage',{"tri":"exam"})}}">Par examen</a>
+      <a class="btn" href="{{ path('ensiie_homepage',{"tri":"promo"})}}">Par promo</a>
+    </button>
+    </div>
+
     <div "last-moyennes">
-        {% if exams_moyennes is empty %}
+        {% if moyennes_exams is empty %}
             Aucun moyenne pour l'instant.
         {% else %}
             <table class="table table-hover table-bordered" style=";background-color:white;">    
                 <thead style="background-color:#49afcd">
                     <tr>
                         <th> Moyenne </th>
-                        <th> Examen </th>
-                        {#  Disabled for now
+                        <th> Examen </th>                      
                         <th> Promo  </th>
-                        <th> Prof </th>#} 
                     </tr>
                 </thead>
-            {% for libelle_exam,moyenne in exams_moyennes %}
+            {% for moyenne,exam in moyennes_exams %}
                     <tr>
                         <th> {{ moyenne }} </th>
-                        <th> {{ libelle_exam }} </th>
+                        <th> {{ exam.libelle }} </th>
+                        <th> {{ exam.promo }} </th>
                     </tr>
             {% endfor %}
         {% endif %}
