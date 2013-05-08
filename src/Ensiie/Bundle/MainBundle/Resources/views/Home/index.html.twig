@@ -24,7 +24,7 @@
                 </thead>
             {% for moyenne,exam in moyennes_exams %}
                     <tr>
-                        <th> {{ moyenne }} </th>
+                        <th> {{ '%.2f'|format(moyenne) }}</th>
                         <th> {{ exam.libelle }} </th>
                         <th> {{ exam.promo }} </th>
                     </tr>
