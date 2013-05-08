@@ -42,7 +42,7 @@ class Depots extends AbstractFixture implements OrderedFixtureInterface
     
     //Rempliassage IPA controle intermédiaire
     $examen = $repo_examen->findOneBy(array("libelle"=>"IPA controle intermédiaire"));
-    foreach($array_etus_conso as $etu)
+    /*foreach($array_etus_conso as $etu)
     {
 	$depot = new Depot;
 	$depot->setEtudiant($etu);
@@ -50,7 +50,7 @@ class Depots extends AbstractFixture implements OrderedFixtureInterface
 	$depot->setNote(rand(0,20));
         $depot->setPath("CR-BDE_24_04_13.pdf");
 	$manager->persist($depot);
-    }
+    }*/
     $depot = new Depot;
     $depot->setEtudiant($repo_etu->findOneBy(array("nom"=>"Gouy")));
     $depot->setExamen($examen);
@@ -65,6 +65,22 @@ class Depots extends AbstractFixture implements OrderedFixtureInterface
     $depot->setPath("CR-BDE_24_04_13.pdf");
     $manager->persist($depot);
 
+    //Remplissage Pweb
+    $examen = $repo_examen->findOneBy(array("libelle"=>"Pweb"));
+    $depot = new Depot;
+    $depot->setEtudiant($repo_etu->findOneBy(array("nom"=>"Gouy")));
+    $depot->setExamen($examen);
+    $depot->setNote(rand(0,20));
+    $depot->setPath("CR-BDE_24_04_13.pdf");
+    $manager->persist($depot);
+    
+    $depot = new Depot;
+    $depot->setEtudiant($repo_etu->findOneBy(array("nom"=>"Thenoz")));
+    $depot->setExamen($examen);
+    $depot->setNote(rand(0,20));
+    $depot->setPath("CR-BDE_24_04_13.pdf");
+    $manager->persist($depot);
+    
     $manager->flush();
   }
   public function getOrder()

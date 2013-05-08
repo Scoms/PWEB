@@ -15,9 +15,9 @@ class HomeController extends Controller
       $log->info('HomeController indexAction');
     
       if($tri == "promo")
-      $exams = $em->getRepository('EnsiieDataBundle:Examen')->findAll();     
+      $exams = $em->getRepository('EnsiieDataBundle:Examen')->triePromo();     
       elseif($tri == "exam")
-      $exams = $em->getRepository('EnsiieDataBundle:Examen')->findAll();
+      $exams = $em->getRepository('EnsiieDataBundle:Examen')->trieExamen();
   
       
          

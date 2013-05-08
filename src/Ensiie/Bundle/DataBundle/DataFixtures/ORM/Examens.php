@@ -28,7 +28,7 @@ class Examens extends AbstractFixture implements OrderedFixtureInterface
      * Exams d'IPA 
      */
     $exam = new Examen;
-    $exam->setPromo($_1A);
+    $exam->setPromo($_2A);
     $exam->setFile($exam_repo->findOneBy(array("path"=>"exam_IPA_1A_2.pdf")));
     $exam->setLibelle('IPA controle final');
     $exam->setDescription('Réviser GB');
@@ -38,7 +38,7 @@ class Examens extends AbstractFixture implements OrderedFixtureInterface
     $manager->persist($exam);
     
     $exam = new Examen;
-    $exam->setPromo($_1A);
+    $exam->setPromo($_2A);
     $exam->setFile($exam_repo->findOneBy(array("path"=>"exam_IPA_1A_1.pdf")));
     $exam->setLibelle('IPA controle intermédiaire');
     $exam->setDescription('Trololo');
@@ -92,6 +92,8 @@ class Examens extends AbstractFixture implements OrderedFixtureInterface
     $exam->setDescription('sujet et groupes');
     $exam->setDateDebut($dd);
     $exam->setDateFin($df);
+    $exam->addEtudiant($etu_repo->findOneBy(array("nom"=>"Gouy")));
+    $exam->addEtudiant($etu_repo->findOneBy(array("nom"=>"Thenoz")));
     $exam->setCoefficient(2);
     $manager->persist($exam);
     
