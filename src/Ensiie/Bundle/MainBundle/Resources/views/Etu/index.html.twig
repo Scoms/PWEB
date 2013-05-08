@@ -14,13 +14,16 @@
 {% block body %}
 
   <h1>{{ etudiant.prenom }} {{ etudiant.nom }}</h1>
-    <ul>
-       <li> Adresse: {{ etudiant.adresse}} </li>
-       <li> Code postal: {{ etudiant.codePostal }} </li>
-       <li> Ville: {{ etudiant.ville }} </li>
-       <li> Email: {{ etudiant.email }} </li>
-       <li> Téléphone: {{ etudiant.telephone }} </li>
-       <li> Promo actuelle: {{ etudiant.promo }} </li>
-    </ul>
+   
+    <div "info-etu" >
+        <ul>
+           <li> Adresse: {{ etudiant.adresse}} </li>
+           <li> Code postal: {{ etudiant.codePostal }} </li>
+           <li> Ville: {{ etudiant.ville }} </li>
+           <li> Email: {{ etudiant.email }} </li>
+           <li> Téléphone: {{ etudiant.telephone }} </li>
+           <li> Promo actuelle: {{ etudiant.promo }} </li>
+        </ul>
+    </div>
   <h4> Vérifiez que vos informations sont à jour ! </h4>
 {% endblock %}

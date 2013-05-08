@@ -61,11 +61,14 @@ class DepotsController extends Controller
       {
 	$log->info('Check form');
 	$depots_entity[$dpt]->bind($request);
-	$em->persist($depot_entity[$dpt]);
-	$em->flush();
-	$log->info('Note done.');
-	return $this->redirect($this->generateUrl('ensiie_examen_depots_consulter',array("id"=>$id,"dpt"=>$dpt), 301));
-      }
+	//if($depots_entity[$dpt]->isValid())
+        //{
+            $em->persist($depot_entity[$dpt]);
+            $em->flush();
+            $log->info('Note done.');
+            return $this->redirect($this->generateUrl('ensiie_examen_depots_consulter',array("id"=>$id,"dpt"=>$dpt), 301));
+     //   }
+       }
     return $this->render('EnsiieDataBundle:Depots:index.html.twig',array(
       "depots"=>$depots,
       "array_form"=>$depots_entity,

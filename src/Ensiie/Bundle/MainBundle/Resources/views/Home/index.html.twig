@@ -4,5 +4,32 @@
 {% block body %}
 
   <h1>Home</h1>
-  
+    <div class="btn-group">
+      <a class="btn" href="{{ path('ensiie_homepage',{"tri":"exam"})}}">Par examen</a>
+      <a class="btn" href="{{ path('ensiie_homepage',{"tri":"promo"})}}">Par promo</a>
+    </button>
+    </div>
+
+    <div "last-moyennes">
+        {% if moyennes_exams is empty %}
+            Aucun moyenne pour l'instant.
+        {% else %}
+            <table class="table table-hover table-bordered" style=";background-color:white;">    
+                <thead style="background-color:#49afcd">
+                    <tr>
+                        <th> Moyenne </th>
+                        <th> Examen </th>                      
+                        <th> Promo  </th>
+                    </tr>
+                </thead>
+            {% for moyenne,exam in moyennes_exams %}
+                    <tr>
+                        <th> {{ moyenne }} </th>
+                        <th> {{ exam.libelle }} </th>
+                        <th> {{ exam.promo }} </th>
+                    </tr>
+            {% endfor %}
+        {% endif %}
+        
+    </div>
 {% endblock %}
