@@ -27,15 +27,15 @@ class PasswordController extends Controller
             $form = $this->createFormBuilder($user)
                          ->add('old_password','password',array(
                               "mapped" => false,
-                              "label" => "Entre votre ancien mot de passe:"
+                              "label" => "Entrez votre ancien mot de passe:",
                           ))  
                          ->add('new_password','password',array(
                              "mapped" => false,
-                             "label" => "Entrez votre nouveau mot de passe:"
+                             "label" => "Entrez votre nouveau mot de passe:",
                          ))
                          ->add('same_password','password',array(
                              "mapped" => false,
-                             "label" => "Rentrez de nouveau votre nouveau mot de passe:"
+                             "label" => "Rentrez de nouveau votre nouveau mot de passe:",
                          ))
                          ->getForm();
       

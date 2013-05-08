@@ -56,19 +56,19 @@ class DepotsController extends Controller
     if($i !=0)
       $moyenne = $moyenne / $i;
 
-    $log->info("Calcul de la moyenne administrative");
-    $moyenne_0 = $moyenne;
-
     $log->info("Analyse de la requete");
     if($request->getMethod() == 'POST')
       {
 	$log->info('Check form');
 	$depots_entity[$dpt]->bind($request);
-	$em->persist($depot_entity[$dpt]);
-	$em->flush();
-	$log->info('Note done.');
-	return $this->redirect($this->generateUrl('ensiie_examen_depots_consulter',array("id"=>$id,"dpt"=>$dpt), 301));
-      }
+	//if($depots_entity[$dpt]->isValid())
+        //{
+            $em->persist($depot_entity[$dpt]);
+            $em->flush();
+            $log->info('Note done.');
+            return $this->redirect($this->generateUrl('ensiie_examen_depots_consulter',array("id"=>$id,"dpt"=>$dpt), 301));
+     //   }
+       }
     return $this->render('EnsiieDataBundle:Depots:index.html.twig',array(
       "depots"=>$depots,
       "array_form"=>$depots_entity,

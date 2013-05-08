@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bridge\Doctrine\Form\ChoiceList\EntityChoiceList;
+use Ensiie\Bundle\DataBundle\Entity\Promo;
 
 class PromosController extends Controller
 {
@@ -127,8 +128,7 @@ class PromosController extends Controller
 	$em->persist($promo);
 	$em->flush();
 	
-	$etus = $em->getRepository('EnsiieDataBundle:Etudiant')->findBy(array("promo"=>null));
-	$etus->getIndexOf($etu);
+	$etus = $em->getRepository('EnsiieDataBundle:Etudiant')->findBy(array("promo"=>$id));
 	$form = $this->createFormBuilder();
 	$form->add('etudiant','entity',array(
 			    "choices"=> $etus,
@@ -149,5 +149,60 @@ class PromosController extends Controller
     "success"=>'',
     "error"=>'',
     ));
+  }
+  public function addPromoAction()
+  {
+    $em = $this->getDoctrine()->getManager();
+    $request = $this->get('request');
+    $log = $this->get('logger');
+    
+    $log->info('add promo action');
+    $promo = new Promo;
+    $form = $this->createFormBuilder($promo);
+    $form->add('libelle','text')
+    ->add('annee','number');
+    $form = $form->getForm();
+    
+    $log->info('check method');
+     if($request->getMethod() == 'POST')
+    {
+      $log->info('check form');
+      $form->bind($request);
+      if($form->isValid())
+      {
+	$log->info('Test unicité année/nom');
+	$test = $em->getRepository('EnsiieDataBundle:Promo')->findOneBy(array("libelle"=>$promo->getLibelle(),'annee'=>$promo->getAnnee()));
+	
+	if($test != "")
+	  return $this->render('EnsiieDataBundle:Promos:addPromos.html.twig',array(
+	  "form"=>$form->createView(),
+	  "error"=>"Le couple ".$promo->getAnnee()." / ".$promo->getLibelle()." n'est pas unique",
+	  "success"=>"",
+	 ));
+      
+	$em->persist($promo);
+	$em->flush();
+
+	return $this->render('EnsiieDataBundle:Promos:addPromos.html.twig',array(
+	  "form"=>$form->createView(),
+	  "error"=>"",
+	  "success"=>"La promo ".$promo->getAnnee()." : ".$promo->getLibelle()." a bien été ajoutée !",
+	 ));
+      }
+    }
+    
+    return $this->render('EnsiieDataBundle:Promos:addPromos.html.twig',array(
+      "form"=>$form->createView(),
+      "error"=>"",
+      "success"=>"",
+      ));
+  }
+  public function removePromoAction($id)
+  {
+    $em = $this->getDoctrine()->getManager();
+    $em->remove($em->getRepository('EnsiieDataBundle:Promo')->find($id));
+    $em->flush();
+    
+    return $this->redirect($this->generateUrl('ensiie_examen_ajouter_etu',array(), 301));
   }
 }
