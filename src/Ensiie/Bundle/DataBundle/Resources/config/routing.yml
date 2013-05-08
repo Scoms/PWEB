@@ -58,6 +58,14 @@ ensiie_admin_promos:
     pattern: /admin/promos
     defaults: { _controller:EnsiieDataBundle:Promos:index }
     
+ensiie_admin_promo_add:
+    pattern: /admin/promo_add
+    defaults: { _controller:EnsiieDataBundle:Promos:addPromo }
+    
+ensiie_admin_promo_removePromo:
+    pattern: /admin/promo_removep/{id}
+    defaults: { _controller:EnsiieDataBundle:Promos:removePromo }
+    
 ensiie_admin_promos_ajouter:
     pattern: /admin/promos_ajouter/{id}
     defaults: { _controller:EnsiieDataBundle:Promos:add }

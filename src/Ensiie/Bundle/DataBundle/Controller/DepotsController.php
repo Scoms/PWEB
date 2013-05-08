@@ -20,6 +20,8 @@ class DepotsController extends Controller
     $request = $this->get('request');
     $log = $this->get('logger');
     
+    $log->info('Depot controller show action. Get dépots.');
+    
     $log->info('Depot controller show action');
     $log->info(' Get dépots.');
     $depots = $em->getRepository('EnsiieDataBundle:Depot')->findBy(array("examen"=>$id));
