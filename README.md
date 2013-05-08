@@ -1,7 +1,6 @@
 TODO : 
 
 - outil création de promo
-- affichages des moyennes des promos dans le home  
 - attribution des mots de passe
 
 #Post-IT
