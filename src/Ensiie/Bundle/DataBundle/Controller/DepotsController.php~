@@ -48,12 +48,17 @@ class DepotsController extends Controller
       $form = $this->createFormBuilder($depot);
       $form->add('note','number',array(
 	'invalid_message'            => 'La valeur rentrée ne paraît pas très cohérente monsieur !!!',
+	'precision'=>2,
       ));
       $form = $form->getForm();
       $depots_entity[$depot->getId()] = $form;
     }
     if($i !=0)
       $moyenne = $moyenne / $i;
+
+    $log->info("Calcul de la moyenne administrative");
+    $moyenne_0 = $moyenne;
+
     $log->info("Analyse de la requete");
     if($request->getMethod() == 'POST')
       {

@@ -44,6 +44,8 @@ class Examens extends AbstractFixture implements OrderedFixtureInterface
     $exam->setDescription('Trololo');
     $exam->setDateDebut(new \Datetime("2013-01-20 12:20"));
     $exam->setDateFin(new \Datetime("2013-01-20 15:20"));
+    $exam->addEtudiant($etu_repo->findOneBy(array("nom"=>"Gouy")));
+    $exam->addEtudiant($etu_repo->findOneBy(array("nom"=>"Thenoz")));
     $exam->setCoefficient(1);
     $manager->persist($exam);
     

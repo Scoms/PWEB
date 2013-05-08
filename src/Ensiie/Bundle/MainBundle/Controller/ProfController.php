@@ -10,6 +10,6 @@ class ProfController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('EnsiieMainBundle:Prof:index.html.twig');
+        return $this->redirect($this->generateURL('ensiie_examen_show',array("by_owner"=>"true"),301));
     }
 }

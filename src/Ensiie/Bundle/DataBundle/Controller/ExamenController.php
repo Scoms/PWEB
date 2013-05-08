@@ -88,17 +88,26 @@ class ExamenController extends Controller
     $exams_list = array();
     $date = new \DateTime();
     
-    if($by_owner!="true")
+    if($by_owner=="false")
       $exams_list = $em->getRepository("EnsiieDataBundle:Examen")->findBy(array(),array("date_fin"=>"desc"));
     else
     {
       $logger->info("tri par user");
-      $files = $em->getRepository("EnsiieDataBundle:FileExamen")->findBy(array("user"=>$user));
+     
+     $files = $em->getRepository("EnsiieDataBundle:FileExamen")->findBy(array("user"=>$user));
       $exams_list_temp = $em->getRepository("EnsiieDataBundle:Examen")->findBy(array(),array("date_fin"=>"desc"));
-      foreach($exams_list_temp as $exam)
+     
+     foreach($exams_list_temp as $exam)
+      {
 	foreach($files as $file)
-	  if($exam->getFile() == $file)
+	{
+	  //On évite d'afficher les doublons 
+	  if($file === $exam->getFile() )
+	  {
 	    array_push($exams_list,$exam);
+	  }
+	}
+      }
     }
     $logger->info("tri d'affichage");
     $moyennes = array();

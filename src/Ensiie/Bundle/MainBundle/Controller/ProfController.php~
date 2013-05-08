@@ -10,28 +10,6 @@ class ProfController extends Controller
 {
     public function indexAction()
     {
-	$document = new FileExamen();
-    $form = $this->createFormBuilder($document)
-        ->add('name')
-        ->add('file')
-        ->getForm()
-    ;
-
-    if ($this->getRequest()->isMethod('POST')) {
-        $form->bind($this->getRequest());
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-	    
-	    $document->upload();
-	    
-            $em->persist($document);
-            $em->flush();
-
-            //$this->redirect($this->generateUrl(...));
-        }
-    }
-        return $this->render('EnsiieMainBundle:Prof:index.html.twig',array(
-        'form' => $form->createView()
-        ));
+        return $this->redirect($this->generateURL('ensiie_examen_show',array("by_owner"=>"false"),301));
     }
 }
