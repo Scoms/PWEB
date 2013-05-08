@@ -1,6 +1,5 @@
 TODO : 
 
-- outil création de promo
 - attribution des mots de passe
 - jeux de données 
 - indiquer à un utilisateur s il à deja déposer pour l exam en question

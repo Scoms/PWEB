@@ -1,8 +1,10 @@
 TODO : 
 
 - outil création de promo
-- affichages des moyennes des promos dans le home  
 - attribution des mots de passe
+- jeux de données 
+- indiquer à un utilisateur s il à deja déposer pour l exam en question
+- autre améliorations que vous voulez lachez-vous tant que ça marche 
 
 #Post-IT
 
