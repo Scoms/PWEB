@@ -55,6 +55,7 @@ class DepotsController extends Controller
     }
     if($i !=0)
       $moyenne = $moyenne / $i;
+
     $log->info("Analyse de la requete");
     if($request->getMethod() == 'POST')
       {

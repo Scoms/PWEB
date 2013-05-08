@@ -112,7 +112,7 @@
       {% if exam.file != "" and date > exam.dateDebut and date < exam.dateFin %}
 	<a href="{{ exam.file.getDlPath() }}" ><img src="{{ asset('../img/pdfIcon.png') }}" style="width:25px;heigth:25px"></a>
       {% else %}
-      {{ moyennes[exam.id] }}
+	<a href="{{ path('ensiie_examen_depots_consulter',{"id":exam.id,"dpt":0}) }}" >x</a>
       {% endif %}
       </td>
   </tr>

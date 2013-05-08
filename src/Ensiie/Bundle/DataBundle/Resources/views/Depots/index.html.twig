@@ -4,8 +4,11 @@
 <h1>Depots de l'examen</h1>
 {{ msg }}
 <p>Nombre d'étudiants inscrits : {{ inscrits["promo"] }} + {{ inscrits["supp"] }} = {{ inscrits["promo"]+ inscrits["supp"] }}</p>
-<p>Nombre de dépots disponibles : {{ nb_depots }}</p>
-<p>Moyenne temporaire : {{ moyenne }}<p>
+<p>Nombre de dépots disponibles : {{ nb_depots }} / {{ inscrits["promo"]+ inscrits["supp"] }}</p>
+
+<p>Moyenne (des notés): {{ moyenne }}<p>
+<p>Moyenne administrative: {{ (nb_depots * moyenne )/inscrits["promo"]+ inscrits["supp"] }}<p>
+
 <table class="table table-hover table-bordered" style=";background-color:white;">    
   <thead style="background-color:#49afcd">
     <tr>
