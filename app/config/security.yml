@@ -33,6 +33,8 @@ security:
             form_login:
                 login_path: login
                 check_path: login_check
+                always_use_default_target_path: true
+                default_target_path: /myspace
             logout:
                 path: /logout
                 target: /

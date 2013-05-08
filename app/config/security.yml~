@@ -39,4 +39,6 @@ security:
             
             
     access_control:
-        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/admin, roles: ROLE_GESTION }
+        - { path: ^/etu, roles: ROLE_ETU }
+        - { path: ^/prof, roles: ROLE_PROF }

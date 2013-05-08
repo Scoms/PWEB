@@ -13,3 +13,7 @@ ensiie_etu:
 ensiie_admin:
     pattern: /admin
     defaults: { _controller:EnsiieMainBundle:Admin:index }
+
+ensiie_afterlogin:
+    pattern: /myspace
+    defaults: { _controller:EnsiieMainBundle:AfterLogin:redirect }
