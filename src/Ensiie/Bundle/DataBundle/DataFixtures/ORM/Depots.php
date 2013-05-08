@@ -34,6 +34,7 @@ class Depots extends AbstractFixture implements OrderedFixtureInterface
 	$depot->setEtudiant($etu);
 	$depot->setExamen($examen);
 	$depot->setNote(rand(0,20));
+        $depot->setPath("CR-BDE_24_04_13.pdf");
 	$manager->persist($depot);
       }
       // else ne rien faire
@@ -47,17 +48,21 @@ class Depots extends AbstractFixture implements OrderedFixtureInterface
 	$depot->setEtudiant($etu);
 	$depot->setExamen($examen);
 	$depot->setNote(rand(0,20));
+        $depot->setPath("CR-BDE_24_04_13.pdf");
 	$manager->persist($depot);
     }
     $depot = new Depot;
     $depot->setEtudiant($repo_etu->findOneBy(array("nom"=>"Gouy")));
     $depot->setExamen($examen);
     $depot->setNote(rand(0,20));
+    $depot->setPath("CR-BDE_24_04_13.pdf");
     $manager->persist($depot);
+    
     $depot = new Depot;
     $depot->setEtudiant($repo_etu->findOneBy(array("nom"=>"Thenoz")));
     $depot->setExamen($examen);
     $depot->setNote(rand(0,20));
+    $depot->setPath("CR-BDE_24_04_13.pdf");
     $manager->persist($depot);
 
     $manager->flush();

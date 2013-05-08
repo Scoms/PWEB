@@ -16,13 +16,13 @@ class HomeController extends Controller
       $exams = $em->getRepository('EnsiieDataBundle:Examen')->findAll();
       
       $log->info('Calcul de la moyenne pour chaque examen');
-      $moyennes = array();
+      $exams_moyennes = array();
      
       foreach($exams as $exam)
       {
           $id = $exam->getId();
           $depots = $em->getRepository('EnsiieDataBundle:Depot')->findBy(array("examen"=>$id));
-          
+        
           $nb_depots = 0;
           $moyenne = 0;          
        
@@ -36,16 +36,19 @@ class HomeController extends Controller
               }
           }
           if($nb_depots != 0)
-          $moyenne = $moyenne / $nb_depots;
+          {
+              $moyenne = $moyenne / $nb_depots;
+              $log->info('Ajout de la moyenne calculee dans la liste des moyennes');
+              $exams_moyennes[$exam->getLibelle()] = $moyenne;
+          }
           
-          $log->info('Ajout de la moyenne calculee dans la liste des moyennes');
-          array_push($moyennes,$moyenne);
+          
       }
       
       
         
         return $this->render('EnsiieMainBundle:Home:index.html.twig',
-                array('moyennes' => $moyennes, 'exams' => $exams )
+                array('exams_moyennes' => $exams_moyennes )
                 );
     }
 }
