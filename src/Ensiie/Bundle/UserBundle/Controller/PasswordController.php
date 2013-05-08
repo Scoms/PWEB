@@ -25,6 +25,10 @@ class PasswordController extends Controller
            
             $user = $this->get('security.context')->getToken()->getUser();
             $form = $this->createFormBuilder($user)
+                         ->add('old_password','password',array(
+                              "mapped" => false,
+                              "label" => "Entre votre ancien mot de passe:"
+                          ))  
                          ->add('new_password','password',array(
                              "mapped" => false,
                              "label" => "Entrez votre nouveau mot de passe:"
@@ -40,8 +44,15 @@ class PasswordController extends Controller
             {
               $form->bind($request);
               
-              $log->info('check same password');
-              if(( $form["new_password"]->getData() != $form["same_password"]->getData()))  
+              $log->info('check old password');
+              if( sha1($form["old_password"]->getData()) != $user->getPassword())  
+                    return $this->render('EnsiieUserBundle:Password:index.html.twig',array(
+                      'form' => $form->createView(),
+                      'error'=>'Ancien mot de passe incorrect',
+                      'success'=>''));
+              
+              $log->info('check same new password');
+              if( $form["new_password"]->getData() != $form["same_password"]->getData())  
                     return $this->render('EnsiieUserBundle:Password:index.html.twig',array(
                       'form' => $form->createView(),
                       'error'=>'Vous n\'avez pas entré deux fois le même mot de passe',
