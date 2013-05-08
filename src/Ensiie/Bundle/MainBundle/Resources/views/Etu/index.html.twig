@@ -7,6 +7,10 @@
     <li class="nav-header">
       Examens</li>
     <li ><a href="{{ path('ensiie_etudiant_examen_consult')}}">Consulter</a></li>
+    
+    <li class="nav-header">
+      Profil </li>
+    <li> <a href="{{ path('ensiie_password_change')}}">Changer le mot de passe</a> <li>
   </ul>
   </div>
 {% endblock %}
@@ -26,4 +30,6 @@
         </ul>
     </div>
   <h4> Vérifiez que vos informations sont à jour ! </h4>
+
+    <a href="{{ path('ensiie_password_change')}}">Changer le mot de passe</a>
 {% endblock %}
