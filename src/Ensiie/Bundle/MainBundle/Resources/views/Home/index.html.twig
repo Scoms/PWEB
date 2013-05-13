@@ -18,7 +18,8 @@
                 <thead style="background-color:#49afcd">
                     <tr>
                         <th> Moyenne </th>
-                        <th> Examen </th>                      
+                        <th> Examen </th>
+                        <th> Coefficient </th>
                         <th> Promo  </th>
                     </tr>
                 </thead>
@@ -26,6 +27,7 @@
                     <tr>
                         <th> {{ '%.2f'|format(moyenne) }}</th>
                         <th> {{ exam.libelle }} </th>
+                        <th> {{ exam.coefficient }} </th>
                         <th> {{ exam.promo.getLibelle() }} </th>
                     </tr>
             {% endfor %}
