@@ -23,53 +23,76 @@ class HomeController extends Controller
       $log->info('Debut du calcul de la moyenne pour chaque examen');
       $moyennes_exams = $this->calcMoyenne($exams); 
       
-      $log->info('Debut du calcul des moyennes par promo');
-      $moyennes_promos = array();
-      $moyennes_promos_res = array();
-      
-      $log->info('Contruction du tableau moyenne -> promo ne contenant pas les examens ');
-      foreach($moyennes_exams as $moyenne => $exam)
-       {
-            $promo = $exam->getPromo()->getLibelle();
-            $moyennes_promos[$moyenne] = $promo;
-       }
-      $log->info('Tableau contenant promo -> nombre d\'examens attenants'); 
-      $count_occurrences = array_count_values($moyennes_promos);
-      
-      
-      
-      $log->info('Calcul de la moyenne pour chaque promo');
-      foreach($moyennes_promos as $moyenne1 => $promo1)
-       {      
-        if($count_occurrences[$promo1] == 1)
-        {
-            $log->info('Cas simple d\'un seul examen');
-            $moyenne_temp = $moyenne1;
-        }        
-        else
-        {
-            $log->info('Cas complexe de plusieurs examens');
-            $moyenne_temp = 0;
-            foreach($moyennes_promos as $moyenne2 => $promo2)
-            {
-                if($promo1 == $promo2)
-                {
-                    $moyenne_temp += $moyenne2;
-                }                    
+      $log->info('Debut du calcul de la moyenne par promo');
+     // $moyennes_promos = $this->calcMoyennePromo($moyennes_exams);
+       $log->info('Debut du calcul des moyennes par promo');
+        $moyennes_promos = array();     
+         
+      foreach($moyennes_exams as $moyenne1 => $exam1)
+       {           
+            $moyenne_promo = $moyenne1 * $exam1->getCoefficient();
+            $count_promo = $exam1->getCoefficient();
+            $promo_calculee = array();
+            $promo1 = $exam1->getPromo()->getLibelle();           
+            
+            foreach($moyennes_exams as $moyenne2 => $exam2)
+            {                
+                $promo2 = $exam2->getPromo()->getLibelle();                
+                
+                if($promo1 == $promo2
+                && ( $exam1->getLibelle() != $exam2->getLibelle() )
+                && !in_array($promo2, $promo_calculee))
+                {   
+                    for($i=1; $i <= $exam2->getCoefficient(); $i++)
+                    {
+                        $moyenne_promo += $moyenne2;
+                        $count_promo++;
+                    }                    
+                }
             }
-            $moyenne_temp /= $count_occurrences[$promo1];
-        }
-        $log->info('Dans tous les cas ajout de moyenne -> promo');
-        $moyennes_promos_res[$promo1] = $moyenne_temp;
-       }                      
+            $moyenne_promo /= $count_promo;
+            array_push($promo_calculee, $promo1);
+            $moyennes_promos[$promo1] = $moyenne_promo;
+       }
+      
+      
        $log->info('rendu');
         return $this->render('EnsiieMainBundle:Home:index.html.twig',
                 array('moyennes_exams' => $moyennes_exams, 
-                      'moyennes_promos' => $moyennes_promos_res)
+                      'moyennes_promos' => $moyennes_promos)
                 );
     }
     
-
+    public function calcMoyennePromo($moyennes_exams)
+    {
+        $log->info('Debut du calcul des moyennes par promo');
+        $moyennes_promos = array();     
+         
+      foreach($moyennes_exams as $moyenne1 => $exam1)
+       {           
+            $moyenne_promo = $moyenne1;
+            $count_promo = 1;
+            $promo_calculee = array();
+            $promo1 = $exam1->getPromo()->getLibelle();           
+            
+            foreach($moyennes_exams as $moyenne2 => $exam2)
+            {                
+                $promo2 = $exam2->getPromo()->getLibelle();                
+                
+                if($promo1 == $promo2
+                && ( $exam1->getLibelle() != $exam2->getLibelle() )
+                && !in_array($promo2, $promo_calculee))
+                {                    
+                    $moyenne_promo += $moyenne2;
+                    $count_promo++;
+                }
+            }
+            $moyenne_promo /= $count_promo;
+            array_push($promo_calculee, $promo1);
+            $moyennes_promos[$promo1] = $moyenne_promo;
+       }
+       return $moyennes_promos;
+    }
     
     public function calcMoyenne($exams)
     {
