@@ -104,7 +104,7 @@ Aucun rattrapage.
     <td><a href="" >x</a></td>
     {% else %}
     <td></td>
-    <td></td>
+    <td> {{ exam.depot.getNote() }}</td>
     {% endif %}
   </tr>
   {% endfor %}
