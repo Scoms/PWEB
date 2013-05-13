@@ -44,3 +44,4 @@ security:
         - { path: ^/admin, roles: ROLE_GESTION }
         - { path: ^/etu, roles: ROLE_ETU }
         - { path: ^/prof, roles: ROLE_PROF }
+        - { path: ^/password/change, roles: [ROLE_GESTION, ROLE_ETU, ROLE_PROF] }
