@@ -28,7 +28,7 @@ class Depots extends AbstractFixture implements OrderedFixtureInterface
     foreach($array_etus_conso as $etu)
     {
       //Tristan ne dépose pas 
-      if($etu != $repo_etu->findOneBy(array("nom"=>"Guillevin")))
+      if($etu !== $repo_etu->findOneBy(array("nom"=>"Guillevin")))
       {
 	$depot = new Depot;
 	$depot->setEtudiant($etu);
