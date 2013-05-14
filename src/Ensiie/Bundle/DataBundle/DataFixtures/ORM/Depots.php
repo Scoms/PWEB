@@ -35,6 +35,12 @@ class Depots extends AbstractFixture implements OrderedFixtureInterface
 	$depot->setExamen($examen);
 	$depot->setNote(rand(0,20));
         $depot->setPath("factice.pdf");
+        $length = strlen($depot->getWebPath())  - strlen($depot->getPath());
+        
+        $dir = substr(''.$depot->getWebPath(),0,$length);
+        mkdir('web/'.$dir,0777,true);
+        copy('web/factice.pdf','web/'.$depot->getWebPath());
+        //move("x","x");
 	$manager->persist($depot);
       }
       // else ne rien faire
@@ -49,6 +55,13 @@ class Depots extends AbstractFixture implements OrderedFixtureInterface
 	$depot->setExamen($examen);
 	$depot->setNote(rand(0,20));
         $depot->setPath("factice.pdf");
+        $length = strlen($depot->getWebPath())  - strlen($depot->getPath());
+        
+        $dir = substr(''.$depot->getWebPath(),0,$length);
+
+        mkdir('web/'.$dir,0777,true);
+        copy('web/factice.pdf','web/'.$depot->getWebPath());
+        //move("x","x");
 	$manager->persist($depot);
     }
     $manager->flush();

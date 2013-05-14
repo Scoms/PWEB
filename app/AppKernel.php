@@ -19,7 +19,7 @@ class AppKernel extends Kernel
             new JMS\AopBundle\JMSAopBundle(),
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
-            new Ensiie\Bundle\DataBundle\EnsiieDataBundle(),
+	    new Ensiie\Bundle\DataBundle\EnsiieDataBundle(),
             new Ensiie\Bundle\MainBundle\EnsiieMainBundle(),
             new Ensiie\Bundle\UserBundle\EnsiieUserBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
