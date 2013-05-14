@@ -10,7 +10,7 @@
 {% endif %}
 {% if success != '' %}
   <div class="alert alert-success">
-	<p data-dismiss="alert">Le fichier {{ success }} a été ajouté avec succès.</p>
+	<p data-dismiss="alert">{{ success }}</p>
   </div>
 {% endif %}
 <form action="" method="post" {{ form_enctype(form_ajout) }}>

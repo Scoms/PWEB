@@ -1,6 +1,7 @@
 {% extends 'EnsiieMainBundle:Prof:index.html.twig' %}
 
 {% block body %}
+<h1>Ajouter un examen</h1>
 
 {% if error != '' %}
   <div class="alert alert-error">
@@ -13,7 +14,7 @@
   </div>
 {% endif %}
 
-<form action="#" method="post" {{ form_enctype(form) }}>
+<form action="" method="post" {{ form_enctype(form) }}>
     {{ form_widget(form) }}
     <input type="submit" value="Déposer" class="btn btn-primary" />
 </form>

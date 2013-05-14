@@ -84,7 +84,10 @@
     {% endif %}
     </td>
     <td><p>{{ exam.description }}</p></td>
-    <td><p></p>{{ exam.promo.annee }}</td>
+    <td><p>{% if exam.promo != '' %}
+		{{ exam.promo.annee }}
+		{% endif %}
+	</p>	</td>
     <td><p>{{ exam.dateDebut.format('Y-m-d H:i') }}</p></td>
     <td><p>{{ exam.dateFin.format('Y-m-d H:i') }}</p></td>
     <td>

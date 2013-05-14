@@ -61,7 +61,7 @@ protected $date_fin;
 protected $coefficient;
 
 /**
-* @ORM\OneToMany(targetEntity="Depot", mappedBy="examen",cascade={"remove"})
+* @ORM\OneToMany(targetEntity="Depot", mappedBy="examen")
 */
 protected $depot;
 
@@ -322,6 +322,6 @@ public function __construct()
 
     public function __toString()
     {
-      return $this->getName()." : ".$this->getPath();
+      return $this->getLibelle();
     }
 }

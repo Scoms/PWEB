@@ -2,7 +2,8 @@
 
 {% block body %}
 <h1>Retirer des Etudiants</h1>
-
+<a class="btn btn-warning" href="{{ path('ensiie_examen_ajouter_etu',{"id":id}) }}">Ajouter des étudiants</a>
+<a class="btn btn-warning" href="{{ path('ensiie_examen_retirer_etu',{"id":id}) }}">Retirer des étudiants</a>
 {% if error != '' %}
   <div class="alert alert-error">
 	<p data-dismiss="alert">ERROR : {{ error }}</p>
@@ -10,7 +11,7 @@
 {% endif %}
 {% if success != '' %}
   <div class="alert alert-success">
-	<p data-dismiss="alert">Le fichier {{ success }} a été ajouté avec succès.</p>
+	<p data-dismiss="alert">{{ success }}</p>
   </div>
 {% endif %}
 <form action="" method="post" {{ form_enctype(form) }}>

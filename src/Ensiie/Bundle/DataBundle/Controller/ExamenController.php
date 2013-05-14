@@ -49,11 +49,10 @@ class ExamenController extends Controller
       if($form->isValid())
       {
 	$logger->info('Examen upload : form valid.');
-	$em = $this->getDoctrine()->getManager();
 	
 	$logger->info("L'unicité promo/file_id");
-	$test = $em->getRepository("EnsiieDataBundle:Examen")->findOneBy(array("file" => $document->getFile(),"promo"=>$document->getPromo()));
-	    if($test != "")
+	$test = $em->getRepository("EnsiieDataBundle:Examen")->findOneBy(array("file" => $examen->getFile(),"promo"=>$examen->getPromo()));
+	if($test != "")
 	    {
 		  return $this->render('EnsiieDataBundle:Examen:upload.html.twig',array(
 		  "form" => $form->createView(),
@@ -66,7 +65,7 @@ class ExamenController extends Controller
 	return $this->render('EnsiieDataBundle:Examen:upload.html.twig',array(
 	  "form" => $form->createView(),
 	  "error"=>"",
-	  "success"=>"L'examen ".$examen->getLibelle()."à bien été ajouté !",
+	  "success"=>"L'examen ".$examen->getLibelle()." à bien été ajouté !",
 	  ));
       }	
     }
@@ -235,7 +234,10 @@ class ExamenController extends Controller
       $examen = $em->getRepository("EnsiieDataBundle:Examen")->find($id);
       
       $logger->info('On récupère l\'ID de la promo en cours.');
-      $promo_id = $examen->getPromo()->getId();
+      if($examen->getPromo() != "")
+	$promo_id = $examen->getPromo()->getId();
+      else 
+	$promo_id = null;
       
       $logger->info('form ajout');
       
@@ -247,10 +249,10 @@ class ExamenController extends Controller
       {
 	$i =0;
 	foreach($etudiants2 as $etu2)
-	  if($etu1 == $etu2)
+	  if($etu1 === $etu2)
 	    $i = 1;
 	foreach($examen->getEtudiants() as $etu2)
-	    if($etu1 == $etu2)
+	    if($etu1 === $etu2)
 	      $i = 1;
 	if($i==0)
 	  array_push($etudiants,$etu1);
@@ -282,6 +284,7 @@ class ExamenController extends Controller
 	"error"=>"",
 	"success"=>"",
 	"form_ajout"=> $form_ajout->createView(),
+	"id"=>$id,
 	));
     }
     public function retraitEtuAction($id)
@@ -334,6 +337,7 @@ class ExamenController extends Controller
 	"error"=>"",
 	"success"=>"",
 	"form"=>$form->createView(),
+	"id"=>$id,
 	));
     }
 }

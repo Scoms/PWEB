@@ -322,6 +322,6 @@ public function __construct()
 
     public function __toString()
     {
-      return $this->getName()." : ".$this->getPath();
+      return $this->getLibelle;
     }
 }
