@@ -18,16 +18,23 @@ class ExamenEtudiantController extends Controller
 	$etudiant = $em->getRepository("EnsiieDataBundle:Etudiant")->findOneBy(array("user" => $user->getId()));
 	$notes = array();
 	//Fin variable de base
-	
+	$moyenne = null;
+	$div = null;
 	$mes_examens_promo = $em->getRepository('EnsiieDataBundle:Examen')->findBy(array("promo" => $etudiant->getPromo()),array("date_debut"=>"desc"));
 	foreach($mes_examens_promo as $exam)
 	{
 	  $note = $repo_depot->findOneBy(array("examen"=>$exam,"etudiant"=>$etudiant));
 	  if($note !== null)
+	  {
 	    $notes[$exam->getId()] = $note->getNote();
+	    $moyenne += $note->getNote() * $exam->getCoefficient();
+	    $div += $exam->getCoefficient();
+	  }
 	  else
 	    $notes[$exam->getId()] = '';
 	}
+	if($moyenne != null)
+	  $moyenne = $moyenne / $div;
 	$mes_rattrapages = array();
 	$exams = $em->getRepository('EnsiieDataBundle:Examen')->findAll();
 	foreach($exams as $rattrapage)
@@ -51,6 +58,7 @@ class ExamenEtudiantController extends Controller
 	  "depots"=>$notes,
 	  "var" => "",
 	  "date" => new \Datetime(),
+	  "moyenne"=>$moyenne,
         ));
     }
     public function deposerAction($id)

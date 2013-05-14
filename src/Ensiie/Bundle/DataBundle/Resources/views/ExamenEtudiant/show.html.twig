@@ -4,9 +4,7 @@
 
 <h1>Liste des examens</h1>
 
-<h5>Ma moyenne : 
-
-</h5>
+<h5>Ma moyenne : {{ moyenne }}</h5>
 <h3>Examens de ma promo</h3>
 
 {% if mes_examens_promo is empty %}
@@ -29,7 +27,7 @@
   {% for exam in mes_examens_promo %}	
   <tr>
     <td><p>{{ exam.libelle }}</p></td>
-    <td><p>{{ exam.description }}</p></td>
+    <td><p>{{ exam.description }} (coef {{ exam.coefficient }})</p></td>
     <td><p>{{ exam.dateDebut.format('Y-m-d H:i') }}</p></td>
     <td><p>{{ exam.dateFin.format('Y-m-d H:i') }}</p></td>
     <td>
