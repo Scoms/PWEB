@@ -46,7 +46,13 @@
     </td>
     {% if exam.file != "" and date > exam.dateDebut and date < exam.dateFin %}
     <td><a href="{{ exam.file.getDlPath() }}" >x</a></td>
-    <td><a href="{{ path('ensiie_etudiant_examen_deposer',{"id":exam.id})}}" >x</a></td>
+    <td><a href="{{ path('ensiie_etudiant_examen_deposer',{"id":exam.id})}}" >x
+      {% for de in exam.depot %}
+	{% if de.etudiant === etu %}
+	  (ok)
+	{% endif %}
+      {% endfor %}
+      </a></td>
     {% else %}
     <td></td>
     <td>
@@ -80,7 +86,7 @@ Aucun rattrapage.
   {% for exam in mes_rattrapages %}	
   <tr>
     <td><p>{{ exam.libelle }}</p></td>
-    <td><p>{{ exam.description }}</p></td>
+    <td><p>{{ exam.description }} (coef {{ exam.coefficient }})</p></td>
     <td><p>{{ exam.dateDebut.format('Y-m-d H:i') }}</p></td>
     <td><p>{{ exam.dateFin.format('Y-m-d H:i') }}</p></td>
     <td>

@@ -59,6 +59,7 @@ class ExamenEtudiantController extends Controller
 	  "var" => "",
 	  "date" => new \Datetime(),
 	  "moyenne"=>$moyenne,
+	  "etu"=>$etudiant,
         ));
     }
     public function deposerAction($id)
