@@ -58,6 +58,12 @@ class FileExamens extends AbstractFixture implements OrderedFixtureInterface
     $file->setUser($manager->getRepository("EnsiieUserBundle:User")->findOneBy(array("username"=>"b.gassmann")));
     $manager->persist($file);
     
+    $file= new FileExamen;
+    $file->setName("Projets Pweb ");
+    $file->setPath("sujet_groupes_1A.pdf");
+    $file->setUser($manager->getRepository("EnsiieUserBundle:User")->findOneBy(array("username"=>"b.gassmann")));
+    $manager->persist($file);
+    
     /*
      * Exams maths
      */

@@ -58,6 +58,12 @@ class FileExamens extends AbstractFixture implements OrderedFixtureInterface
     $file->setUser($manager->getRepository("EnsiieUserBundle:User")->findOneBy(array("username"=>"b.gassmann")));
     $manager->persist($file);
     
+    $file= new FileExamen;
+    $file->setName("Projets Pweb ");A
+    $file->setPath("sujet_groupes_1A.pdf");
+    $file->setUser($manager->getRepository("EnsiieUserBundle:User")->findOneBy(array("username"=>"b.gassmann")));
+    $manager->persist($file);
+    
     /*
      * Exams maths
      */
@@ -65,11 +71,13 @@ class FileExamens extends AbstractFixture implements OrderedFixtureInterface
     $file->setName("Intermédiaire 1A");
     $file->setPath("mom_1_1A.pdf");
     $file->setUser($manager->getRepository("EnsiieUserBundle:User")->findOneBy(array("username"=>"a.faye")));
+    $manager->persist($file);
     
     $file= new FileExamen;
     $file->setName("Intermédiaire 1A");
     $file->setPath("mom_2_1A.pdf");
     $file->setUser($manager->getRepository("EnsiieUserBundle:User")->findOneBy(array("username"=>"a.faye")));
+    $manager->persist($file);
     
     /*
       * Exams réseau
@@ -78,6 +86,7 @@ class FileExamens extends AbstractFixture implements OrderedFixtureInterface
     $file->setName("Réseau final 2A");
     $file->setPath("ISE3.pdf");
     $file->setUser($manager->getRepository("EnsiieUserBundle:User")->findOneBy(array("username"=>"s.genaud")));
+    $manager->persist($file);
       
     $manager->flush();
   }

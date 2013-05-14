@@ -14,12 +14,12 @@ class Examen {
 
 
   /**
-   * @ORM\ManyToMany(targetEntity="Etudiant", cascade={"persist"})
+   * @ORM\ManyToMany(targetEntity="Etudiant")
    */
   private $etudiants;
 
   /** 
-  * @ORM\ManyToOne(targetEntity="FileExamen",inversedBy="examen",cascade={"remove"})
+  * @ORM\ManyToOne(targetEntity="FileExamen",inversedBy="examen")
   */
   protected $file;
   
@@ -61,7 +61,7 @@ protected $date_fin;
 protected $coefficient;
 
 /**
-* @ORM\OneToMany(targetEntity="Depot", mappedBy="examen")
+* @ORM\OneToMany(targetEntity="Depot", mappedBy="examen",cascade={"remove"})
 */
 protected $depot;
 

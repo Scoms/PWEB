@@ -15,7 +15,7 @@ class Etudiant
 {
   
   /**
-  * @ORM\OneToOne(targetEntity="Ensiie\Bundle\UserBundle\Entity\User",cascade={"remove"},inversedBy="etudiant")
+  * @ORM\OneToOne(targetEntity="Ensiie\Bundle\UserBundle\Entity\User",inversedBy="etudiant",cascade={"remove"})
   */
   protected $user;
   /**
@@ -66,7 +66,7 @@ protected $telephone;
 private $promo;
 
 /**
-* @ORM\OneToMany(targetEntity="Depot", mappedBy="etudiant")
+* @ORM\OneToMany(targetEntity="Depot", mappedBy="etudiant",cascade={"remove"})
 */
 protected $depot; 
 

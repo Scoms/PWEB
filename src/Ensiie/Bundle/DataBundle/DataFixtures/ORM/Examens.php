@@ -44,8 +44,6 @@ class Examens extends AbstractFixture implements OrderedFixtureInterface
     $exam->setDescription('Trololo');
     $exam->setDateDebut(new \Datetime("2013-01-20 12:20"));
     $exam->setDateFin(new \Datetime("2013-01-20 15:20"));
-    $exam->addEtudiant($etu_repo->findOneBy(array("nom"=>"Gouy")));
-    $exam->addEtudiant($etu_repo->findOneBy(array("nom"=>"Thenoz")));
     $exam->setCoefficient(1);
     $manager->persist($exam);
     
@@ -69,6 +67,8 @@ class Examens extends AbstractFixture implements OrderedFixtureInterface
     $exam->setDescription('Dissertation');
     $exam->setDateDebut($dd);
     $exam->setDateFin($df);
+    $exam->addEtudiant($etu_repo->findOneBy(array("nom"=>"Gouy")));
+    $exam->addEtudiant($etu_repo->findOneBy(array("nom"=>"Thenoz")));
     $exam->setCoefficient(2);
     $manager->persist($exam);
     
@@ -88,12 +88,20 @@ class Examens extends AbstractFixture implements OrderedFixtureInterface
      $exam = new Examen;
     $exam->setPromo($_2A);    
     $exam->setFile($manager->getRepository("EnsiieDataBundle:FileExamen")->findOneBy(array("path"=>"sujet_groupes.pdf")));
-    $exam->setLibelle('Pweb');
+    $exam->setLibelle('Pweb 2a');
     $exam->setDescription('sujet et groupes');
     $exam->setDateDebut($dd);
     $exam->setDateFin($df);
-    $exam->addEtudiant($etu_repo->findOneBy(array("nom"=>"Gouy")));
-    $exam->addEtudiant($etu_repo->findOneBy(array("nom"=>"Thenoz")));
+    $exam->setCoefficient(2);
+    $manager->persist($exam);
+    
+    $exam = new Examen;
+    $exam->setPromo($_1A);    
+    $exam->setFile($manager->getRepository("EnsiieDataBundle:FileExamen")->findOneBy(array("path"=>"sujet_groupes_1A.pdf")));
+    $exam->setLibelle('Pweb 1a');
+    $exam->setDescription('Examens pour les 1A');
+    $exam->setDateDebut(new \Datetime("2013-01-20 12:20"));
+    $exam->setDateFin(new \Datetime("2013-01-20 15:20"));
     $exam->setCoefficient(2);
     $manager->persist($exam);
     

@@ -3,6 +3,10 @@
 {% block body %}
 
 <h1>Liste des examens</h1>
+
+<h5>Ma moyenne : 
+
+</h5>
 <h3>Examens de ma promo</h3>
 
 {% if mes_examens_promo is empty %}
@@ -47,7 +51,9 @@
     <td><a href="{{ path('ensiie_etudiant_examen_deposer',{"id":exam.id})}}" >x</a></td>
     {% else %}
     <td></td>
-    <td></td>
+    <td>
+    {{ depots[exam.id] }}
+    </td>
     {% endif %}
   </tr>
   {% endfor %}
@@ -104,7 +110,8 @@ Aucun rattrapage.
     <td><a href="" >x</a></td>
     {% else %}
     <td></td>
-    <td> {{ exam.depot.getNote() }}</td>
+    <td> 
+    {{ depots[exam.id] }}</td>
     {% endif %}
   </tr>
   {% endfor %}

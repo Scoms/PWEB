@@ -34,12 +34,24 @@ class Depots extends AbstractFixture implements OrderedFixtureInterface
 	$depot->setEtudiant($etu);
 	$depot->setExamen($examen);
 	$depot->setNote(rand(0,20));
-        $depot->setPath("CR-BDE_24_04_13.pdf");
+        $depot->setPath("factice.pdf");
 	$manager->persist($depot);
       }
       // else ne rien faire
     }
     
+    
+    $examen = $repo_examen->findOneBy(array("libelle"=>"Pweb 1a"));
+    foreach($array_etus_conso as $etu)
+    {
+	$depot = new Depot;
+	$depot->setEtudiant($etu);
+	$depot->setExamen($examen);
+	$depot->setNote(rand(0,20));
+        $depot->setPath("factice.pdf");
+	$manager->persist($depot);
+    }
+    $manager->flush();
     //Rempliassage IPA controle intermédiaire
     $examen = $repo_examen->findOneBy(array("libelle"=>"IPA controle intermédiaire"));
     /*foreach($array_etus_conso as $etu)
@@ -48,21 +60,21 @@ class Depots extends AbstractFixture implements OrderedFixtureInterface
 	$depot->setEtudiant($etu);
 	$depot->setExamen($examen);
 	$depot->setNote(rand(0,20));
-        $depot->setPath("CR-BDE_24_04_13.pdf");
+        $depot->setPath("factice.pdf");
 	$manager->persist($depot);
     }*/
     $depot = new Depot;
     $depot->setEtudiant($repo_etu->findOneBy(array("nom"=>"Gouy")));
     $depot->setExamen($examen);
     $depot->setNote(rand(0,20));
-    $depot->setPath("CR-BDE_24_04_13.pdf");
+    $depot->setPath("factice.pdf");
     $manager->persist($depot);
     
     $depot = new Depot;
     $depot->setEtudiant($repo_etu->findOneBy(array("nom"=>"Thenoz")));
     $depot->setExamen($examen);
     $depot->setNote(rand(0,20));
-    $depot->setPath("CR-BDE_24_04_13.pdf");
+    $depot->setPath("factice.pdf");
     $manager->persist($depot);
 
     //Remplissage Pweb
@@ -71,14 +83,14 @@ class Depots extends AbstractFixture implements OrderedFixtureInterface
     $depot->setEtudiant($repo_etu->findOneBy(array("nom"=>"Gouy")));
     $depot->setExamen($examen);
     $depot->setNote(rand(0,20));
-    $depot->setPath("CR-BDE_24_04_13.pdf");
+    $depot->setPath("factice.pdf");
     $manager->persist($depot);
     
     $depot = new Depot;
     $depot->setEtudiant($repo_etu->findOneBy(array("nom"=>"Thenoz")));
     $depot->setExamen($examen);
     $depot->setNote(rand(0,20));
-    $depot->setPath("CR-BDE_24_04_13.pdf");
+    $depot->setPath("factice.pdf");
     $manager->persist($depot);
     
     $manager->flush();

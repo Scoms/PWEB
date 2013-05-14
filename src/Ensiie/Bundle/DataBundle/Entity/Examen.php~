@@ -6,7 +6,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
-* @ORM\Entity
+* @ORM\Entity(repositoryClass="Ensiie\Bundle\DataBundle\Entity\ExamenRepository")
 * @ORM\Table(name="examen")
 */
 
@@ -14,14 +14,15 @@ class Examen {
 
 
   /**
-   * @ORM\ManyToMany(targetEntity="Etudiant", cascade={"persist"})
+   * @ORM\ManyToMany(targetEntity="Etudiant")
    */
   private $etudiants;
 
   /** 
-  * @ORM\ManyToOne(targetEntity="FileExamen",inversedBy="examen",cascade={"remove"})
+  * @ORM\ManyToOne(targetEntity="FileExamen",inversedBy="examen")
   */
   protected $file;
+  
 /**
 * @ORM\Id
 * @ORM\Column(type="integer")

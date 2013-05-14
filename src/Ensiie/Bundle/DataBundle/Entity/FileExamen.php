@@ -18,7 +18,7 @@ class FileExamen
      */
     protected $file;
     /**
-      * @ORM\ManyToOne(targetEntity="Ensiie\Bundle\UserBundle\Entity\User",cascade={"remove"},inversedBy="examen")
+      * @ORM\ManyToOne(targetEntity="Ensiie\Bundle\UserBundle\Entity\User",inversedBy="examen")
       */
      protected $user;
      /**

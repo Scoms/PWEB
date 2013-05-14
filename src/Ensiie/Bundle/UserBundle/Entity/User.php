@@ -21,12 +21,12 @@ class User implements UserInterface
   private $id;
  
   /**
-  * @ORM\OneToMany(targetEntity="Ensiie\Bundle\DataBundle\Entity\FileExamen",cascade={"remove"},mappedBy="user")
+  * @ORM\OneToMany(targetEntity="Ensiie\Bundle\DataBundle\Entity\FileExamen",mappedBy="user",cascade={"remove"})
   */
   protected $examen;
   
   /**
-  * @ORM\OneToOne(targetEntity="Ensiie\Bundle\DataBundle\Entity\Etudiant",cascade={"remove"},mappedBy="user")
+  * @ORM\OneToOne(targetEntity="Ensiie\Bundle\DataBundle\Entity\Etudiant",mappedBy="user",cascade={"remove"})
   */
   protected $etudiant;
   /**

@@ -66,7 +66,9 @@
 	<a href="{{ exam.file.getDlPath() }}" ><img src="{{ asset('../img/pdfIcon.png') }}" style="width:25px;heigth:25px"></a>
       </p></td>
     <td>
-	<a href="{{ path('ensiie_examen_depots_consulter',{"id":exam.id,"dpt":0}) }}" >x</a>
+    {% if exam.file.user == user %}
+	<a class="btn btn-success" href="{{ path('ensiie_examen_depots_consulter',{"id":exam.id,"dpt":0}) }}" >Voir</a>
+    {% endif %}
     </td>
     </tr>
   {% endfor %}

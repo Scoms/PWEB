@@ -1,5 +1,4 @@
 <?php
-// src/Iaato/UserBundle/DataFixtures/ORM/Users.php
  
 namespace Ensiie\Bundle\DataBundle\DataFixtures\ORM;
  
@@ -7,6 +6,8 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Ensiie\Bundle\DataBundle\Entity\Etudiant;
+use Ensiie\Bundle\DataBundle\Entity\Examen;
 use Ensiie\Bundle\DataBundle\Entity\Depot;
 
 class Depots extends AbstractFixture implements OrderedFixtureInterface
@@ -27,38 +28,71 @@ class Depots extends AbstractFixture implements OrderedFixtureInterface
     foreach($array_etus_conso as $etu)
     {
       //Tristan ne dépose pas 
-      if($etu != $repo_etu->findOneBy(array("nom"=>"Guillevin")))
+      if($etu !== $repo_etu->findOneBy(array("nom"=>"Guillevin")))
       {
 	$depot = new Depot;
 	$depot->setEtudiant($etu);
 	$depot->setExamen($examen);
 	$depot->setNote(rand(0,20));
+        $depot->setPath("factice.pdf");
 	$manager->persist($depot);
       }
       // else ne rien faire
     }
     
-    //Rempliassage IPA controle intermédiaire
-    $examen = $repo_examen->findOneBy(array("libelle"=>"IPA controle intermédiaire"));
+    
+    $examen = $repo_examen->findOneBy(array("libelle"=>"Examens pour les 1A"));
     foreach($array_etus_conso as $etu)
     {
 	$depot = new Depot;
 	$depot->setEtudiant($etu);
 	$depot->setExamen($examen);
 	$depot->setNote(rand(0,20));
+        $depot->setPath("factice.pdf");
 	$manager->persist($depot);
     }
+    $manager->flush();
+    //Rempliassage IPA controle intermédiaire
+    $examen = $repo_examen->findOneBy(array("libelle"=>"IPA controle intermédiaire"));
+    /*foreach($array_etus_conso as $etu)
+    {
+	$depot = new Depot;
+	$depot->setEtudiant($etu);
+	$depot->setExamen($examen);
+	$depot->setNote(rand(0,20));
+        $depot->setPath("factice.pdf");
+	$manager->persist($depot);
+    }*/
     $depot = new Depot;
-    $depot->setEtudiant($etu_repo->findOneBy(array("nom"=>"Gouy")));
+    $depot->setEtudiant($repo_etu->findOneBy(array("nom"=>"Gouy")));
     $depot->setExamen($examen);
     $depot->setNote(rand(0,20));
+    $depot->setPath("factice.pdf");
     $manager->persist($depot);
+    
     $depot = new Depot;
-    $depot->setEtudiant($etu_repo->findOneBy(array("nom"=>"Thenoz")));
+    $depot->setEtudiant($repo_etu->findOneBy(array("nom"=>"Thenoz")));
     $depot->setExamen($examen);
     $depot->setNote(rand(0,20));
+    $depot->setPath("factice.pdf");
     $manager->persist($depot);
 
+    //Remplissage Pweb
+    $examen = $repo_examen->findOneBy(array("libelle"=>"Pweb"));
+    $depot = new Depot;
+    $depot->setEtudiant($repo_etu->findOneBy(array("nom"=>"Gouy")));
+    $depot->setExamen($examen);
+    $depot->setNote(rand(0,20));
+    $depot->setPath("factice.pdf");
+    $manager->persist($depot);
+    
+    $depot = new Depot;
+    $depot->setEtudiant($repo_etu->findOneBy(array("nom"=>"Thenoz")));
+    $depot->setExamen($examen);
+    $depot->setNote(rand(0,20));
+    $depot->setPath("factice.pdf");
+    $manager->persist($depot);
+    
     $manager->flush();
   }
   public function getOrder()

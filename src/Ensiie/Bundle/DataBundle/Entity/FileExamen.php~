@@ -18,11 +18,11 @@ class FileExamen
      */
     protected $file;
     /**
-      * @ORM\ManyToOne(targetEntity="Ensiie\Bundle\UserBundle\Entity\User",cascade={"remove"},inversedBy="examen")
+      * @ORM\ManyToOne(targetEntity="Ensiie\Bundle\UserBundle\Entity\User",inversedBy="examen",cascade={"remove"})
       */
      protected $user;
      /**
-      * @ORM\OneToMany(targetEntity="Ensiie\Bundle\UserBundle\Entity\Examen",mappedBy="file",cascade={"remove"})
+      * @ORM\OneToMany(targetEntity="Ensiie\Bundle\DataBundle\Entity\Examen",mappedBy="file",cascade={"remove"})
       */
      protected $examen;
     /**

@@ -13,7 +13,7 @@
 {% endif %}
 {% if success != '' %}
   <div class="alert alert-success">
-	<p data-dismiss="alert">{{ succes }}</p>
+	<p data-dismiss="alert">{{ success }}</p>
   </div>
 {% endif %}
 

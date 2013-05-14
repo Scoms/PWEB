@@ -14,10 +14,20 @@ class ExamenEtudiantController extends Controller
 	$em = $this->getDoctrine()->getManager();	
 	$logger = $this->get('logger');
 	$user = $this->get('security.context')->getToken()->getUser();
+	$repo_depot = $em->getRepository('EnsiieDataBundle:Depot');
 	$etudiant = $em->getRepository("EnsiieDataBundle:Etudiant")->findOneBy(array("user" => $user->getId()));
+	$notes = array();
 	//Fin variable de base
 	
 	$mes_examens_promo = $em->getRepository('EnsiieDataBundle:Examen')->findBy(array("promo" => $etudiant->getPromo()->getId()),array("date_debut"=>"desc"));
+	foreach($mes_examens_promo as $exam)
+	{
+	  $note = $repo_depot->findOneBy(array("examen"=>$exam,"etudiant"=>$etudiant));
+	  if($note !== null)
+	    $notes[$exam->getId()] = $note->getNote();
+	  else
+	    $notes[$exam->getId()] = '';
+	}
 	$mes_rattrapages = array();
 	$exams = $em->getRepository('EnsiieDataBundle:Examen')->findAll();
 	foreach($exams as $rattrapage)
@@ -25,12 +35,20 @@ class ExamenEtudiantController extends Controller
 	  foreach($rattrapage->getEtudiants() as $etu)
 	  {
 	    if($etu == $etudiant)
+	    {
 	      array_push($mes_rattrapages,$rattrapage);
+	      $note = $repo_depot->findOneBy(array("examen"=>$rattrapage,"etudiant"=>$etudiant));
+	      if($note !== null)
+		$notes[$rattrapage->getId()] = $note->getNote();
+	      else
+		$notes[$rattrapage->getId()] = '';
+	    }
 	  }
 	}
         return $this->render('EnsiieDataBundle:ExamenEtudiant:show.html.twig',array(
 	  "mes_examens_promo" => $mes_examens_promo,
 	  "mes_rattrapages" => $mes_rattrapages,
+	  "depots"=>$notes,
 	  "var" => "",
 	  "date" => new \Datetime(),
         ));
@@ -59,6 +77,9 @@ class ExamenEtudiantController extends Controller
 	    $test = $em->getRepository("EnsiieDataBundle:Depot")->findOneBy(array("etudiant" => $etudiant,"examen"=>$exam));
 	    if($test != "")
 	    {
+	    
+		
+	    $logger->info('++ suppression physique du fichier.');
 		$em->remove($test);
 		$depot->upload();
 		$em->persist($depot);
