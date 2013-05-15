@@ -63,7 +63,7 @@
       </p>
     </td>
     <td><p>
-	<a href="{{ exam.file.getDlPath() }}" ><img src="{{ asset('../img/pdfIcon.png') }}" style="width:25px;heigth:25px"></a>
+	<a href="{{ exam.file.getDlPath() }}" ><img src="{{ asset('../img/dl.jpg') }}" style="width:35px;heigth:35px"></a>
       </p></td>
     <td>
     {% if exam.file.user == user %}
@@ -111,11 +111,11 @@
       </p>
     </td>
     <td><p>
-	<a href="{{ exam.file.getDlPath() }}" ><img src="{{ asset('../img/pdfIcon.png') }}" style="width:25px;heigth:25px"></a>
+	<a href="{{ exam.file.getDlPath() }}" ><img src="{{ asset('../img/dl.jpg') }}" style="width:35px;heigth:35px"></a>
       </p></td>
       <td>
       {% if exam.file != "" and date > exam.dateDebut and date < exam.dateFin %}
-	<a href="{{ exam.file.getDlPath() }}" ><img src="{{ asset('../img/pdfIcon.png') }}" style="width:25px;heigth:25px"></a>
+	<a href="{{ exam.file.getDlPath() }}" ><img src="{{ asset('../img/dl.jpg') }}" style="width:35px;heigth:35px"></a>
       {% else %}
 	{% if exam.file.user == user %}
 	<a class="btn btn-success" href="{{ path('ensiie_examen_depots_consulter',{"id":exam.id,"dpt":0}) }}" >Voir</a>

@@ -27,9 +27,7 @@
     {{ depot.etudiant }}
     </td>
     <td >
-    {% if depot.path == "factice.csv" %}
-    <a href="{{ depot.getDlPath() }}"><img src="{{ asset('')}}"></a>
-    {% endif %}
+    <a href="{{ depot.getDlPath() }}"><img src="{{ asset('../img.dl.jpg')}}" style="width:35px;height:35px;"></a>
     </td>
     <td style="padding:0px 0px 0px 0px;">
 	    <div>

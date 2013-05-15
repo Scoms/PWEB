@@ -45,13 +45,20 @@
       </p>
     </td>
     {% if exam.file != "" and date > exam.dateDebut and date < exam.dateFin %}
-    <td><a href="{{ exam.file.getDlPath() }}" >x</a></td>
-    <td><a href="{{ path('ensiie_etudiant_examen_deposer',{"id":exam.id})}}" >x
+    <td><a href="{{ exam.file.getDlPath() }}" ><img style="width:35px;heigth:35px;" src="{{ asset('../img/dl.jpg') }}"></a></td>
+    <td><a href="{{ path('ensiie_etudiant_examen_deposer',{"id":exam.id})}}" >
+      {% set bool = true %}
       {% for de in exam.depot %}
-	{% if de.etudiant === etu %}
-	  (ok)
+	{% if de.etudiant == etu %}
+	 {% set bool = false %}
 	{% endif %}
       {% endfor %}
+      
+      {% if bool %}
+      <img style="width:35px;heigth:35px;" src="{{ asset('../img/up.png') }}">
+      {% else %}
+      <img style="width:35px;heigth:35px;" src="{{ asset('../img/up.png') }}">
+      {% endif %}
       </a></td>
     {% else %}
     <td></td>
@@ -110,7 +117,7 @@ Aucun rattrapage.
       </p>
     </td>
     {% if exam.file != "" and date > exam.dateDebut and date < exam.dateFin %}
-    <td><a href="{{ exam.file.getDlPath() }}" >x</a></td>
+    <td><a href="{{ exam.file.getDlPath() }}" ><img style="width:35px;heigth:35px;" src="{{ asset('../img/dl.jpg') }}"></a></td>
     <td><a href="" >x</a></td>
     {% else %}
     <td></td>
