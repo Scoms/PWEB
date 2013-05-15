@@ -27,35 +27,44 @@ class Etudiant
   private $id;
 /**
 * @ORM\Column(type="string", length=100)
+* @Assert\Type(type="string")
 */
 protected $nom;
 
 /**
 * @ORM\Column(type="string", length=100)
+* @Assert\Type(type="string")
 */
 protected $prenom;
 
 /**
 * @ORM\Column(type="string", length=100)
+* @Assert\Type(type="string")
 */
 protected $adresse;
 
 /**
 * @ORM\Column(type="integer")
+* @Assert\Type(type="numeric")
+* @Assert\Max(100000)
+* @Assert\Min(0)
 */
 protected $codePostal;
 
 /**
 * @ORM\Column(type="string", length=100)
+* @Assert\Type(type="string") 
 */
 protected $ville;
 
 /**
 * @ORM\Column(type="string", length=100)
+* @Assert\Email() 
 */
 protected $email;
 /**
 * @ORM\Column(type="integer", length=10)
+* @Assert\Type(type="numeric")
 */
 protected $telephone;
 
