@@ -7,12 +7,31 @@
     <li class="nav-header">
       Examens</li>
     <li ><a href="{{ path('ensiie_etudiant_examen_consult')}}">Consulter</a></li>
+    
+    <li class="nav-header">
+      Profil </li>
+      
+    <li> <a href="{{ path('ensiie_etudiant')}}">Consulter</a> <li>
+    <li> <a href="{{ path('ensiie_password_change')}}">Changer le mot de passe</a> <li>
   </ul>
   </div>
 {% endblock %}
 
 {% block body %}
 
-  <h1>{{ prenom }} {{ nom }}</h1>
-  
+  <h1>{{ etudiant.prenom }} {{ etudiant.nom }}</h1>
+   
+    <div "info-etu" >
+        <ul>
+           <li> Adresse: {{ etudiant.adresse}} </li>
+           <li> Code postal: {{ etudiant.codePostal }} </li>
+           <li> Ville: {{ etudiant.ville }} </li>
+           <li> Email: {{ etudiant.email }} </li>
+           <li> Téléphone: {{ etudiant.telephone }} </li>
+           <li> Promo actuelle: {{ etudiant.promo }} </li>
+        </ul>
+    </div>
+  <h4> Vérifiez que vos informations sont à jour ! </h4>
+
+    <a href="{{ path('ensiie_password_change')}}">Changer le mot de passe</a>
 {% endblock %}

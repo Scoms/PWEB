@@ -16,5 +16,7 @@ class AfterLoginController extends Controller
 	  return $this->redirect($this->generateURL('ensiie_prof',array(),501));
 	if($user->getRoles() == array('ROLE_ETU'))
 	  return $this->redirect($this->generateURL('ensiie_etu',array(),501));
+	
+	  return $this->redirect($this->generateURL('ensiie_homepage',array(),501));
     }
 }

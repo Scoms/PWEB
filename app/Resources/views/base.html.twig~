@@ -32,10 +32,12 @@
 	  {% if is_granted('ROLE_ETU') %}
 	    <li><a href="{{ path('ensiie_etu') }}">Etudiant</a></li>
 	  {% endif %}
-	  <li><a href="{{ path('login') }}">Login</a><li>
-          <li><a href="{{ path('ensiie_inscription') }}">Inscription</a></li>
+	 
 	  {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
               <a class="btn btn-danger"  href="{{ path('logout') }}">Logout</a>
+		{% else %}
+		 <li><a href="{{ path('login') }}">Login</a><li>
+          <li><a href="{{ path('ensiie_inscription') }}">Inscription</a></li>
               {% endif %}
           </ul>          
         </div><!--/.nav-collapse -->
@@ -46,8 +48,60 @@
   <div class="row-fluid">
   <div class="container-fluid">
   {% block subnav %}
-    
-  <div class="span2-fluid" >
+  {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+    {% if is_granted('ROLE_ADMIN') %}
+      <div class="span2" >
+      <ul class="menu nav nav-list" style="">
+	<li class="nav-header">
+	  Utilisateurs
+	</li>
+	<li><a href="{{ path('ensiie_admin_ajoutprof') }}">Ajouter un prof</a></li>
+	<li><a href="{{ path('ensiie_admin_retraitprof',{"b":"x"}) }}">Supprimer un utilisateur</a></li>
+	<li class="nav-header">
+	  Promos
+	</li>
+	<li><a href="{{ path('ensiie_admin_promos') }}">Gérer les promos</a></li>
+	<li><a href="{{ path('ensiie_admin_promo_add') }}">Créer promo</a></li>
+
+	<li class="nav-header">Profil </li>
+	    <li> <a href="{{ path('ensiie_password_change')}}">Changer le mot de passe</a> <li>
+      </ul>
+      </div>
+    {% elseif is_granted('ROLE_PROF') %}
+      <div class="span2">
+      <ul class="menu nav nav-list" style="">
+	<li class="nav-header">
+	  Examens</li>
+	  
+	<li ><a href="{{ path('ensiie_examen_show',{"by_owner":"false"})}}">Liste des examens</a></li>
+	<li ><a href="{{ path('ensiie_examen_affect')}}">Affecter</a></li>
+	<li class="nav-header">
+	  Sujets</li>
+	<li ><a href="{{ path('ensiie_sujet_show')}}">Visualiser</a></li>
+	<li ><a href="{{ path('ensiie_sujet_upload')}}">Déposer</a></li>
+	
+	<li class="nav-header">
+	  Profil </li>
+	<li> <a href="{{ path('ensiie_password_change')}}">Changer le mot de passe</a> <li>
+      </ul>
+      </div>
+    {% elseif is_granted('ROLE_ETU') %}
+      <div class="span2" >
+      <ul class="menu nav nav-list" style="">
+	<li class="nav-header">
+	  Examens</li>
+	<li ><a href="{{ path('ensiie_etudiant_examen_consult')}}">Consulter</a></li>
+	
+	<li class="nav-header">
+	  Profil </li>
+	  
+	<li> <a href="{{ path('ensiie_etu')}}">Consulter</a> <li>
+	<li> <a href="{{ path('ensiie_password_change')}}">Changer le mot de passe</a> <li>
+      </ul>
+      </div>
+    {% endif %}
+  {% else %}
+  <div class="span2" >
   <ul class="menu nav nav-list" >
       {% if is_granted('ROLE_ADMIN') %}
 	<li><a href="{{ path('ensiie_admin') }}">Admin</a></li>
@@ -63,6 +117,7 @@
       <li><a href="{{ path('ensiie_inscription') }}">Inscription</a></li>
   </ul>
   </div>
+  {% endif %}
   {% endblock %}
   
   <div class="span10" >
