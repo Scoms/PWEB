@@ -26,7 +26,7 @@ class User implements UserInterface
   protected $examen;
   
   /**
-  * @ORM\OneToOne(targetEntity="Ensiie\Bundle\DataBundle\Entity\Etudiant",mappedBy="user")
+  * @ORM\OneToOne(targetEntity="Ensiie\Bundle\DataBundle\Entity\Etudiant",mappedBy="user",cascade={"remove"})
   */
   protected $etudiant;
   /**
