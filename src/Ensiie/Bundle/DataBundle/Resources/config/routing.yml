@@ -46,6 +46,10 @@ ensiie_sujet_download:
     pattern: /prof/sujet_download/{path}
     defaults: { _controller:EnsiieDataBundle:FileExamen:download }
 
+ensiie_etudiant_profil_modif:
+    pattern: /etu/profil/modif
+    defaults: { _controller:EnsiieDataBundle:Profil:modif }
+    
 ensiie_etudiant_examen_consult:
     pattern: /etu/examen_consult
     defaults: { _controller:EnsiieDataBundle:ExamenEtudiant:show }

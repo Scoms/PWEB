@@ -1,0 +1,59 @@
+<?php
+
+namespace Ensiie\Bundle\DataBundle\Controller;
+
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+
+class ProfilController extends Controller
+{
+  public function modifAction()
+  {
+    $log = $this->get('logger');
+    $request = $this->get('request');
+    $session = $this->get('session');
+    $em = $this->getDoctrine()->getManager();
+    $success = '';
+    $error = '';
+    
+    $log->info('modif action');
+    $repo_etudiant = $em->getRepository('EnsiieDataBundle:Etudiant');
+    
+    $user = $this->get('security.context')->getToken()->getUser();
+    $etudiant = $repo_etudiant->findOneBy(array('user'=>$user));
+    
+    $form = $this->createFormBuilder($etudiant);
+    $form 
+    	->add('adresse','text')
+	->add('codePostal','text')
+	->add('ville','text')
+	->add('email','text')
+	->add('telephone','text')
+	;
+    
+    $form = $form->getForm();
+    $log->info('CHECK METHOD');
+    if($request->getMethod() == 'POST')
+    {
+      $form->bind($request);
+      if($form->isValid())
+      {
+	$success = 'votre profil à été modifié avec succès.';
+	$em->persist($etudiant);
+	$em->flush();
+      }
+      else
+	$error = 'formulaire invalide';
+    }
+    return $this->render('EnsiieDataBundle:Profil:modif.html.twig',array(
+    'error'=>$error,
+    'success'=>$success,
+    'form'=>$form->createView(),
+    ));
+  }
+}
