@@ -9,7 +9,7 @@
  
   {# S'il y a une erreur, on l'affiche dans un joli cadre #}
   {% if error %}
-    <div class="alert alert-error">{{ error.message }}</div>
+    <div class="alert alert-error">{% if error.message == 'Bad credentials' %}Mauvais login/mot de passe{% else %}{{ error.message }}{% endif %}</div>
   {% endif %}
  
   {# Le formulaire, avec URL de soumission vers la route « login_check » comme on l'a vu #}
