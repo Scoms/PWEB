@@ -15,7 +15,7 @@ class Etudiant
 {
   
   /**
-  * @ORM\OneToOne(targetEntity="Ensiie\Bundle\UserBundle\Entity\User",inversedBy="etudiant",cascade={"remove"})
+  * @ORM\OneToOne(targetEntity="Ensiie\Bundle\UserBundle\Entity\User",inversedBy="etudiant")
   */
   protected $user;
   /**

@@ -14,7 +14,7 @@ class Examen {
 
 
   /**
-   * @ORM\ManyToMany(targetEntity="Etudiant")
+   * @ORM\ManyToMany(targetEntity="Etudiant",cascade={"remove"})
    */
   private $etudiants;
 
