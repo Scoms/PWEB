@@ -29,7 +29,7 @@ protected $file;
 protected $etudiant;
 
 /**
-* @ORM\ManyToOne(targetEntity="Examen", inversedBy="depot",cascade={"remove"})
+* @ORM\ManyToOne(targetEntity="Examen", inversedBy="depot")
 * @ORM\JoinColumn(name="examen", referencedColumnName="id") 
 */
 protected $examen;

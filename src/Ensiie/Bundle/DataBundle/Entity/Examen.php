@@ -61,7 +61,7 @@ protected $date_fin;
 protected $coefficient;
 
 /**
-* @ORM\OneToMany(targetEntity="Depot", mappedBy="examen")
+* @ORM\OneToMany(targetEntity="Depot", mappedBy="examen",cascade={"remove"})
 */
 protected $depot;
 
