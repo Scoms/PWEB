@@ -14,7 +14,7 @@ class Examens extends AbstractFixture implements OrderedFixtureInterface
   public function load(ObjectManager $manager)
   {
     //variables globales
-    $promo_repo = $manager->getRepository("EnsiieDataBundle:Promo");
+   /* $promo_repo = $manager->getRepository("EnsiieDataBundle:Promo");
     $exam_repo = $manager->getRepository("EnsiieDataBundle:FileExamen");
     $user_repo = $manager->getRepository("EnsiieUserBundle:User");
     $etu_repo = $manager->getRepository("EnsiieDataBundle:Etudiant");
@@ -23,10 +23,10 @@ class Examens extends AbstractFixture implements OrderedFixtureInterface
     $dd = new \DateTime(); // date du jour 
     $df = new \DateTime(); // demain
     $df->add(new \DateInterval('P1D'));
-    
+    */
     /*
      * Exams d'IPA 
-     */
+     *//*
     $exam = new Examen;
     $exam->setPromo($_2A);
     $exam->setFile($exam_repo->findOneBy(array("path"=>"exam_IPA_1A_2.pdf")));
@@ -46,10 +46,10 @@ class Examens extends AbstractFixture implements OrderedFixtureInterface
     $exam->setDateFin(new \Datetime("2013-01-20 15:20"));
     $exam->setCoefficient(1);
     $manager->persist($exam);
-    
+    */
     /*
      * Exams d'Eco
-     */
+     *//*
     $exam = new Examen;
     $exam->setPromo($_1A);    
     $exam->setFile($manager->getRepository("EnsiieDataBundle:FileExamen")->findOneBy(array("path"=>"macro.pdf")));
@@ -81,10 +81,10 @@ class Examens extends AbstractFixture implements OrderedFixtureInterface
     $exam->setDateFin($df);
     $exam->setCoefficient(2);
     $manager->persist($exam);
-    
+    */
     /*
      * Exams Pweb
-     */
+     *//*
      $exam = new Examen;
     $exam->setPromo($_2A);    
     $exam->setFile($manager->getRepository("EnsiieDataBundle:FileExamen")->findOneBy(array("path"=>"sujet_groupes.pdf")));
@@ -104,10 +104,10 @@ class Examens extends AbstractFixture implements OrderedFixtureInterface
     $exam->setDateFin(new \Datetime("2013-01-20 15:20"));
     $exam->setCoefficient(2);
     $manager->persist($exam);
-    
+    */
     /*
      * Exams maths
-     */
+     *//*
     $exam = new Examen;
     $exam->setPromo($_1A);    
     $exam->setFile($manager->getRepository("EnsiieDataBundle:FileExamen")->findOneBy(array("path"=>"mom_1_1A.pdf")));
@@ -127,10 +127,10 @@ class Examens extends AbstractFixture implements OrderedFixtureInterface
     $exam->setDateFin($df);
     $exam->setCoefficient(2);
     $manager->persist($exam);
-     
+     */
     /*
       * Exams réseau
-      */  
+      */ /* 
     $exam = new Examen;
     $exam->setPromo($_2A);    
     $exam->setFile($manager->getRepository("EnsiieDataBundle:FileExamen")->findOneBy(array("path"=>"ISE3.pdf")));
@@ -142,7 +142,7 @@ class Examens extends AbstractFixture implements OrderedFixtureInterface
     $manager->persist($exam);
     
     $manager->flush();
-  }
+  */}
   public function getOrder()
   {
     return 3; // the order in which fixtures will be loaded

@@ -37,7 +37,7 @@ class Etudiants extends AbstractFixture implements OrderedFixtureInterface
     $manager->persist($user);
     $manager->persist($etu);
     $etu = new Etudiant;
-    $etu->setPromo($manager->getRepository("EnsiieDataBundle:Promo")->findOneBy(array("libelle"=>"Les défricheurs")));
+    $etu->setPromo($manager->getRepository("EnsiieDataBundle:Promo")->findOneBy(array("libelle"=>"Les consommateurs")));
     $etu->setNom('Risoli');
     $etu->setPrenom('Phillipe');
     $etu->setAdresse('7 rue du fromage');

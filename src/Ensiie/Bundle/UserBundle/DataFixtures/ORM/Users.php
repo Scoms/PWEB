@@ -15,11 +15,11 @@ class Users extends AbstractFixture implements OrderedFixtureInterface
   {
     $user = new User;
     $user->setUsername('admin');
-    $user->setPassword(sha1('pass'));
+    $user->setPassword(sha1('pweb2013'));
     $user->setSalt('');
     $user->setRoles(array('ROLE_GESTION'));
     $manager->persist($user);
-    $user = new User;
+    $user = new User;/*
     $user->setUsername('prof');
     $user->setPassword(sha1('pass'));
     $user->setSalt('');
@@ -30,7 +30,7 @@ class Users extends AbstractFixture implements OrderedFixtureInterface
     $user->setPassword(sha1('pass'));
     $user->setSalt('');
     $user->setRoles(array('ROLE_ETU'));
-    $manager->persist($user);
+    $manager->persist($user);*/
     $manager->flush();
   }
   public function getOrder()

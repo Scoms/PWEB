@@ -12,7 +12,7 @@ use Ensiie\Bundle\DataBundle\Entity\Promo;
 class Promos extends AbstractFixture implements OrderedFixtureInterface
 {
   public function load(ObjectManager $manager)
-  {
+  {/*
     $promo = new Promo;
     $promo->setLibelle("Les consommateurs");
     $promo->setAnnee(2015);
@@ -25,7 +25,7 @@ class Promos extends AbstractFixture implements OrderedFixtureInterface
     $promo->setLibelle("Les pionniers");
     $promo->setAnnee(2013);
     $manager->persist($promo);
-    $manager->flush();
+    $manager->flush();*/
   }
   public function getOrder()
   {

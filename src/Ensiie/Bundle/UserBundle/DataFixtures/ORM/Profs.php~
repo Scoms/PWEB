@@ -42,7 +42,7 @@ class Profs extends AbstractFixture implements OrderedFixtureInterface
     $manager->persist($user);
     
     $user = new User;
-    $user->setUserName('p.mathis');
+    $user->setUserName('a.faye');
     $user->setPassword(sha1('pass'));
     $user->setSalt('');
     $user->setRoles(array('ROLE_PROF'));
