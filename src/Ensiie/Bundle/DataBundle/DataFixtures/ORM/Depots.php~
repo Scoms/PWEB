@@ -106,6 +106,7 @@ class Depots extends AbstractFixture implements OrderedFixtureInterface
     $depot->setPath("factice.pdf");
     $manager->persist($depot);
     
+    
     $manager->flush();
   */}
   public function getOrder()

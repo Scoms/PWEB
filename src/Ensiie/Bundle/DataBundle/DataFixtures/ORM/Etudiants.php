@@ -13,7 +13,7 @@ use Ensiie\Bundle\UserBundle\Entity\User;
 class Etudiants extends AbstractFixture implements OrderedFixtureInterface
 {
   public function load(ObjectManager $manager)
-  {/*
+  {
     $etu = new Etudiant;
     
     //Promo des consommateurs
@@ -181,7 +181,7 @@ class Etudiants extends AbstractFixture implements OrderedFixtureInterface
     $manager->persist($etu);
     
     $manager->flush();
-  */}
+  }
   public function getOrder()
   {
     return 2; // the order in which fixtures will be loaded

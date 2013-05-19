@@ -12,7 +12,7 @@ use Ensiie\Bundle\UserBundle\Entity\User;
 class Profs extends AbstractFixture implements OrderedFixtureInterface
 {
   public function load(ObjectManager $manager)
-  {/*
+  {
     $user = new User;
     $user->setUserName('p.mathis');
     $user->setPassword(sha1('pass'));
@@ -48,7 +48,7 @@ class Profs extends AbstractFixture implements OrderedFixtureInterface
     $user->setRoles(array('ROLE_PROF'));
     $manager->persist($user);
     
-    $manager->flush();*/
+    $manager->flush();
   }
   public function getOrder()
   {
